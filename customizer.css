@@ -1,0 +1,613 @@
+/* Make the section transparent & add some breathing room
+[data-section-type="customizer"] {
+  background: #fff;
+} */
+
+[data-section-type="customizer"] .flex-box {
+  padding: clamp(24px, 4vw, 48px) 0;
+  /* top/bottom padding only */
+}
+
+/* Optional: center the content within theme's max width */
+[data-section-type="customizer"] .page-width {
+  max-width: var(--page-width, 1200px);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  /* side gutter */
+}
+
+.preview-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 580px;
+  flex-shrink: 0;
+}
+
+.preview-image {
+  width: 90%;
+  /* 👈 keep this, your overlay math depends on it */
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+  /* from custom liquid */
+}
+
+.customizer-container {
+  flex: 1;
+  min-width: 320px;
+  background: #e9f6ff;
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.flex-box {
+  background: #fff;
+}
+
+@media (max-width: 600px) {
+  /* ✅ 전체 구조 세로 정렬 */
+  .flex-box {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+  }
+
+  /* ✅ 미리보기 이미지 */
+  .preview-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .preview-image {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+  }
+
+  #overlay-container {
+    position: absolute !important;
+    top: 0;
+    left: 1%;
+    /* 👈 살짝 오른쪽으로 이동 */
+    width: 100%;
+    /* 👈 이미지랑 비율 맞춤 */
+    height: 100%;
+    pointer-events: none;
+    transform: scaleX(0.95) translateX(2.5%) !important;
+    /* scaleX: 가로로 살짝 압축하거나 늘림
+    translateX: 전체적으로 오른쪽 또는 왼쪽으로 이동 */
+    transform-origin: center !important;
+  }
+
+  .text-overlay {
+    transform: translate(-50%, -50%) !important;
+  }
+
+  /* ✅ 오른쪽 커스터마이저 박스 */
+  .customizer-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    background: #e9f6ff;
+    border-radius: 6px;
+    padding: 12px 14px !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ✅ 섹션 여백 줄이기 */
+  .customizer-section {
+    margin-bottom: 14px !important;
+  }
+
+  /* ✅ 제목 줄이고 왼쪽 정렬 */
+  .section-title {
+    font-size: 14px !important;
+    text-align: left !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* ✅ 버튼 정렬 — 자동 줄바꿈 */
+  .options-size,
+  .options-theme {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)) !important;
+    gap: 6px !important;
+  }
+
+  /* ✅ 버튼 크기 줄이기 */
+  .option-btn {
+    min-width: 60px !important;
+  }
+
+  .options-theme {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    /* 1행 4개 */
+    justify-items: start !important;
+    /* 왼쪽 정렬 */
+    gap: 6px !important;
+  }
+
+  .options-theme img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .options-theme button:nth-child(5) {
+    grid-column-start: 1;
+    /* 5번째 버튼을 새 줄로 시작 */
+  }
+
+  /* ✅ Add to Cart 정렬 */
+  .action-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    margin-top: 16px !important;
+  }
+
+  .add-btn {
+    width: 100% !important;
+    height: 42px !important;
+  }
+
+  /* ✅ 입력창 여백 줄이기 */
+  .text-input {
+    padding: 8px !important;
+    font-size: 13px !important;
+  }
+
+  .quantity-box {
+    width: 110px !important;
+    height: 38px !important;
+    padding: 0 10px !important;
+  }
+
+  /* ✅ Add to Cart 버튼 크기 줄이기 */
+  .add-btn {
+    flex: 1;
+    /* 남은 공간 채우기 */
+    height: 38px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    padding: 0 10px !important;
+    border-radius: 6px !important;
+  }
+
+  .add-btn img {
+    width: 18px;
+    height: 18px;
+  }
+
+  button.size-btn label {
+    font-size: 16px !important;
+    color: #000 !important;
+  }
+
+  button.size-btn p {
+    font-size: 14px !important;
+    color: rgb(80, 80, 80);
+  }
+}
+
+/* 제목, 설명 텍스트 폰트 축소 */
+h1,
+.section-title {
+  font-size: clamp(18px, 5vw, 24px);
+}
+
+p {
+  font-size: clamp(14px, 4vw, 18px);
+}
+
+.text-overlay {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-family: "Nunito", "BM JUA_TTF", sans-serif;
+  font-weight: 900;
+  color: #000;
+  text-align: left;
+}
+
+@font-face {
+  font-family: "BM JUA_TTF";
+  src: url("/fonts/BMJUA_ttf.ttf") format("truetype");
+  font-weight: 300;
+  /* normal로 고정 */
+  font-style: normal;
+}
+
+.font-color-note {
+  font-size: 14px;
+  font-weight: 500;
+  color: #666;
+  margin-left: 2px;
+}
+
+.text-overlay {
+  /* ✅ 자동 줄바꿈 */
+  white-space: nowrap;
+
+  /* ✅ 배경 제거 */
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+
+  /* ✅ 글자 크기 */
+  font-size: clamp(14px, 2vw, 32px);
+  line-height: 1.2;
+
+  /* ✅ 잘림 방지 */
+  overflow: visible;
+  text-overflow: unset;
+
+  pointer-events: none;
+}
+
+.text-overlay.small {
+  font-size: clamp(10px, 1.2vw, 22px);
+}
+
+.text-overlay.medium {
+  font-size: clamp(12px, 1.5vw, 20px);
+}
+
+.text-overlay.large {
+  font-size: clamp(14px, 2vw, 24px);
+}
+
+.flex-box {
+  display: flex;
+  align-items: flex-start;
+  /* gap: 30px; */
+  width: 100%;
+}
+
+.customizer-container {
+  max-width: 800px;
+  margin: 0;
+  padding: 30px;
+  border-radius: 10px;
+  background: #e9f6ff;
+}
+
+.customizer-section {
+  margin-bottom: 25px;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.options {
+  display: grid;
+  gap: 10px;
+  border-left: 5px solid #33aeff;
+  padding-left: 10px;
+  /* optional, adds space from border */
+}
+
+/* Make size buttons bigger with more padding */
+
+.options-theme {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.options-theme {
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.option-btn {
+  background: #fff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+/* Default state */
+.option-btn {
+  background: #fff;
+  padding: 8px 12px;
+  border: 2px solid transparent;
+  /* 👈 always has a border */
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  box-sizing: border-box;
+  /* 👈 ensures padding + border don’t add size */
+}
+
+.options-font-color {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .options-font-color {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.color-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: #fff;
+  cursor: pointer;
+  padding: 0;
+}
+
+/* White color preview 기본 stroke */
+.color-btn[data-color="#FFFFFF"] .color-preview {
+  border: 1.5px solid #ccc;
+}
+
+/* 혹시 버튼 전체 stroke도 주고 싶으면 (선택) */
+.color-btn[data-color="#FFFFFF"] {
+  background: #fff;
+}
+
+.color-preview {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.color-btn.active {
+  border-color: #3aa8ff;
+  /* 너 지금 쓰는 블루랑 맞춰도 됨 */
+}
+
+.options-size {
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  /* 👈 shrink to content width */
+  gap: 10px;
+  border-left: 5px solid #33aeff;
+  padding-left: 10px;
+}
+
+/* Active states */
+.size-btn.active,
+.theme-btn.active {
+  background: #fff;
+  border-color: #33aeff;
+  /* 👈 only color changes */
+  color: #000;
+}
+
+.size-btn label {
+  font-weight: bold;
+  font-size: 18px !important;
+  display: block;
+}
+
+.size-btn p {
+  font-size: 14px !important;
+  font-weight: 500;
+  margin: 0;
+  cursor: pointer;
+}
+
+.theme-btn label {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.inputs {
+  border-left: 5px solid #33aeff;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-self: stretch;
+  align-items: center;
+}
+
+.text-input {
+  display: block;
+  margin-top: 8px;
+  padding: 10px;
+  width: 100%;
+  background: #fff;
+  border: 2px solid #fff;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.text-input::placeholder {
+  color: #999;
+  /* 회색 */
+}
+
+/* hover 했을 때 → 배경 유지, border만 하늘색 */
+.text-input:hover {
+  background: #fff;
+  border-color: #33aeff;
+}
+
+/* focus 했을 때도 border만 하늘색 */
+.text-input:focus {
+  background: #fff;
+  border-color: #33aeff;
+}
+
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* ✅ 오른쪽 끝으로 몰기 */
+  gap: 12px;
+  /* ✅ 두 요소 사이 간격 */
+  margin-top: 24px;
+}
+
+.quantity-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #33aeff;
+  border-radius: 50px;
+  height: 44px;
+  width: 130px;
+  padding: 0 16px;
+  box-sizing: border-box;
+}
+
+.qty-btn {
+  background: transparent;
+  border: none;
+  color: #33aeff;
+  font-size: 22px;
+  font-weight: 500;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin-left: auto;
+}
+
+.qty-btn:hover {
+  color: #1a8adb;
+}
+
+#qty-value {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  width: 20px;
+  text-align: center;
+}
+
+/* ✅ Add to cart 버튼 */
+.add-btn {
+  background-color: #33aeff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0 24px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.add-btn:hover {
+  background-color: #2a95e0;
+}
+
+.cart-icon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.shop-pay-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.cart-items__variant {
+  display: none !important;
+}
+
+.save-png-btn {
+  margin-top: 100px;
+}
+
+/* 프리뷰 영역은 클릭 못 하게 */
+.preview-wrapper,
+#overlay-container,
+.preview-image {
+  pointer-events: none;
+}
+
+/* 옵션 영역은 무조건 클릭 가능 */
+.selection-wrapper,
+.customizer-container,
+.customizer-section {
+  pointer-events: auto;
+}
+
+.flex-box {
+  display: flex;
+  align-items: flex-start;
+}
+
+/* 🔥 프리뷰 영역 크기 고정 */
+.preview-wrapper {
+  position: relative;
+  /* absolute ❌ */
+  width: 420px;
+  /* ← 핵심 */
+  min-width: 420px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* 옵션 영역은 프리뷰보다 위 */
+.selection-wrapper {
+  position: relative;
+  z-index: 10;
+}
+
+.options-theme .theme-btn img {
+  max-width: 60px;
+  max-height: 60px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.print-capture {
+  width: 420px;
+  height: 595px;
+}
+
+.preview-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#overlay-container {
+  position: absolute;
+  inset: 0;
+}
