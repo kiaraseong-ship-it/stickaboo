@@ -782,7 +782,7 @@ function initCustomizer(root) {
       // NORMAL
       if (size === "small" && area === "top") {
         // 18→16, 16→14, 14→12, 12→10
-        return byFont({ 20: 18, 18: 16, 16: 12, 14: 10, 12: 10 });
+        return byFont({ 20: 18, 18: 16, 16: 14, 14: 12, 12: 10 });
       }
       if (size === "small" && area === "bottom") {
         // 20→18, 18→16, 16→14, 14→12
