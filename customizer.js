@@ -91,14 +91,14 @@ function initCustomizer(root) {
     const topRows = 6, topCols = 4;
     const bottomRows = 4, bottomCols = 3;
 
-    const topHeight = 60;
+    const topHeight = 59.8;
     const bottomHeight = 33.6;
 
     const cellWidthTop = 96 / topCols;
     const cellWidthBottom = 96 / bottomCols;
 
-    const spacingFactorTop = 0.80;
-    const spacingFactorBottom = 0.96;
+    const spacingFactorTop = 0.805;
+    const spacingFactorBottom = 0.97;
 
     const topOffsetTop = 2.18;
     const topOffsetBottom = 1.2;
