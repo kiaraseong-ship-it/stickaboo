@@ -91,7 +91,7 @@ function initCustomizer(root) {
     const topRows = 6, topCols = 4;
     const bottomRows = 4, bottomCols = 3;
 
-    const topHeight = 59.8;
+    const topHeight = 59.6;
     const bottomHeight = 33.6;
 
     const cellWidthTop = 96 / topCols;
