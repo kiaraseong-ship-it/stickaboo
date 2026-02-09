@@ -749,11 +749,11 @@ function initCustomizer(root) {
       text.textContent = "";
       text.style.color = selectedFontColor;
 
-      if (selectedFontColor === "#FFFFFF") {
-        text.style.textShadow = "0 0 1px #000, 0 0 1px #000";
-      } else {
-        text.style.textShadow = "none";
-      }
+      // if (selectedFontColor === "#FFFFFF") {
+      //   text.style.textShadow = "0 0 1px #000, 0 0 1px #000";
+      // } else {
+      //   text.style.textShadow = "none";
+      // }
 
       wrapper.appendChild(text);
       overlayContainer.appendChild(wrapper);

@@ -47,6 +47,7 @@
 }
 
 @media (max-width: 600px) {
+
   /* ✅ 전체 구조 세로 정렬 */
   .flex-box {
     flex-direction: column !important;
