@@ -689,10 +689,10 @@ function initCustomizer(root) {
         "large-text9": { top: "54.5%", left: "81%", width: "140px", fontSize: "10px" },
       },
       "sml-mix": {
-        "smlmix-large-top2": { fontSize: "10px", top: "15%", left: "51%", width: "130px", textAlign: "center" },
+        "smlmix-large-top2": { fontSize: "10px", top: "15.3%", left: "51%", width: "130px", textAlign: "center" },
       },
       "ml-mix": {
-        "mlmix-large-top2": { fontSize: "10px", top: "15.2%", left: "51%", width: "130px", textAlign: "center" },
+        "mlmix-large-top2": { fontSize: "10px", top: "15.3%", left: "51%", width: "130px", textAlign: "center" },
       },
     },
     unicorn: {
@@ -875,6 +875,84 @@ function initCustomizer(root) {
       return 0.82;
     }
 
+    // ✅ Special font/line-height rules for specific overlays
+    function getSpecialTypography({ theme, size, id, len, twoLines }) {
+      // helpers
+      const clampPx = (n) => `${Math.max(1, Math.round(n))}px`;
+      const is = (t, s, i) => theme === t && size === s && id === i;
+
+      // ------------------------
+      // DINO - LARGE
+      // ------------------------
+      if (theme === "dino" && size === "large") {
+        // large-text7
+        if (id === "large-text7") {
+          if (twoLines) {
+            // 두 줄: 9글자 이하 10px lh10, 그 이상 6px lh6
+            const fs = len <= 9 ? 10 : 6;
+            const lh = len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            // 한 줄: <=5 16px, <=7 12px, <=9 8px, 그 이상 6px
+            const fs = len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 8 : 6;
+            // 한 줄은 기존 비율로 두되, 작은 텍스트라 픽셀 라인하이트가 더 안전함
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+
+        // large-text8 / large-text9
+        if (id === "large-text8" || id === "large-text9") {
+          if (twoLines) {
+            // 두 줄: 9글자 이하 14px lh12, 그 이상 10px lh8
+            const fs = len <= 9 ? 14 : 10;
+            const lh = len <= 9 ? 12 : 8;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            // 한 줄: <=5 22px, <=8 16px, <=12 12px, 그 이상 10px
+            const fs = len <= 5 ? 22 : len <= 8 ? 16 : len <= 12 ? 12 : 10;
+            return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+          }
+        }
+      }
+
+      // ------------------------
+      // DINO - SML/M L MIX large-top2 (smlmix-large-top2 / mlmix-large-top2)
+      // ------------------------
+      if (theme === "dino" && (size === "sml-mix" || size === "ml-mix")) {
+        if (id === "smlmix-large-top2" || id === "mlmix-large-top2") {
+          if (twoLines) {
+            // 두 줄: 9글자 이하 14px lh12, 그 이상 10px lh8
+            const fs = len <= 9 ? 14 : 10;
+            const lh = len <= 9 ? 12 : 8;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            // 한 줄: <=5 22px, <=8 16px, <=12 12px, 그 이상 10px
+            const fs = len <= 5 ? 22 : len <= 8 ? 16 : len <= 12 ? 12 : 10;
+            return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+          }
+        }
+      }
+
+      // ------------------------
+      // UNICORN - LARGE large-text7
+      // ------------------------
+      if (theme === "unicorn" && size === "large" && id === "large-text7") {
+        if (twoLines) {
+          // 두줄: <=8 10px lh8, <=12 8px lh8, 그 이상 6px lh6
+          const fs = len <= 8 ? 10 : len <= 12 ? 8 : 6;
+          const lh = len <= 8 ? 8 : len <= 12 ? 8 : 6;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          // 한줄: <=5 16px, <=7 12px, <=9 10px, 그 이상 8px
+          const fs = len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 10 : 8;
+          return { fs, lh1: clampPx(Math.max(6, fs - 2)) };
+        }
+      }
+
+      return null; // no special rule
+    }
+
+
     currentOverlays.forEach(config => {
       const el = root.querySelector(`#${config.id}`);
       if (!el) return;
@@ -897,6 +975,52 @@ function initCustomizer(root) {
       const scale = dominantLen >= 7 ? getGlobalScale(dominantLen) : 1;
 
       const effectiveLen = isTwoLines ? dominantLen : d1.length;
+
+      // ✅ Special override typography (dino/unicorn specific overlays)
+      const special = getSpecialTypography({
+        theme: selectedTheme,
+        size: selectedSize,
+        id: config.id,
+        len: effectiveLen,   // ✅ 두 줄일 땐 긴 줄 기준
+        twoLines: isTwoLines,
+      });
+
+      if (special) {
+        const fs1 = special.fs;
+        const fs2 = d2 ? (special.fs2 ?? special.fs) : null;
+
+        const lh1 = special.lh1 ?? getLineHeightPx({
+          theme: selectedTheme,
+          twoLines: isTwoLines,
+          size: selectedSize,
+          area: config.area,
+          fontSizePx: fs1,
+        });
+
+        const lh2 = fs2 != null
+          ? (special.lh2 ?? getLineHeightPx({
+            theme: selectedTheme,
+            twoLines: isTwoLines,
+            size: selectedSize,
+            area: config.area,
+            fontSizePx: fs2,
+          }))
+          : null;
+
+        el.innerHTML = `
+    <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
+      ${d1}
+    </div>
+    ${d2
+            ? `<div style="font-size:${fs2}px; line-height:${lh2}; text-align:${config.textAlign || "left"};">
+            ${d2}
+          </div>`
+            : ""
+          }
+  `;
+        return; // ✅ 이 overlay는 예외 규칙으로 끝 (아래 일반 로직 타지 않음)
+      }
+
 
       const fs1 = Number(
         getLineFontSize({
