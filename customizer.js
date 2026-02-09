@@ -67,6 +67,20 @@ function initCustomizer(root) {
     }
   }
 
+  function buildFileName() {
+    const first = (firstNameInput?.value || "firstname").trim();
+    const last = (lastNameInput?.value || "").trim();
+
+    const safeFirst = first.toLowerCase().replace(/\s+/g, "-");
+    const safeLast = last.toLowerCase().replace(/\s+/g, "-");
+
+    const size = selectedSize || "size";
+    const theme = selectedTheme || "theme";
+
+    return `${safeFirst}${safeLast ? "-" + safeLast : ""}-${size}-${theme}.png`;
+  }
+
+
   // =========================================================
   // ✅ Overlay Generators (DESKTOP ONLY: 모바일 로직 제거)
   // =========================================================
@@ -830,8 +844,8 @@ function initCustomizer(root) {
 
       // ✅ NORMAL
       if (size === "small") {
-        if (area === "bottom") return step(20, 18, 16, 14);
-        return step(18, 16, 14, 12); // top
+        if (area === "bottom") return step(22, 20, 18, 16);
+        return step(20, 18, 16, 14); // top
       }
 
       if (size === "medium") return step(22, 20, 18, 16);
