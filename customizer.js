@@ -91,14 +91,14 @@ function initCustomizer(root) {
     const topRows = 6, topCols = 4;
     const bottomRows = 4, bottomCols = 3;
 
-    const topHeight = 59;
-    const bottomHeight = 36.8;
+    const topHeight = 59.5;
+    const bottomHeight = 35;
 
     const cellWidthTop = 96 / topCols;
     const cellWidthBottom = 96 / bottomCols;
 
-    const spacingFactorTop = 0.82;
-    const spacingFactorBottom = 0.876;
+    const spacingFactorTop = 0.812;
+    const spacingFactorBottom = 0.925;
 
     const topOffsetTop = 2.18;
     const topOffsetBottom = 1.2;
@@ -782,11 +782,11 @@ function initCustomizer(root) {
       // NORMAL
       if (size === "small" && area === "top") {
         // 18→16, 16→14, 14→12, 12→10
-        return byFont({ 18: 16, 16: 14, 14: 12, 12: 10 });
+        return byFont({ 20: 18, 18: 16, 16: 12, 14: 10, 12: 10 });
       }
       if (size === "small" && area === "bottom") {
         // 20→18, 18→16, 16→14, 14→12
-        return byFont({ 20: 18, 18: 16, 16: 14, 14: 13 });
+        return byFont({ 20: 18, 18: 16, 16: 14, 14: 14 });
       }
       if (size === "large" && area === "top") {
         // 24→22, 22→20, 20→18, 18→16
@@ -844,8 +844,8 @@ function initCustomizer(root) {
 
       // ✅ NORMAL
       if (size === "small") {
-        if (area === "bottom") return step(22, 20, 18, 16);
-        return step(20, 18, 16, 14); // top
+        if (area === "bottom") return step(20, 18, 16, 16);
+        return step(18, 16, 14, 12); // top
       }
 
       if (size === "medium") return step(22, 20, 18, 16);
