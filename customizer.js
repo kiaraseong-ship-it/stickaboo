@@ -83,7 +83,7 @@ function initCustomizer(root) {
     const cellWidthTop = 96 / topCols;
     const cellWidthBottom = 96 / bottomCols;
 
-    const spacingFactorTop = 0.81;
+    const spacingFactorTop = 0.80;
     const spacingFactorBottom = 0.95;
 
     const topOffsetTop = 2.18;
@@ -747,13 +747,7 @@ function initCustomizer(root) {
   }
 
   // =========================================================
-  // ✅ Line-height logic (너 규칙 반영)
-  //   - NORMAL small top/bottom (2줄): 고정 매핑
-  //   - NORMAL large top (2줄): 고정 매핑(24→22, 22→20, 20→18, 18→16)
-  //   - NORMAL large bottom (2줄): line-height = font-size
-  //   - MIX large-bottom (2줄): line-height = font-size (sml 규칙처럼)
-  //   - NAMEONLY (2줄): 비율 방식 = fontSize - 2px
-  //   - 1줄: 기존처럼 1.1 / large-bottom 1.05
+  // ✅ Line-height logic
   // =========================================================
   function getLineHeightPx({ theme, size, area, twoLines, fontSizePx }) {
     const fs = Math.round(Number(fontSizePx));
@@ -778,7 +772,7 @@ function initCustomizer(root) {
       }
       if (size === "small" && area === "bottom") {
         // 20→18, 18→16, 16→14, 14→12
-        return byFont({ 20: 18, 18: 16, 16: 14, 14: 12 });
+        return byFont({ 20: 18, 18: 16, 16: 14, 14: 13 });
       }
       if (size === "large" && area === "top") {
         // 24→22, 22→20, 20→18, 18→16
@@ -813,7 +807,6 @@ function initCustomizer(root) {
     const name2 = last || "";
     const isTwoLines = !!name2;
 
-    // 너 규칙 그대로
     function getLineFontSize({ size, area, len, twoLines, theme }) {
       const step = (a, b, c, d) => (len <= 5 ? a : len <= 7 ? b : len <= 9 ? c : d);
 
