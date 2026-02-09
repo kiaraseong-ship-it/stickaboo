@@ -858,7 +858,7 @@ function initCustomizer(root) {
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return step(32, 28, 24, 20);
-        if (area === "large-bottom") return step(40, 32, 27, 20);
+        if (area === "large-bottom") return step(40, 32, 26, 20);
         if (area === "medium") return len <= 5 ? 28 : len <= 8 ? 22 : 16;
         if (area === "small") return step(18, 15, 14, 12);
       }
