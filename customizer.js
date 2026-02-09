@@ -324,7 +324,7 @@ function initCustomizer(root) {
 
     // Large Top (2×3)
     const largeTopRows = 2, largeTopCols = 3;
-    const largeTopHeight = 21.5;
+    const largeTopHeight = 21;
     const cellWidthLargeTop = 96.5 / largeTopCols;
     const spacingFactorTop = 1.8;
     const topOffsetTop = 1.5;
@@ -347,7 +347,7 @@ function initCustomizer(root) {
 
     // Large Bottom (1×2)
     const largeBottomRows = 1, largeBottomCols = 2;
-    const largeBottomHeight = 22.5;
+    const largeBottomHeight = 23;
     const cellWidthLargeBottom = 96 / largeBottomCols;
     const spacingFactorBottom = 0.53;
     const topOffsetBottom = 1.25;
@@ -859,7 +859,7 @@ function initCustomizer(root) {
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return step(32, 28, 24, 20);
         if (area === "large-bottom") return step(40, 32, 26, 20);
-        if (area === "medium") return len <= 5 ? 28 : len <= 8 ? 22 : 16;
+        if (area === "medium") return len <= 5 ? 28 : len <= 8 ? 22 : 18;
         if (area === "small") return step(18, 15, 14, 12);
       }
 
