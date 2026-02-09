@@ -294,9 +294,9 @@ function initCustomizer(root) {
 
     // Small (4×4)
     const smallRows = 4, smallCols = 4;
-    const smallHeight = 54.9;
-    const cellWidthSmall = 96 / smallCols;
-    const spacingFactorSmall = 0.58;
+    const smallHeight = 54.8;
+    const cellWidthSmall = 95.5 / smallCols;
+    const spacingFactorSmall = 0.585;
     const topOffsetSmall = 5.0;
     const leftOffsetSmall = 0.86;
     const widthSmall = "80px";
