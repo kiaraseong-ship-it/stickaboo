@@ -324,9 +324,9 @@ function initCustomizer(root) {
 
     // Large Top (2×3)
     const largeTopRows = 2, largeTopCols = 3;
-    const largeTopHeight = 22;
+    const largeTopHeight = 21.5;
     const cellWidthLargeTop = 96.5 / largeTopCols;
-    const spacingFactorTop = 1.78;
+    const spacingFactorTop = 1.8;
     const topOffsetTop = 1.5;
     const leftOffsetTop = 0.55;
     const widthLargeTop = "120px";
@@ -858,7 +858,7 @@ function initCustomizer(root) {
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return step(32, 28, 24, 20);
-        if (area === "large-bottom") return step(40, 32, 28, 20);
+        if (area === "large-bottom") return step(40, 32, 27, 20);
         if (area === "medium") return len <= 5 ? 28 : len <= 8 ? 22 : 16;
         if (area === "small") return step(18, 15, 14, 12);
       }
