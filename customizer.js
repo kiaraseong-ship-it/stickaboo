@@ -250,9 +250,9 @@ function initCustomizer(root) {
 
     // Large Bottom (1×2)
     const largeBottomRows = 1, largeBottomCols = 2;
-    const largeBottomHeight = 28;
+    const largeBottomHeight = 27.8;
     const cellWidthLargeBottom = 96 / largeBottomCols;
-    const leftOffsetLargeBottom = 0.75;
+    const leftOffsetLargeBottom = 0.73;
     const widthLargeBottom = "140px";
     const topOffsetLargeBottom = 1.0;
 
@@ -852,15 +852,15 @@ function initCustomizer(root) {
 
       if (size === "large") {
         if (area === "top") return twoLines ? step(24, 22, 20, 18) : step(32, 28, 24, 20);
-        if (area === "bottom") return step(40, 34, 28, 20);
+        if (area === "bottom") return step(40, 32, 28, 20);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return step(32, 28, 24, 20);
-        if (area === "large-bottom") return step(40, 35, 28, 24);
+        if (area === "large-bottom") return step(40, 32, 28, 20);
         if (area === "medium") return len <= 5 ? 28 : len <= 8 ? 22 : 16;
-        if (area === "small") return len <= 4 ? 22 : len <= 7 ? 18 : 12;
+        if (area === "small") return step(18, 15, 14, 12);
       }
 
       return 22;
