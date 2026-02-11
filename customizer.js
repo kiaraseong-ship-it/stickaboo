@@ -174,14 +174,14 @@ function initCustomizer(root) {
     const topRows = 3, topCols = 3;
     const bottomRows = 2, bottomCols = 2;
 
-    const topHeight = 24.8;
-    const bottomHeight = 73;
+    const topHeight = 24.5;
+    const bottomHeight = 74;
 
     const cellWidthTop = 96 / topCols;
     const cellWidthBottom = 96 / bottomCols;
 
-    const spacingFactorTop = 2.35;
-    const spacingFactorBottom = 0.55;
+    const spacingFactorTop = 2.37;
+    const spacingFactorBottom = 0.53;
 
     const topOffsetTop = 2.0;
     const topOffsetBottom = 1.2;
@@ -250,9 +250,9 @@ function initCustomizer(root) {
 
     // Large Bottom (1×2)
     const largeBottomRows = 1, largeBottomCols = 2;
-    const largeBottomHeight = 27.8;
+    const largeBottomHeight = 27.5;
     const cellWidthLargeBottom = 96 / largeBottomCols;
-    const leftOffsetLargeBottom = 0.73;
+    const leftOffsetLargeBottom = 0.75;
     const widthLargeBottom = "140px";
     const topOffsetLargeBottom = 1.0;
 
@@ -273,7 +273,7 @@ function initCustomizer(root) {
     const mediumRows = 3, mediumCols = 3;
     const mediumHeight = 41;
     const cellWidthMedium = 96 / mediumCols;
-    const spacingFactorMedium = 0.72;
+    const spacingFactorMedium = 0.71;
     const topOffsetMedium = 1.5;
     const leftOffsetMedium = 0.76;
     const widthMedium = "100px";
@@ -294,7 +294,7 @@ function initCustomizer(root) {
 
     // Small (4×4)
     const smallRows = 4, smallCols = 4;
-    const smallHeight = 54.8;
+    const smallHeight = 54.7;
     const cellWidthSmall = 95.5 / smallCols;
     const spacingFactorSmall = 0.585;
     const topOffsetSmall = 5.0;
@@ -324,9 +324,9 @@ function initCustomizer(root) {
 
     // Large Top (2×3)
     const largeTopRows = 2, largeTopCols = 3;
-    const largeTopHeight = 21.5;
+    const largeTopHeight = 21.8;
     const cellWidthLargeTop = 96.5 / largeTopCols;
-    const spacingFactorTop = 1.8;
+    const spacingFactorTop = 1.75;
     const topOffsetTop = 1.5;
     const leftOffsetTop = 0.55;
     const widthLargeTop = "120px";
@@ -779,30 +779,54 @@ function initCustomizer(root) {
         return Math.max(10, fs - 2) + "px";
       }
 
-      // NORMAL
+      // =========================
+      // ✅ NORMAL
+      // =========================
       if (size === "small" && area === "top") {
-        // 18→16, 16→14, 14→12, 12→10
         return byFont({ 20: 18, 18: 16, 16: 14, 14: 12, 12: 10 });
       }
+
       if (size === "small" && area === "bottom") {
-        // 20→18, 18→16, 16→14, 14→12
-        return byFont({ 20: 18, 18: 16, 16: 14, 14: 14 });
-      }
-      if (size === "large" && area === "top") {
-        // 24→22, 22→20, 20→18, 18→16
-        return byFont({ 24: 22, 22: 20, 20: 18, 18: 16 });
-      }
-      if (size === "large" && area === "bottom") {
-        // 너 규칙: line-height = font-size
-        return fs + "px";
+        return byFont({ 20: 18, 18: 16, 16: 14, 14: 12 });
       }
 
-      // MIX: sml 규칙처럼(large-bottom은 font=lh, 나머진 살짝 타이트하게 -2)
-      if ((size === "sml-mix" || size === "ml-mix") && area === "large-bottom") {
-        return fs + "px";
+      if (size === "large" && area === "top") {
+        return byFont({ 24: 22, 22: 20, 20: 18, 18: 16 });
       }
+
+      if (size === "large" && area === "bottom") {
+        // ✅ 규칙: line-height = font-size - 2px
+        return Math.max(10, fs - 2) + "px";
+      }
+
+      // =========================
+      // ✅ MIX (SML 규칙처럼 "분리해서" 명시)
+      // =========================
+      if ((size === "sml-mix" || size === "ml-mix") && area === "large-top") {
+        // large-top은 top처럼 타이트하게 (-2 느낌)
+        // (원하면 매핑으로 더 정확히 박아도 됨)
+        return byFont({ 24: 22, 22: 20, 20: 18, 18: 16 });
+      }
+
+      if ((size === "sml-mix" || size === "ml-mix") && area === "large-bottom") {
+        // ✅ 규칙: line-height = font-size
+        return Math.max(10, fs - 4) + "px";
+      }
+
+      if ((size === "sml-mix" || size === "ml-mix") && area === "medium") {
+        return Math.max(10, fs - 2) + "px";
+      }
+
+      if ((size === "sml-mix" || size === "ml-mix") && area === "small") {
+        // small-top/ small-bottom 개념이 없어서, small은 그냥 타이트하게 (-2)
+        // (원하면 너가 쓰는 small 폰트 step에 맞춰 매핑도 가능)
+        return Math.max(10, fs - 2) + "px";
+      }
+
+      // fallback
       return Math.max(10, fs - 2) + "px";
     }
+
 
     // ✅ 1줄 (기존 비율 유지)
     if (area === "large-bottom") return "1.05";
@@ -830,12 +854,12 @@ function initCustomizer(root) {
         if (size === "medium") return step(24, 22, 20, 18);
 
         if (size === "large") {
-          if (area === "top") return step(40, 32, 24, 18);
+          if (area === "top") return step(38, 28, 24, 18);
           if (area === "bottom") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 36, 28);
         }
 
         if (size === "sml-mix" || size === "ml-mix") {
-          if (area === "large-top") return step(40, 32, 24, 18);
+          if (area === "large-top") return step(38, 28, 24, 18);
           if (area === "large-bottom") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 36, 28);
           if (area === "medium") return step(24, 22, 20, 18);
           if (area === "small") return step(20, 18, 16, 14);
@@ -849,18 +873,17 @@ function initCustomizer(root) {
       }
 
       if (size === "medium") return step(22, 20, 18, 16);
-
       if (size === "large") {
-        if (area === "top") return twoLines ? step(24, 22, 20, 18) : step(32, 28, 24, 20);
-        if (area === "bottom") return step(40, 32, 28, 20);
+        if (area === "top") return twoLines ? step(20, 20, 20, 18) : step(32, 28, 24, 20);
+        if (area === "bottom") return step(40, 32, 30, 26);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
-        if (area === "large-top") return step(32, 28, 24, 20);
-        if (area === "large-bottom") return step(40, 32, 26, 20);
-        if (area === "medium") return len <= 5 ? 28 : len <= 8 ? 22 : 18;
-        if (area === "small") return step(18, 15, 14, 12);
+        if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 28, 24, 20);
+        if (area === "large-bottom") return twoLines ? step(36, 28, 26, 22) : step(38, 30, 28, 24);
+        if (area === "medium") return step(22, 20, 18, 16);
+        if (area === "small") return step(18, 16, 12, 10);
       }
 
       return 22;
@@ -1125,7 +1148,7 @@ function initCustomizer(root) {
       root.querySelectorAll(".text-overlay").forEach(text => {
         text.style.color = selectedFontColor;
         if (selectedFontColor === "#FFFFFF") {
-          text.style.textShadow = "0 0 1px #000, 0 0 1px #000";
+          text.style.textShadow = "none";
         } else {
           text.style.textShadow = "none";
         }
