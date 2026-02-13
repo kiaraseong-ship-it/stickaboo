@@ -868,8 +868,8 @@ function initCustomizer(root) {
 
       // ✅ NORMAL
       if (size === "small") {
-        if (area === "bottom") return step(20, 18, 16, 16);
-        return step(18, 14, 12, 10); // top
+        if (area === "bottom") return step(19, 18, 16, 16);
+        return step(16, 14, 12, 10); // top
       }
 
       if (size === "medium") return step(22, 20, 18, 16);
