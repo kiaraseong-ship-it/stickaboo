@@ -859,10 +859,10 @@ function initCustomizer(root) {
         }
 
         if (size === "sml-mix" || size === "ml-mix") {
-          if (area === "large-top") return step(38, 28, 24, 18);
+          if (area === "large-top") return twoLines ? step(24, 22, 20, 18) : step(38, 28, 24, 18);
           if (area === "large-bottom") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 36, 28);
-          if (area === "medium") return step(24, 22, 20, 18);
-          if (area === "small") return step(20, 18, 16, 14);
+          if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
+          if (area === "small") return twoLines ? step(18, 16, 14, 12) : step(20, 18, 16, 14);
         }
       }
 
