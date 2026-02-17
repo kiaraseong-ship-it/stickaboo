@@ -883,7 +883,7 @@ function initCustomizer(root) {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 28, 24, 20);
         if (area === "large-bottom") return twoLines ? step(36, 28, 26, 22) : step(38, 30, 28, 24);
         if (area === "medium") return step(22, 20, 18, 16);
-        if (area === "small") return step(18, 16, 12, 10);
+        if (area === "small") return step(16, 14, 12, 11);
       }
 
       return 22;
