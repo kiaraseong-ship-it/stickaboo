@@ -869,7 +869,7 @@ function initCustomizer(root) {
       // ✅ NORMAL
       if (size === "small") {
         if (area === "bottom") return step(19, 18, 16, 16);
-        return step(16, 14, 12, 10); // top
+        return step(16, 14, 12, 11); // top
       }
 
       if (size === "medium") return step(22, 20, 18, 16);
