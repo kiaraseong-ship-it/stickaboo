@@ -854,13 +854,13 @@ function initCustomizer(root) {
         if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
 
         if (size === "large") {
-          if (area === "top") return step(38, 28, 24, 18);
-          if (area === "bottom") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 36, 28);
+          if (area === "top") return twoLines ? step(24, 22, 20, 18) : step(38, 28, 24, 22);
+          if (area === "bottom") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 42, 36);
         }
 
         if (size === "sml-mix" || size === "ml-mix") {
-          if (area === "large-top") return twoLines ? step(24, 22, 20, 18) : step(38, 28, 24, 18);
-          if (area === "large-bottom") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 36, 28);
+          if (area === "large-top") return twoLines ? step(24, 22, 20, 18) : step(38, 28, 24, 22);
+          if (area === "large-bottom") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 42, 36);
           if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
           if (area === "small") return twoLines ? step(18, 16, 14, 12) : step(20, 18, 16, 14);
         }
