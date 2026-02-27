@@ -459,7 +459,7 @@ function initCustomizer(root) {
     const topRows = 5, topCols = 3;
     const rowGapTop = 10.8;
     const colGapTop = 32;
-    const widthTop = "160px";
+    const widthTop = "200px";
     const fontSizeTop = "36px";
     const topOffsetTop = 6.7;
     const leftOffsetTop = 18;
@@ -482,7 +482,7 @@ function initCustomizer(root) {
     const bottomRows = 3, bottomCols = 2;
     const rowGapBottom = 14.5;
     const colGapBottom = 48;
-    const widthBottom = "240px";
+    const widthBottom = "500px";
     const fontSizeBottom = "52px";
     const topOffsetBottom = 62;
     const leftOffsetBottom = 26;
@@ -512,7 +512,7 @@ function initCustomizer(root) {
     const topRows = 2, topCols = 3;
     const rowGapTop = 10.8;
     const colGapTop = 32.2;
-    const widthTop = "160px";
+    const widthTop = "200px";
     const fontSizeTop = "36px";
     const topOffsetTop = 6.5;
     const leftOffsetTop = 18;
@@ -535,7 +535,7 @@ function initCustomizer(root) {
     const bottomRows = 1, bottomCols = 2;
     const rowGapBottom = 14;
     const colGapBottom = 48;
-    const widthBottom = "220px";
+    const widthBottom = "400px";
     const fontSizeBottom = "52px";
     const topOffsetBottom = 30;
     const leftOffsetBottom = 26;
