@@ -88,48 +88,26 @@ function initCustomizer(root) {
     const overlays = [];
     let idCounter = 1;
 
-    const topRows = 6, topCols = 4;
-    const bottomRows = 4, bottomCols = 3;
+    const rows = 10;
+    const cols = 4;
 
-    const topHeight = 59.5;
-    const bottomHeight = 35;
+    const totalHeight = 94; // 기존 top + bottom 합친 높이
+    const cellWidth = 96 / cols;
+    const cellHeight = totalHeight / rows;
 
-    const cellWidthTop = 96 / topCols;
-    const cellWidthBottom = 96 / bottomCols;
+    const spacingFactor = 0.86;   // 세로 간격 미세 조정
+    const topOffset = 2.3;          // 전체 위 여백 조정
+    const leftOffset = 0.87;      // 좌측 여백 조정
 
-    const spacingFactorTop = 0.812;
-    const spacingFactorBottom = 0.925;
-
-    const topOffsetTop = 2.18;
-    const topOffsetBottom = 1.2;
-
-    const leftOffsetTop = 0.85;
-    const leftOffsetBottom = 0.72;
-
-    const cellHeightTop = topHeight / topRows;
-    for (let row = 0; row < topRows; row++) {
-      for (let col = 0; col < topCols; col++) {
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
         overlays.push({
           id: `small-text${idCounter++}`,
-          top: `calc(${(row * spacingFactorTop + topOffsetTop) * cellHeightTop}%)`,
-          left: `${(col + leftOffsetTop) * cellWidthTop}%`,
-          width: "80px",
+          top: `calc(${(row * spacingFactor + topOffset) * cellHeight}%)`,
+          left: `${(col + leftOffset) * cellWidth}%`,
+          width: "85px",
           textAlign: "left",
-          area: "top",
-        });
-      }
-    }
-
-    const cellHeightBottom = bottomHeight / bottomRows;
-    for (let row = 0; row < bottomRows; row++) {
-      for (let col = 0; col < bottomCols; col++) {
-        overlays.push({
-          id: `small-text${idCounter++}`,
-          top: `${topHeight + (row * spacingFactorBottom + topOffsetBottom) * cellHeightBottom}%`,
-          left: `${(col + leftOffsetBottom) * cellWidthBottom}%`,
-          width: "100px",
-          textAlign: "left",
-          area: "bottom",
+          area: "full", // 이제 top/bottom 구분 없음
         });
       }
     }
