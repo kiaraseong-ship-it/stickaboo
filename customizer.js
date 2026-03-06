@@ -764,8 +764,8 @@ function initCustomizer(root) {
         return byFont({ 20: 18, 18: 16, 16: 14, 14: 12, 12: 10 });
       }
 
-      if (size === "small" && area === "bottom") {
-        return byFont({ 20: 18, 18: 16, 16: 14, 14: 12 });
+      if (size === "medium" && area === "top") {
+        return byFont({ 24: 23, 22: 21, 20: 19, 18: 17, 16: 15, 14: 13, 12: 11 });
       }
 
       if (size === "large" && area === "top") {
@@ -853,13 +853,13 @@ function initCustomizer(root) {
       if (size === "medium") return step(22, 20, 18, 16);
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 18) : step(32, 28, 24, 20);
-        if (area === "bottom") return twoLines ? step(35, 30, 28, 22) : step(40, 34, 30, 22);
+        if (area === "bottom") return twoLines ? step(35, 30, 28, 22) : step(40, 32, 28, 22);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 28, 24, 20);
-        if (area === "large-bottom") return twoLines ? step(35, 30, 28, 22) : step(44, 34, 30, 22);
+        if (area === "large-bottom") return twoLines ? step(35, 30, 28, 22) : step(40, 32, 28, 22);
         if (area === "medium") return step(22, 20, 18, 16);
         if (area === "small") return step(16, 14, 12, 11);
       }
