@@ -434,13 +434,13 @@ function initCustomizer(root) {
     let id = 1;
 
     // Top
-    const topRows = 5, topCols = 3;
-    const rowGapTop = 10.8;
-    const colGapTop = 32;
+    const topRows = 6, topCols = 2;
+    const rowGapTop = 16.2;
+    const colGapTop = 49;
     const widthTop = "200px";
     const fontSizeTop = "36px";
-    const topOffsetTop = 6.7;
-    const leftOffsetTop = 18;
+    const topOffsetTop = 9;
+    const leftOffsetTop = 26;
 
     for (let r = 0; r < topRows; r++) {
       for (let c = 0; c < topCols; c++) {
@@ -455,30 +455,6 @@ function initCustomizer(root) {
         });
       }
     }
-
-    // Bottom
-    const bottomRows = 3, bottomCols = 2;
-    const rowGapBottom = 14.5;
-    const colGapBottom = 48;
-    const widthBottom = "500px";
-    const fontSizeBottom = "52px";
-    const topOffsetBottom = 62;
-    const leftOffsetBottom = 26;
-
-    for (let r = 0; r < bottomRows; r++) {
-      for (let c = 0; c < bottomCols; c++) {
-        overlays.push({
-          id: `nameonly-large-bottom${id++}`,
-          top: `${topOffsetBottom + r * rowGapBottom}%`,
-          left: `${leftOffsetBottom + c * colGapBottom}%`,
-          width: widthBottom,
-          fontSize: fontSizeBottom,
-          textAlign: "center",
-          area: "bottom",
-        });
-      }
-    }
-
     return overlays;
   }
 
@@ -487,13 +463,13 @@ function initCustomizer(root) {
     let id = 1;
 
     // Large Top
-    const topRows = 2, topCols = 3;
-    const rowGapTop = 10.8;
-    const colGapTop = 32.2;
-    const widthTop = "200px";
-    const fontSizeTop = "36px";
-    const topOffsetTop = 6.5;
-    const leftOffsetTop = 18;
+    const topRows = 2, topCols = 2;
+    const rowGapTop = 17.5;
+    const colGapTop = 48;
+    const widthTop = "400px";
+    const fontSizeTop = "50px";
+    const topOffsetTop = 9.6;
+    const leftOffsetTop = 26;
 
     for (let r = 0; r < topRows; r++) {
       for (let c = 0; c < topCols; c++) {
@@ -509,28 +485,7 @@ function initCustomizer(root) {
       }
     }
 
-    // Large Bottom
-    const bottomRows = 1, bottomCols = 2;
-    const rowGapBottom = 14;
-    const colGapBottom = 48;
-    const widthBottom = "400px";
-    const fontSizeBottom = "52px";
-    const topOffsetBottom = 30;
-    const leftOffsetBottom = 26;
 
-    for (let r = 0; r < bottomRows; r++) {
-      for (let c = 0; c < bottomCols; c++) {
-        overlays.push({
-          id: `nameonly-smlmix-large-bottom${id++}`,
-          top: `${topOffsetBottom + r * rowGapBottom}%`,
-          left: `${leftOffsetBottom + c * colGapBottom}%`,
-          width: widthBottom,
-          fontSize: fontSizeBottom,
-          textAlign: "center",
-          area: "large-bottom",
-        });
-      }
-    }
 
     // Medium
     const mediumRows = 3, mediumCols = 3;
@@ -585,13 +540,13 @@ function initCustomizer(root) {
     let id = 1;
 
     // Large Top
-    const topRows = 3, topCols = 3;
-    const rowGapTop = 10.4;
-    const colGapTop = 32;
+    const topRows = 4, topCols = 2;
+    const rowGapTop = 14;
+    const colGapTop = 50;
     const widthTop = "160px";
     const fontSizeTop = "36px";
-    const topOffsetTop = 6.2;
-    const leftOffsetTop = 18;
+    const topOffsetTop = 8.5;
+    const leftOffsetTop = 24;
 
     for (let r = 0; r < topRows; r++) {
       for (let c = 0; c < topCols; c++) {
@@ -607,28 +562,6 @@ function initCustomizer(root) {
       }
     }
 
-    // Large Bottom
-    const bottomRows = 2, bottomCols = 2;
-    const rowGapBottom = 14;
-    const colGapBottom = 48;
-    const widthBottom = "220px";
-    const fontSizeBottom = "52px";
-    const topOffsetBottom = 39;
-    const leftOffsetBottom = 26;
-
-    for (let r = 0; r < bottomRows; r++) {
-      for (let c = 0; c < bottomCols; c++) {
-        overlays.push({
-          id: `nameonly-mlmix-large-bottom${id++}`,
-          top: `${topOffsetBottom + r * rowGapBottom}%`,
-          left: `${leftOffsetBottom + c * colGapBottom}%`,
-          width: widthBottom,
-          fontSize: fontSizeBottom,
-          textAlign: "center",
-          area: "large-bottom",
-        });
-      }
-    }
 
     // Medium
     const mediumRows = 4, mediumCols = 3;
@@ -676,6 +609,19 @@ function initCustomizer(root) {
     unicorn: {
       large: {
         "large-text7": { fontSize: "6px", top: "56.2%", left: "18%", width: "130px", textAlign: "center" },
+      },
+    },
+    "jesus loves": {
+      large: {
+        "large-text5": { top: "32.4%", left: "50%", width: "140px", fontSize: "10px" },
+        "large-text6": { top: "33.5%", left: "82.8%", width: "140px", fontSize: "10px" },
+      },
+      "sml-mix": {
+        "smlmix-large-top2": { fontSize: "10px", top: "14.2%", left: "50.9%", width: "130px", textAlign: "center" },
+      },
+      "ml-mix": {
+        "mlmix-large-top5": { top: "32.3%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
+        "mlmix-large-top6": { top: "33.7%", left: "82.8%", width: "140px", fontSize: "10px", textAlign: "center" },
       },
     },
   };
@@ -832,13 +778,11 @@ function initCustomizer(root) {
         if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
 
         if (size === "large") {
-          if (area === "top") return twoLines ? step(24, 22, 20, 18) : step(38, 28, 24, 22);
-          if (area === "bottom") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 42, 36);
+          if (area === "top") return twoLines ? step(36, 34, 28, 24) : step(48, 44, 42, 36);
         }
 
         if (size === "sml-mix" || size === "ml-mix") {
-          if (area === "large-top") return twoLines ? step(24, 22, 20, 18) : step(38, 28, 24, 22);
-          if (area === "large-bottom") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 42, 36);
+          if (area === "large-top") return twoLines ? step(36, 34, 28, 24) : step(48, 44, 42, 36);
           if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
           if (area === "small") return twoLines ? step(18, 16, 14, 12) : step(20, 18, 16, 14);
         }
@@ -949,6 +893,66 @@ function initCustomizer(root) {
           return { fs, lh1: clampPx(Math.max(6, fs - 2)) };
         }
       }
+
+      // ------------------------
+      // jesus loves - LARGE
+      // ------------------------
+      if (theme === "jesus loves" && size === "large") {
+        // large-text5
+        if (id === "large-text5") {
+          if (twoLines) {
+            const fs = len <= 9 ? 10 : 6;
+            const lh = len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 16 : len <= 9 ? 14 : 10;
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+
+        // large-text6
+        if (id === "large-text6") {
+          if (twoLines) {
+            const fs = len <= 9 ? 10 : 6;
+            const lh = len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 16 : len <= 9 ? 14 : 10;
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+      }
+
+      // ------------------------
+      // jesusloves - SML MIX large-top2 (smlmix-large-top2)
+      // ------------------------
+      if (theme === "jesus loves" && (size === "sml-mix")) {
+        if (id === "smlmix-large-top2") {
+          if (twoLines) {
+            const fs = len <= 9 ? 10 : 6;
+            const lh = len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 16 : len <= 9 ? 14 : 10;
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+      }
+
+      if (theme === "jesus loves" && (size === "ml-mix")) {
+        if (id === "mlmix-large-top5" || id === "mlmix-large-top6") {
+          if (twoLines) {
+            const fs = len <= 9 ? 10 : 6;
+            const lh = len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 16 : len <= 9 ? 14 : 10;
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+      }
+
+
 
       return null; // no special rule
     }
