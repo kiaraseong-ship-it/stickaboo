@@ -435,12 +435,12 @@ function initCustomizer(root) {
 
     // Top
     const topRows = 6, topCols = 2;
-    const rowGapTop = 16.2;
-    const colGapTop = 49;
+    const rowGapTop = 15;
+    const colGapTop = 40;
     const widthTop = "200px";
     const fontSizeTop = "36px";
     const topOffsetTop = 9;
-    const leftOffsetTop = 26;
+    const leftOffsetTop = 30;
 
     for (let r = 0; r < topRows; r++) {
       for (let c = 0; c < topCols; c++) {
@@ -465,7 +465,7 @@ function initCustomizer(root) {
     // Large Top
     const topRows = 2, topCols = 2;
     const rowGapTop = 17.5;
-    const colGapTop = 48;
+    const colGapTop = ;
     const widthTop = "400px";
     const fontSizeTop = "50px";
     const topOffsetTop = 9.6;
