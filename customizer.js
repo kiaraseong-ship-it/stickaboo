@@ -435,12 +435,12 @@ function initCustomizer(root) {
 
     // Top
     const topRows = 6, topCols = 2;
-    const rowGapTop = 15;
-    const colGapTop = 40;
+    const rowGapTop = 16.2;
+    const colGapTop = 49;
     const widthTop = "200px";
     const fontSizeTop = "36px";
     const topOffsetTop = 9;
-    const leftOffsetTop = 30;
+    const leftOffsetTop = 26;
 
     for (let r = 0; r < topRows; r++) {
       for (let c = 0; c < topCols; c++) {
@@ -464,11 +464,11 @@ function initCustomizer(root) {
 
     // Large Top
     const topRows = 2, topCols = 2;
-    const rowGapTop = 17.5;
-    const colGapTop = ;
+    const rowGapTop = 18;
+    const colGapTop = 50;
     const widthTop = "400px";
     const fontSizeTop = "50px";
-    const topOffsetTop = 9.6;
+    const topOffsetTop = 9;
     const leftOffsetTop = 26;
 
     for (let r = 0; r < topRows; r++) {
@@ -782,7 +782,7 @@ function initCustomizer(root) {
         }
 
         if (size === "sml-mix" || size === "ml-mix") {
-          if (area === "large-top") return twoLines ? step(36, 34, 28, 24) : step(48, 44, 42, 36);
+          if (area === "large-top") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 42, 36);
           if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
           if (area === "small") return twoLines ? step(18, 16, 14, 12) : step(20, 18, 16, 14);
         }
