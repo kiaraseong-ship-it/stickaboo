@@ -872,7 +872,7 @@ function initCustomizer(root) {
             return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
             // 한 줄: <=5 22px, <=8 16px, <=12 12px, 그 이상 10px
-            const fs = len <= 5 ? 22 : len <= 9 ? 16 : len <= 12 ? 14 : 12;
+            const fs = len <= 5 ? 22 : len <= 9 ? 15 : len <= 12 ? 14 : 12;
             return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
           }
         }
