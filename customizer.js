@@ -791,21 +791,21 @@ function initCustomizer(root) {
       // ✅ NORMAL
       if (size === "small") {
         if (area === "bottom") return step(19, 18, 16, 16);
-        return step(16, 14, 12, 11); // top
+        return step(16, 14, 13, 13); // top
       }
 
-      if (size === "medium") return step(22, 20, 18, 16);
+      if (size === "medium") return step(22, 20, 18, 17);
       if (size === "large") {
-        if (area === "top") return twoLines ? step(20, 20, 20, 18) : step(32, 28, 24, 20);
-        if (area === "bottom") return twoLines ? step(35, 30, 28, 22) : step(38, 32, 328, 22);
+        if (area === "top") return twoLines ? step(20, 20, 20, 18) : step(32, 28, 24, 26);
+        if (area === "bottom") return twoLines ? step(35, 30, 28, 22) : step(38, 32, 28, 30);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
-        if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 28, 24, 20);
-        if (area === "large-bottom") return twoLines ? step(35, 30, 28, 22) : step(38, 32, 28, 22);
-        if (area === "medium") return step(22, 20, 18, 16);
-        if (area === "small") return step(16, 14, 12, 11);
+        if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 28, 24, 26);
+        if (area === "large-bottom") return twoLines ? step(35, 30, 28, 22) : step(38, 32, 28, 30);
+        if (area === "medium") return step(22, 20, 18, 17);
+        if (area === "small") return step(16, 14, 13, 13);
       }
 
       return 22;
