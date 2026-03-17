@@ -608,7 +608,7 @@ function initCustomizer(root) {
     },
     unicorn: {
       large: {
-        "large-text7": { fontSize: "6px", top: "56.4%", left: "18%", width: "130px", textAlign: "center" },
+        "large-text7": { fontSize: "6px", top: "56.5%", left: "18%", width: "130px", textAlign: "center" },
       },
     },
     "jesus loves": {
