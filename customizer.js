@@ -608,7 +608,7 @@ function initCustomizer(root) {
     },
     unicorn: {
       large: {
-        "large-text7": { fontSize: "6px", top: "56.2%", left: "18%", width: "130px", textAlign: "center" },
+        "large-text7": { fontSize: "6px", top: "56.3%", left: "18%", width: "130px", textAlign: "center" },
       },
     },
     "jesus loves": {
@@ -889,7 +889,7 @@ function initCustomizer(root) {
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           // 한줄: <=5 16px, <=7 12px, <=9 10px, 그 이상 8px
-          const fs = len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 10 : 8;
+          const fs = len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 11 : 9;
           return { fs, lh1: clampPx(Math.max(6, fs - 2)) };
         }
       }
