@@ -929,8 +929,8 @@ function initCustomizer(root) {
       if (theme === "jesus loves" && (size === "sml-mix")) {
         if (id === "smlmix-large-top2") {
           if (twoLines) {
-            const fs = len <= 9 ? 10 : 6;
-            const lh = len <= 9 ? 10 : 6;
+            const fs = len <= 5 ? 13 : len <= 7 ? 14 : len <= 9 ? 10 : 8;
+            const lh = len <= 5 ? 11 : len <= 7 ? 12 : len <= 9 ? 10 : 6;
             return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
             const fs = len <= 5 ? 20 : len <= 7 ? 16 : len <= 9 ? 14 : 10;
