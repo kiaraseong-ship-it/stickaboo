@@ -778,7 +778,7 @@ function initCustomizer(root) {
         if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
 
         if (size === "large") {
-          if (area === "top") return twoLines ? step(36, 34, 28, 24) : step(48, 44, 42, 36);
+          if (area === "top") return twoLines ? step(36, 34, 28, 24) : step(48, 42, 40, 36);
         }
 
         if (size === "sml-mix" || size === "ml-mix") {
