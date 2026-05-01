@@ -858,6 +858,10 @@ function initCustomizer(root) {
       if (size === "small") return generateSmallPetOverlays();
       if (size === "medium") return generateMediumPetOverlays();
       if (size === "large") return generateLargePetOverlays(theme);
+
+      // ✅ 이거 추가
+      if (size === "sml-mix") return generateSmlMixOverlays();
+      if (size === "ml-mix") return generateMlMixOverlays();
     }
 
     return overlayConfigsBySize[size];
@@ -901,12 +905,7 @@ function initCustomizer(root) {
       text.style.width = "100%";
       text.textContent = "";
       text.style.color = selectedFontColor;
-
-      if (selectedFontColor === "#FFFFFF") {
-        text.style.textShadow = "0 0 1px #000, 0 0 1px #000";
-      } else {
-        text.style.textShadow = "none";
-      }
+      text.style.textShadow = "none";
 
       wrapper.appendChild(text);
       overlayContainer.appendChild(wrapper);
