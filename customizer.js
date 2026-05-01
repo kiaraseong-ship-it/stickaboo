@@ -1184,7 +1184,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text4 / mlmix-large-top4
       // ------------------------
       if (
-        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "kitty") &&
+        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "Kitty") &&
         (
           (size === "large" && id === "large-text4") ||
           (size === "ml-mix" && id === "mlmix-large-top4")
@@ -1211,7 +1211,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text6 / mlmix-large-top6
       // ------------------------
       if (
-        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "Kitty") &&
         (
           (size === "large" && id === "large-text6") ||
           (size === "ml-mix" && id === "mlmix-large-top6")
