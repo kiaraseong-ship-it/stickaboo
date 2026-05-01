@@ -61,8 +61,9 @@ function initCustomizer(root) {
       const suffix = isCharacter ? "-co" : "";
       const fileName = `${selectedSize}-${selectedTheme}${suffix}.png`;
 
-      // ✅ 캐시 방지 파라미터
+      // ✅ 캐시 방지 파라미터 추가한 버전
       const newSrc = placeholderUrl.replace(/[^/]+$/, fileName) + `?v=${Date.now()}`;
+
       previewImage.src = newSrc;
     }
   }
@@ -661,7 +662,7 @@ function initCustomizer(root) {
 
     // ----- TOP (8 rows) -----
     const topRows = 8;
-    const topHeight = isMobile ? 61.5 : 61.5;
+    const topHeight = isMobile ? 61.8 : 61.5;
 
     const cellWidth = (isMobile ? 94 : 81) / cols;
     const cellHeightTop = topHeight / topRows;
