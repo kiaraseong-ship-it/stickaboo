@@ -623,8 +623,259 @@ function initCustomizer(root) {
         "mlmix-large-top5": { top: "32.3%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
         "mlmix-large-top6": { top: "33.7%", left: "82.8%", width: "140px", fontSize: "10px", textAlign: "center" },
       },
+
+      Puppy: {
+        "sml-mix": {
+          "smlmix-large-bottom4": { fontSize: "10px", top: "27.8%", left: "30%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "29%", left: "73%", width: "130px", textAlign: "left" },
+        },
+        "ml-mix": {
+          "mlmix-large-top4": { top: "32.5%", left: "21.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top5": { top: "33%", left: "48%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "25%", left: "76%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "50%", left: "30%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "50.5%", left: "68%", width: "140px", fontSize: "10px", textAlign: "center" },
+        },
+      },
+      Kitty: {
+        "sml-mix": {
+          "smlmix-large-bottom4": { fontSize: "10px", top: "27.8%", left: "30%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "29%", left: "68%", width: "130px", textAlign: "center" },
+        },
+        "ml-mix": {
+          "mlmix-large-top4": { top: "32.5%", left: "21%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top5": { top: "35%", left: "48%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "24.5%", left: "75.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "50%", left: "30%", width: "140px", fontSize: "10px", textAlign: "center" },
+        },
+      },
     },
   };
+
+  function generateSmallPetOverlays() {
+    const overlays = [];
+    let id = 1;
+    const isMobile = window.innerWidth <= 600;
+
+    const cols = 4;
+
+    // ----- TOP (8 rows) -----
+    const topRows = 8;
+    const topHeight = isMobile ? 61.5 : 61.5;
+
+    const cellWidth = (isMobile ? 94 : 81) / cols;
+    const cellHeightTop = topHeight / topRows;
+
+    const topOffset = isMobile ? 0.7 : 0.68;
+    const leftOffset = isMobile ? 0.9 : 1.1;
+
+    for (let r = 0; r < topRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `small-text${id++}`,
+          top: `${(r + topOffset) * cellHeightTop}%`,
+          left: `${(c + leftOffset) * cellWidth}%`,
+          width: isMobile ? "70px" : "85px",
+          textAlign: "left",
+          area: "top"
+        });
+      }
+    }
+
+    // ----- BOTTOM (4 rows) -----
+    const bottomRows = 4;
+    const bottomHeight = isMobile ? 31.4 : 31;
+
+    const cellHeightBottom = bottomHeight / bottomRows;
+
+    const bottomOffset = isMobile ? 0.66 : 0.65
+    const leftOffsetBottom = isMobile ? 0.98 : 1.17;
+
+    for (let r = 0; r < bottomRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `small-text${id++}`,
+          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
+          left: `${(c + leftOffsetBottom) * cellWidth}%`,
+          width: isMobile ? "75px" : "90px",
+          textAlign: "left",
+          area: "bottom"
+        });
+      }
+    }
+
+    return overlays;
+  }
+
+  function generateMediumPetOverlays() {
+    const overlays = [];
+    let id = 1;
+    const isMobile = window.innerWidth <= 600;
+
+    const cols = 3;
+
+    // ----- TOP (6 rows) -----
+    const topRows = 6;
+    const topHeight = isMobile ? 55.5 : 55;
+
+    const cellWidth = (isMobile ? 95 : 81) / cols;
+    const cellHeightTop = topHeight / topRows;
+
+    const topOffset = isMobile ? 0.65 : 0.68;
+    const leftOffset = isMobile ? 0.77 : 0.94;
+
+    for (let r = 0; r < topRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `medium-text${id++}`,
+          top: `${(r + topOffset) * cellHeightTop}%`,
+          left: `${(c + leftOffset) * cellWidth}%`,
+          width: isMobile ? "80px" : "100px",
+          textAlign: "left",
+          area: "top"
+        });
+      }
+    }
+
+    // ----- BOTTOM (4 rows) -----
+    const bottomRows = 4;
+    const bottomHeight = isMobile ? 37.2 : 37.5;
+
+    const cellHeightBottom = bottomHeight / bottomRows;
+
+    const bottomOffset = isMobile ? 0.67 : 0.68;
+    const leftOffsetBottom = isMobile ? 0.88 : 1.02;
+
+    for (let r = 0; r < bottomRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `medium-text${id++}`,
+          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
+          left: `${(c + leftOffsetBottom) * cellWidth}%`, // ⭐ 여기 변경
+          width: isMobile ? "85px" : "105px",
+          textAlign: "left",
+          area: "bottom"
+        });
+      }
+    }
+
+    return overlays;
+  }
+
+  function generateLargePetOverlays(theme) {
+    const overlays = [];
+    const isMobile = window.innerWidth <= 600;
+    const themeKey = theme?.toLowerCase();
+
+    const fontSize = isMobile ? "18px" : "28px";
+
+    // ======================
+    // DESKTOP
+    // ======================
+    const kittyCoords = [
+      { top: "16%", left: "21%", width: "140px" },
+      { top: "16%", left: "48%", width: "140px" },
+      { top: "16%", left: "75%", width: "140px" },
+
+      { top: "32.5%", left: "21.8%", width: "160px" },
+      { top: "34.5%", left: "48%", width: "150px" },
+      { top: "24.5%", left: "75.8%", width: "150px" },
+
+      { top: "48%", left: "33%", width: "140px", textAlign: "left" },
+      { top: "48%", left: "70%", width: "260px" },
+
+      { top: "69%", left: "30%", width: "250px" },
+      { top: "67.5%", left: "72.5%", width: "260px" },
+
+      { top: "84.5%", left: "35%", width: "260px" },
+      { top: "88%", left: "68.5%", width: "260px" },
+    ];
+
+    const puppyCoords = [
+      { top: "16%", left: "21%", width: "150px" },
+      { top: "16%", left: "48%", width: "150px" },
+      { top: "16%", left: "75%", width: "150px" },
+
+      { top: "32.5%", left: "21.5%", width: "150px" },
+      { top: "33%", left: "48%", width: "150px" },
+      { top: "25%", left: "76%", width: "150px" },
+
+      { top: "48%", left: "39%", width: "170px", textAlign: "left" },
+      { top: "49%", left: "71%", width: "270px" },
+
+      { top: "68%", left: "30%", width: "250px" },
+      { top: "68.5%", left: "67%", width: "260px" },
+
+      { top: "84.2%", left: "36%", width: "260px" },
+      { top: "87.5%", left: "68.5%", width: "260px" },
+    ];
+
+    // ======================
+    // 📱 MOBILE (⭐ 핵심)
+    // ======================
+    const kittyCoordsMobile = [
+      { top: "16.5%", left: "18%", width: "110px" },
+      { top: "16.5%", left: "50%", width: "110px" },
+      { top: "16.5%", left: "81%", width: "110px" },
+
+      { top: "33%", left: "19%", width: "120px" },
+      { top: "34.5%", left: "50%", width: "120px" },
+      { top: "24.5%", left: "82%", width: "120px" },
+
+      { top: "48%", left: "36%", width: "110px", textAlign: "left" },
+      { top: "48.5%", left: "75%", width: "180px" },
+
+      { top: "68.5%", left: "29%", width: "170px" },
+      { top: "67.5%", left: "78.5%", width: "180px" },
+
+      { top: "84.3%", left: "35%", width: "180px" },
+      { top: "87.8%", left: "74%", width: "180px" },
+    ];
+
+    const puppyCoordsMobile = [
+      { top: "16.5%", left: "18%", width: "110px" },
+      { top: "16.5%", left: "50%", width: "110px" },
+      { top: "16.5%", left: "81%", width: "110px" },
+
+      { top: "32.5%", left: "19%", width: "120px" },
+      { top: "33%", left: "50%", width: "120px" },
+      { top: "25.2%", left: "82%", width: "120px" },
+
+      { top: "48%", left: "40%", width: "110px", textAlign: "left" },
+      { top: "49%", left: "76%", width: "180px" },
+
+      { top: "68%", left: "28.5%", width: "170px" },
+      { top: "68%", left: "72%", width: "180px" },
+
+      { top: "84.3%", left: "36%", width: "180px" },
+      { top: "87.5%", left: "73.5%", width: "180px" },
+    ];
+
+    // ======================
+    // 선택
+    // ======================
+    let coords;
+
+    if (isMobile) {
+      coords = themeKey === "kitty" ? kittyCoordsMobile : puppyCoordsMobile;
+    } else {
+      coords = themeKey === "kitty" ? kittyCoords : puppyCoords;
+    }
+
+    coords.forEach((cfg, index) => {
+      overlays.push({
+        id: `large-text${index + 1}`,
+        top: cfg.top,
+        left: cfg.left,
+        width: cfg.width,
+        fontSize,
+        textAlign: cfg.textAlign || "center",
+        area: "large-pet"
+      });
+    });
+
+    return overlays;
+  }
 
   // base configs
   const overlayConfigsBySize = {
@@ -637,8 +888,20 @@ function initCustomizer(root) {
     "nameonly-medium": generateNameOnlyMedium(),
     "nameonly-large": generateNameOnlyLarge(),
     "nameonly-sml-mix": generateNameOnlySmlMix(),
-    "nameonly-ml-mix": generateNameOnlyMlMix(),
+    "nameonly-ml-mix": generateNameOnlyMlMix()
   };
+
+  function getOverlayConfig(size, theme) {
+    const themeKey = theme?.toLowerCase();
+
+    if (themeKey === "puppy" || themeKey === "kitty") {
+      if (size === "small") return generateSmallPetOverlays();
+      if (size === "medium") return generateMediumPetOverlays();
+      if (size === "large") return generateLargePetOverlays(theme);
+    }
+
+    return overlayConfigsBySize[size];
+  }
 
   // =========================================================
   // ✅ Renderer
@@ -951,6 +1214,290 @@ function initCustomizer(root) {
           }
         }
       }
+
+      // ------------------------
+      // PUPPY + KITTY - LARGE large-text4 / mlmix-large-top4
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (
+          (size === "large" && id === "large-text4") ||
+          (size === "ml-mix" && id === "mlmix-large-top4")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 10 : len <= 7 ? 9 : len <= 9 ? 8 : 7)
+            : (len <= 5 ? 14 : len <= 7 ? 12 : len <= 9 ? 10 : 8);
+          const lh = fs;
+
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 15 : len <= 7 ? 13 : len <= 9 ? 11 : 8)
+            : (len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 16 : 10);
+
+          return { fs, lh1: clampPx(Math.max(6, fs - 2)) };
+        }
+      }
+
+
+      // ------------------------
+      // PUPPY + KITTY - LARGE large-text6 / mlmix-large-top6
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (
+          (size === "large" && id === "large-text6") ||
+          (size === "ml-mix" && id === "mlmix-large-top6")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 13 : len <= 7 ? 12 : len <= 9 ? 10 : 9)
+            : (len <= 5 ? 18 : len <= 7 ? 16 : len <= 9 ? 14 : 12);
+          const lh = fs;
+
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 11)
+            : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 14);
+
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+
+      // ------------------------
+      // PUPPY + KITTY - LARGE large-text7 + smlmix-large-bottom4
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (
+          (size === "large" && id === "large-text7")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 24 : len <= 7 ? 20 : len <= 9 ? 18 : 16)
+            : (len <= 5 ? 32 : len <= 7 ? 26 : len <= 9 ? 22 : 20);
+          const lh = isMobile ? fs - 2 : fs;
+
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 28 : len <= 7 ? 24 : len <= 9 ? 20 : 18)
+            : (len <= 5 ? 38 : len <= 7 ? 34 : len <= 9 ? 28 : 23);
+
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+
+      // ------------------------
+      // PUPPY - LARGE large-text8 + smlmix-large-bottom4 + smlmix-large-bottom5
+      // 한 줄 고정
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "puppy" &&
+        (
+          (size === "large" && id === "large-text8") ||
+          (size === "sml-mix" && id === "smlmix-large-bottom4")
+        )
+      ) {
+        const fs = isMobile
+          ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 12)
+          : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 16);
+
+        return {
+          fs,
+          lh1: clampPx(Math.max(8, fs - 2)),
+          forceSingleLine: true
+        };
+      }
+
+
+      // ------------------------
+      // PUPPY + KITTY - LARGE large-text9 / mlmix-large-bottom7
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (
+          (size === "large" && id === "large-text9") ||
+          (size === "ml-mix" && id === "mlmix-large-bottom7")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
+            : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
+          const lh = fs;
+
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 13 : 11)
+            : (len <= 5 ? 24 : len <= 7 ? 18 : len <= 9 ? 17 : 15);
+
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+
+      // ------------------------
+      // PUPPY - LARGE large-text10 + smlmix-large-bottom5 + mlmix-large-bottom8
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "puppy" &&
+        (
+          (size === "large" && id === "large-text10") ||
+          (size === "sml-mix" && id === "smlmix-large-bottom5") ||
+          (size === "ml-mix" && id === "mlmix-large-bottom8")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 7 : 7)
+            : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
+          const lh = fs;
+
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 17 : len <= 7 ? 13 : len <= 9 ? 12 : 10)
+            : (len <= 5 ? 22 : len <= 7 ? 16 : len <= 9 ? 15 : 12);
+
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+
+      // ------------------------
+      // PUPPY - LARGE large-text11
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "puppy" &&
+        size === "large" &&
+        id === "large-text11"
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
+            : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
+          const lh = fs;
+
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 13 : 11)
+            : (len <= 5 ? 24 : len <= 7 ? 18 : len <= 9 ? 17 : 15);
+
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+
+      // ------------------------
+      // PUPPY - LARGE large-text12
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "puppy" &&
+        size === "large" &&
+        id === "large-text12"
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 12 : 10)
+            : (len <= 5 ? 32 : len <= 7 ? 24 : len <= 9 ? 22 : 20);
+          const lh = isMobile ? fs - 3 : fs - 3;
+
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 28 : len <= 7 ? 24 : len <= 9 ? 20 : 18)
+            : (len <= 5 ? 38 : len <= 7 ? 34 : len <= 9 ? 28 : 23);
+          const lh = fs - 2;
+
+          return { fs, lh1: clampPx(Math.max(8, lh)) };
+        }
+      }
+
+
+      // ------------------------
+      // KITTY (ml-mix) + PUPPY (large) top 1,2,3,5
+      // same as existing large top rule
+      // ------------------------
+      if (
+        (
+          // 🐱 kitty (ml-mix)
+          theme?.toLowerCase() === "kitty" &&
+          size === "ml-mix" &&
+          (
+            id === "mlmix-large-top1" ||
+            id === "mlmix-large-top2" ||
+            id === "mlmix-large-top3" ||
+            id === "mlmix-large-top5"
+          )
+        )
+        ||
+        (
+          // 🐶 puppy (large)
+          theme?.toLowerCase() === "puppy" &&
+          size === "large" &&
+          (
+            id === "large-text1" ||
+            id === "large-text2" ||
+            id === "large-text3" ||
+            id === "large-text5"
+          )
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 16 : 13)
+            : (len <= 5 ? 20 : len <= 7 ? 20 : len <= 9 ? 20 : 18);
+          const lh = fs - 2;
+
+          return {
+            fs,
+            lh1: clampPx(lh),
+            fs2: fs,
+            lh2: clampPx(lh)
+          };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 24 : len <= 7 ? 21 : len <= 9 ? 18 : 15)
+            : (len <= 5 ? 32 : len <= 7 ? 28 : len <= 9 ? 24 : 20);
+
+          return {
+            fs,
+            lh1: clampPx(Math.max(8, fs - 2))
+          };
+        }
+      }
+      // ------------------------
+      // KITTY - SML MIX smlmix-large-bottom5
+      // + ML MIX mlmix-large-bottom8
+      // same size as large-text8
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "kitty" &&
+        (
+          (size === "sml-mix" && id === "smlmix-large-bottom5") ||
+          (size === "ml-mix" && id === "mlmix-large-bottom8")
+        )
+      ) {
+        const fs = isMobile
+          ? (len <= 5 ? 16 : len <= 7 ? 13 : len <= 9 ? 11 : 12)
+          : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 16);
+
+        return {
+          fs,
+          lh1: clampPx(Math.max(8, fs - 2))
+        };
+      }
+
 
 
 
