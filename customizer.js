@@ -810,46 +810,6 @@ function initCustomizer(root) {
       { top: "87.5%", left: "68.5%", width: "260px" },
     ];
 
-    // ======================
-    // 📱 MOBILE (⭐ 핵심)
-    // ======================
-    const kittyCoordsMobile = [
-      { top: "16.5%", left: "18%", width: "110px" },
-      { top: "16.5%", left: "50%", width: "110px" },
-      { top: "16.5%", left: "81%", width: "110px" },
-
-      { top: "33%", left: "19%", width: "120px" },
-      { top: "34.5%", left: "50%", width: "120px" },
-      { top: "24.5%", left: "82%", width: "120px" },
-
-      { top: "48%", left: "36%", width: "110px", textAlign: "left" },
-      { top: "48.5%", left: "75%", width: "180px" },
-
-      { top: "68.5%", left: "29%", width: "170px" },
-      { top: "67.5%", left: "78.5%", width: "180px" },
-
-      { top: "84.3%", left: "35%", width: "180px" },
-      { top: "87.8%", left: "74%", width: "180px" },
-    ];
-
-    const puppyCoordsMobile = [
-      { top: "16.5%", left: "18%", width: "110px" },
-      { top: "16.5%", left: "50%", width: "110px" },
-      { top: "16.5%", left: "81%", width: "110px" },
-
-      { top: "32.5%", left: "19%", width: "120px" },
-      { top: "33%", left: "50%", width: "120px" },
-      { top: "25.2%", left: "82%", width: "120px" },
-
-      { top: "48%", left: "40%", width: "110px", textAlign: "left" },
-      { top: "49%", left: "76%", width: "180px" },
-
-      { top: "68%", left: "28.5%", width: "170px" },
-      { top: "68%", left: "72%", width: "180px" },
-
-      { top: "84.3%", left: "36%", width: "180px" },
-      { top: "87.5%", left: "73.5%", width: "180px" },
-    ];
 
     // ======================
     // 선택
@@ -911,7 +871,13 @@ function initCustomizer(root) {
     overlayContainer.innerHTML = "";
 
     const key = selectedTheme === "nameonly" ? `nameonly-${size}` : size;
-    currentOverlays = (overlayConfigsBySize[key] || []).map(c => ({ ...c }));
+
+    const baseConfig =
+      selectedTheme === "nameonly"
+        ? overlayConfigsBySize[key]
+        : getOverlayConfig(size, selectedTheme);
+
+    currentOverlays = (baseConfig || []).map(c => ({ ...c }));
 
     currentOverlays.forEach(config => {
       if (themeOverrides[selectedTheme] && themeOverrides[selectedTheme][size]) {
