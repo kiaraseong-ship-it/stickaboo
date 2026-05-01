@@ -220,7 +220,7 @@ p {
 @font-face {
   font-family: "BM JUA_TTF";
   src: url("/fonts/BMJUA_ttf.ttf") format("truetype");
-  font-weight: 300;
+  font-weight: 100;
   /* normal로 고정 */
   font-style: normal;
 }
