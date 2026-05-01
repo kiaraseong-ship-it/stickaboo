@@ -1184,7 +1184,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text4 / mlmix-large-top4
       // ------------------------
       if (
-        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "kitty") &&
         (
           (size === "large" && id === "large-text4") ||
           (size === "ml-mix" && id === "mlmix-large-top4")
