@@ -57,12 +57,17 @@ function initCustomizer(root) {
   // ✅ 여기에서 isCharacter 적용
   function updatePreview() {
     if (!previewImage || !placeholderUrl) return;
+
     if (selectedSize && selectedTheme) {
       const suffix = isCharacter ? "-co" : "";
-      const fileName = `${selectedSize}-${selectedTheme}${suffix}.png`;
 
-      // ✅ 캐시 방지 파라미터 추가한 버전
-      const newSrc = placeholderUrl.replace(/[^/]+$/, fileName) + `?v=${Date.now()}`;
+      const themeFile =
+        selectedTheme?.toLowerCase() === "puppy" ? "Puppy" :
+          selectedTheme?.toLowerCase() === "kitty" ? "Kitty" :
+            selectedTheme;
+
+      const fileName = `${selectedSize}-${themeFile}${suffix}.png`;
+      const newSrc = placeholderUrl.replace(/[^/]+$/, fileName);
 
       previewImage.src = newSrc;
     }
@@ -662,13 +667,13 @@ function initCustomizer(root) {
 
     // ----- TOP (8 rows) -----
     const topRows = 8;
-    const topHeight = isMobile ? 61.8 : 61.5;
+    const topHeight = isMobile ? 64 : 64.5;
 
-    const cellWidth = (isMobile ? 94 : 81) / cols;
+    const cellWidth = (isMobile ? 94 : 96) / cols;
     const cellHeightTop = topHeight / topRows;
 
     const topOffset = isMobile ? 0.7 : 0.68;
-    const leftOffset = isMobile ? 0.9 : 1.1;
+    const leftOffset = isMobile ? 0.9 : 0.89;
 
     for (let r = 0; r < topRows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -685,12 +690,12 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4 rows) -----
     const bottomRows = 4;
-    const bottomHeight = isMobile ? 31.4 : 31;
+    const bottomHeight = isMobile ? 31.4 : 32.6;
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
-    const bottomOffset = isMobile ? 0.66 : 0.65
-    const leftOffsetBottom = isMobile ? 0.98 : 1.17;
+    const bottomOffset = isMobile ? 0.66 : 0.66
+    const leftOffsetBottom = isMobile ? 0.98 : 0.96;
 
     for (let r = 0; r < bottomRows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -717,13 +722,13 @@ function initCustomizer(root) {
 
     // ----- TOP (6 rows) -----
     const topRows = 6;
-    const topHeight = isMobile ? 55.5 : 55;
+    const topHeight = isMobile ? 55.5 : 58;
 
-    const cellWidth = (isMobile ? 95 : 81) / cols;
+    const cellWidth = (isMobile ? 95 : 95) / cols;
     const cellHeightTop = topHeight / topRows;
 
-    const topOffset = isMobile ? 0.65 : 0.68;
-    const leftOffset = isMobile ? 0.77 : 0.94;
+    const topOffset = isMobile ? 0.65 : 0.66;
+    const leftOffset = isMobile ? 0.77 : 0.77;
 
     for (let r = 0; r < topRows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -740,12 +745,12 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4 rows) -----
     const bottomRows = 4;
-    const bottomHeight = isMobile ? 37.2 : 37.5;
+    const bottomHeight = isMobile ? 37.2 : 39;
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
-    const bottomOffset = isMobile ? 0.67 : 0.68;
-    const leftOffsetBottom = isMobile ? 0.88 : 1.02;
+    const bottomOffset = isMobile ? 0.67 : 0.7;
+    const leftOffsetBottom = isMobile ? 0.88 : 0.88;
 
     for (let r = 0; r < bottomRows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -768,12 +773,13 @@ function initCustomizer(root) {
     const isMobile = window.innerWidth <= 600;
     const themeKey = theme?.toLowerCase();
 
+
     const fontSize = isMobile ? "18px" : "28px";
 
     // ======================
     // DESKTOP
     // ======================
-    const kittyCoords = [
+    const KittyCoords = [
       { top: "16%", left: "21%", width: "140px" },
       { top: "16%", left: "48%", width: "140px" },
       { top: "16%", left: "75%", width: "140px" },
@@ -792,7 +798,7 @@ function initCustomizer(root) {
       { top: "88%", left: "68.5%", width: "260px" },
     ];
 
-    const puppyCoords = [
+    const PuppyCoords = [
       { top: "16%", left: "21%", width: "150px" },
       { top: "16%", left: "48%", width: "150px" },
       { top: "16%", left: "75%", width: "150px" },
@@ -817,11 +823,7 @@ function initCustomizer(root) {
     // ======================
     let coords;
 
-    if (isMobile) {
-      coords = themeKey === "kitty" ? kittyCoordsMobile : puppyCoordsMobile;
-    } else {
-      coords = themeKey === "kitty" ? kittyCoords : puppyCoords;
-    }
+    coords = themeKey === "kitty" ? kittyCoords : PuppyCoords;
 
     coords.forEach((cfg, index) => {
       overlays.push({
@@ -859,8 +861,6 @@ function initCustomizer(root) {
       if (size === "small") return generateSmallPetOverlays();
       if (size === "medium") return generateMediumPetOverlays();
       if (size === "large") return generateLargePetOverlays(theme);
-
-      // ✅ 이거 추가
       if (size === "sml-mix") return generateSmlMixOverlays();
       if (size === "ml-mix") return generateMlMixOverlays();
     }
@@ -1239,7 +1239,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text7 + smlmix-large-bottom4
       // ------------------------
       if (
-        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "Kitty") &&
         (
           (size === "large" && id === "large-text7")
         )
@@ -1266,7 +1266,7 @@ function initCustomizer(root) {
       // 한 줄 고정
       // ------------------------
       if (
-        theme?.toLowerCase() === "puppy" &&
+        theme?.toLowerCase() === "Puppy" &&
         (
           (size === "large" && id === "large-text8") ||
           (size === "sml-mix" && id === "smlmix-large-bottom4")
@@ -1288,7 +1288,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text9 / mlmix-large-bottom7
       // ------------------------
       if (
-        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "Kitty") &&
         (
           (size === "large" && id === "large-text9") ||
           (size === "ml-mix" && id === "mlmix-large-bottom7")
@@ -1315,7 +1315,7 @@ function initCustomizer(root) {
       // PUPPY - LARGE large-text10 + smlmix-large-bottom5 + mlmix-large-bottom8
       // ------------------------
       if (
-        theme?.toLowerCase() === "puppy" &&
+        theme?.toLowerCase() === "Puppy" &&
         (
           (size === "large" && id === "large-text10") ||
           (size === "sml-mix" && id === "smlmix-large-bottom5") ||
@@ -1343,7 +1343,7 @@ function initCustomizer(root) {
       // PUPPY - LARGE large-text11
       // ------------------------
       if (
-        theme?.toLowerCase() === "puppy" &&
+        theme?.toLowerCase() === "Puppy" &&
         size === "large" &&
         id === "large-text11"
       ) {
@@ -1397,7 +1397,7 @@ function initCustomizer(root) {
       if (
         (
           // 🐱 kitty (ml-mix)
-          theme?.toLowerCase() === "kitty" &&
+          theme?.toLowerCase() === "Kitty" &&
           size === "ml-mix" &&
           (
             id === "mlmix-large-top1" ||
@@ -1409,7 +1409,7 @@ function initCustomizer(root) {
         ||
         (
           // 🐶 puppy (large)
-          theme?.toLowerCase() === "puppy" &&
+          theme?.toLowerCase() === "Puppy" &&
           size === "large" &&
           (
             id === "large-text1" ||
@@ -1464,10 +1464,66 @@ function initCustomizer(root) {
         };
       }
 
+      // ------------------------
+      // 🐶🐱 PUPPY + KITTY - SMALL TOP / BOTTOM
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        size === "small"
+      ) {
+        const area = currentOverlays.find(o => o.id === id)?.area;
 
+        if (area === "top") {
+          if (twoLines) {
+            const fs = len <= 5 ? 13 : len <= 7 ? 11 : len <= 9 ? 10 : 8;
+            return { fs, lh1: clampPx(fs), fs2: fs, lh2: clampPx(fs) };
+          } else {
+            const fs = len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10;
+            return { fs, lh1: clampPx(fs - 2) };
+          }
+        }
 
+        if (area === "bottom") {
+          if (twoLines) {
+            const fs = len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 7;
+            return { fs, lh1: clampPx(fs), fs2: fs, lh2: clampPx(fs) };
+          } else {
+            const fs = len <= 5 ? 15 : len <= 7 ? 13 : len <= 9 ? 9 : 7;
+            return { fs, lh1: clampPx(fs - 2) };
+          }
+        }
+      }
 
-      return null; // no special rule
+      // ------------------------
+      // 🐶🐱 PUPPY + KITTY - MEDIUM TOP / BOTTOM
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        size === "medium"
+      ) {
+        const area = currentOverlays.find(o => o.id === id)?.area;
+
+        if (area === "top") {
+          if (twoLines) {
+            const fs = len <= 5 ? 18 : len <= 7 ? 15 : len <= 9 ? 13 : 11;
+            return { fs, lh1: clampPx(fs - 2) };
+          } else {
+            const fs = len <= 5 ? 22 : len <= 7 ? 20 : len <= 9 ? 16 : 12;
+            return { fs, lh1: clampPx(fs - 2) };
+          }
+        }
+
+        if (area === "bottom") {
+          if (twoLines) {
+            const fs = len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 8 : 6;
+            return { fs, lh1: clampPx(fs - 2) };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 14 : 10;
+            return { fs, lh1: clampPx(fs - 2) };
+          }
+        }
+      }
+      return null;
     }
 
 
@@ -1524,6 +1580,15 @@ function initCustomizer(root) {
             fontSizePx: fs2,
           }))
           : null;
+
+        if (special?.forceSingleLine) {
+          el.innerHTML = `
+              <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
+                ${d1}${d2 ? " " + d2 : ""}
+              </div>
+            `;
+          return;
+        }
 
         el.innerHTML = `
     <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
