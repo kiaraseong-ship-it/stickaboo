@@ -1,166 +1,259 @@
-<!DOCTYPE html>
-<html lang="en">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet" />
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Stickaboo Internal Print Tool</title>
+<style>
+  @font-face {
+    font-family: 'BMJUA';
+    src: url('{{ "BMJUA.woff2" | asset_url }}') format('woff2'),
+    url('{{ "BMJUA.woff" | asset_url }}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
 
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="customizer.css" />
-</head>
+<div class="page-width">
+  <div class="flex-box" data-custom-root>
+    <div class="preview-wrapper">
+      <!-- Background image -->
+      <img src="{{ 'placeholder.png' | asset_url }}" class="preview-image" />
 
-<body>
-  <div class="page-width">
-    <div class="flex-box" data-custom-root data-section-type="customizer"
-      data-placeholder="images/small-undertheocean.png">
-      <!-- 🔹 PREVIEW (그대로 유지) -->
-      <div class="print-capture">
-        <div class="preview-wrapper">
-          <img class="preview-image" />
-          <div id="overlay-container"></div>
+      <!-- Container for overlays -->
+      <div id="overlay-container"></div>
+    </div>
+
+    <div class="selection-wrapper">
+      <div class="customizer-container">
+
+        <!-- Size Section -->
+        <div class="customizer-section" id="size-section">
+          <p class="section-title">1. Choose Size</p>
+          <section class="options options-size">
+            <button type="button" class="option-btn size-btn" data-size="small">
+              <label>Small</label>
+              <p>52 pcs</p>
+            </button>
+            <button type="button" class="option-btn size-btn" data-size="medium">
+              <label>Medium</label>
+              <p>36 pcs</p>
+            </button>
+            <button type="button" class="option-btn size-btn" data-size="large">
+              <label>Large</label>
+              <p>13 pcs</p>
+            </button>
+            <button type="button" class="option-btn size-btn" data-size="sml-mix">
+              <label>S+M+L Mix</label>
+              <p>34 pcs</p>
+            </button>
+            <button type="button" class="option-btn size-btn" data-size="ml-mix">
+              <label>M+L Mix</label>
+              <p>20 pcs</p>
+            </button>
+          </section>
         </div>
+
+        <!-- Theme Section -->
+        <div class="customizer-section" id="theme-section">
+          <p class="section-title">2. Choose Theme</p>
+          <section class="options options-theme">
+            <button type="button" class="option-btn theme-btn" data-theme="undertheocean" title="undertheocean">
+              <img src="{{ 'undertheocean-icon.png' | asset_url }}" alt="undertheocean">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="animal" title="animal">
+              <img src="{{ 'animal-icon.png' | asset_url }}" alt="animal">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="dino" title="dino">
+              <img src="{{ 'dino-icon.png' | asset_url }}" alt="dino">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="unicorn" title="unicorn">
+              <img src="{{ 'unicorn-icon.png' | asset_url }}" alt="unicorn">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="space" title="space">
+              <img src="{{ 'space-icon.png' | asset_url }}" alt="space">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="cuteicon" title="cuteicon">
+              <img src="{{ 'cuteicon-icon.png' | asset_url }}" alt="cuteicon">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="vehicles" title="vehicles">
+              <img src="{{ 'vehicles-icon.png' | asset_url }}" alt="vehicles">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="pastel mood" title="pastel mood">
+              <img src="{{ 'pastelmood-icon.png' | asset_url }}" alt="pastel mood">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="puppy" title="puppy">
+              <img src="{{ 'Puppy-icon.png' | asset_url }}" alt="Puppy">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="kitty" title="kitty">
+              <img src="{{ 'Kitty-icon.png' | asset_url }}" alt="Kitty">
+            </button>
+            <button type="button" class="option-btn theme-btn" data-theme="nameonly" title="nameonly">
+              <img src="{{ 'nameonly-icon.png' | asset_url }}" alt="nameonly">
+            </button>
+          </section>
+        </div>
+
+        <!-- Text Input Section -->
+        <div class="customizer-section" id="text-section">
+          <p class="section-title">3. Add your text</p>
+          <section class="inputs">
+            <input type="text" id="user-text" class="text-input" placeholder="First Name" />
+            <input type="text" id="user-text-last-name" class="text-input" placeholder="Last Name (Or Leave Blank)" />
+          </section>
+        </div>
+
+        <!-- Font Color Section -->
+        <div class="customizer-section" id="font-color-section">
+          <p class="section-title">
+            4. Choose a Font Color
+            <span class="font-color-note">(White shown with outline for visibility only)</span>
+          </p>
+
+          <section class="options options-font-color">
+            <button type="button" class="option-btn color-btn active" data-color="#000000" title="Black">
+              <span class="color-preview" style="background:#000000;"></span>
+            </button>
+
+            <button type="button" class="option-btn color-btn" data-color="#FFFFFF" title="White">
+              <span class="color-preview color-white"></span>
+            </button>
+
+            <button type="button" class="option-btn color-btn" data-color="#1F3A5F" title="Navy">
+              <span class="color-preview" style="background:#1F3A5F;"></span>
+            </button>
+
+            <button type="button" class="option-btn color-btn" data-color="#43BBEC" title="Sky Blue">
+              <span class="color-preview" style="background:#43BBEC;"></span>
+            </button>
+
+            <button type="button" class="option-btn color-btn" data-color="#2F6B4F" title="Forest Green">
+              <span class="color-preview" style="background:#2F6B4F;"></span>
+            </button>
+
+            <button type="button" class="option-btn color-btn" data-color="#F5A3B7" title="Soft Pink">
+              <span class="color-preview" style="background:#F5A3B7;"></span>
+            </button>
+
+            <button type="button" class="option-btn color-btn" data-color="#8B5E3C" title="Warm Brown">
+              <span class="color-preview" style="background:#8B5E3C;"></span>
+            </button>
+          </section>
+        </div>
+
+        <!-- Gift Options Section -->
+        <div class="customizer-section" id="gift-section">
+          <p class="section-title gift-title">
+            Make it a Gift <span class="gift-optional">(Optional)</span>
+          </p>
+          <p class="gift-subtitle">Every order includes 1 basic gift box with extras.<br>
+            Use options below only if you need additional boxes or extras.</p>
+
+          <div class="gift-grid">
+
+            <!-- Gift Set -->
+            <label class="gift-card-grid">
+              <input type="checkbox" class="gift-checkbox" data-gift-name="Gift Set" data-variant-id="44585441427525" />
+
+              <div class="gift-card-inner">
+                <div class="gift-card-header">
+                  <span class="gift-name">Gift Set</span>
+                  <span class="gift-price">+$6.00</span>
+                </div>
+
+                <p class="gift-desc">
+                  Premium gift box, Name tag, squeegee, and sample sticker
+                </p>
+
+                <!-- qty (✅ start 0) -->
+                <div class="gift-qty">
+                  <button type="button" class="gift-qty-btn gift-qty-minus" data-gift-minus>−</button>
+                  <span class="gift-qty-value">0</span>
+                  <button type="button" class="gift-qty-btn gift-qty-plus" data-gift-plus>+</button>
+                </div>
+              </div>
+            </label>
+
+            <!-- Premium Gift Box -->
+            <label class="gift-card-grid">
+              <input type="checkbox" class="gift-checkbox" data-gift-name="Premium Gift Box"
+                data-variant-id="44585443262533" />
+
+
+              <div class="gift-card-inner">
+                <div class="gift-card-header">
+                  <span class="gift-name">Premium Gift Box</span>
+                  <span class="gift-price">+$3.00</span>
+                </div>
+
+                <p class="gift-desc">
+                  Perfect for gifting. Sturdy and reusable.
+                </p>
+
+
+                <!-- qty (✅ start 0) -->
+                <div class="gift-qty">
+                  <button type="button" class="gift-qty-btn gift-qty-minus" data-gift-minus>−</button>
+                  <span class="gift-qty-value">0</span>
+                  <button type="button" class="gift-qty-btn gift-qty-plus" data-gift-plus>+</button>
+                </div>
+              </div>
+            </label>
+
+            <!-- Gift Extras -->
+            <label class="gift-card-grid">
+              <input type="checkbox" class="gift-checkbox" data-gift-name="Gift Extras"
+                data-variant-id="44585447260229" />
+
+              <div class="gift-card-inner">
+                <div class="gift-card-header">
+                  <span class="gift-name">Gift Extras</span>
+                  <span class="gift-price">+$4.00</span>
+                </div>
+
+                <p class="gift-desc">
+                  Includes a Name tag, squeegee, and a sample sticker
+                </p>
+
+                <!-- qty (✅ start 0) -->
+                <div class="gift-qty">
+                  <button type="button" class="gift-qty-btn gift-qty-minus" data-gift-minus>−</button>
+                  <span class="gift-qty-value">0</span>
+                  <button type="button" class="gift-qty-btn gift-qty-plus" data-gift-plus>+</button>
+                </div>
+              </div>
+            </label>
+
+          </div>
+        </div>
+
       </div>
 
-      <!-- 🔹 OPTIONS (🔥 네가 올린 코드, 그대로) -->
-      <div class="selection-wrapper">
-        <div class="customizer-container">
-          <!-- ⬇️ 여기부터 네 코드 그대로 -->
-          <!-- Size Section -->
-          <div class="customizer-section" id="size-section">
-            <p class="section-title">1. Choose Size</p>
-            <section class="options options-size">
-              <button class="option-btn size-btn" data-size="small">
-                <label>Small</label>
-                <p>52 pcs</p>
-              </button>
-              <button class="option-btn size-btn" data-size="medium">
-                <label>Medium</label>
-                <p>36 pcs</p>
-              </button>
-              <button class="option-btn size-btn" data-size="large">
-                <label>Large</label>
-                <p>13 pcs</p>
-              </button>
-              <button class="option-btn size-btn" data-size="sml-mix">
-                <label>S+M+L Mix</label>
-                <p>34 pcs</p>
-              </button>
-              <button class="option-btn size-btn" data-size="ml-mix">
-                <label>M+L Mix</label>
-                <p>20 pcs</p>
-              </button>
-            </section>
+      <!-- submit button-->
+      <form method="post" action="/cart/add" class="product-form" id="custom-product-form">
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+
+        <input type="hidden" name="properties[First Name]" id="hidden-first-name" />
+        <input type="hidden" name="properties[Last Name]" id="hidden-last-name" />
+        <input type="hidden" name="properties[Selected Size]" id="hidden-size" />
+        <input type="hidden" name="properties[Selected Theme]" id="hidden-theme" />
+        <input type="hidden" name="properties[Font Color]" id="hidden-font-color" />
+
+        <!-- ✅ (추가) gift options hidden은 JS가 없으면 생성해주긴 하는데,
+             안정적으로 여기 박아두는거 추천 -->
+        <input type="hidden" name="properties[Gift Options]" id="hidden-gift-options" />
+
+        <div class="action-row">
+          <div class="quantity-box">
+            <button type="button" class="qty-btn" id="qty-minus">−</button>
+            <span id="qty-value">1</span>
+            <button type="button" class="qty-btn" id="qty-plus">+</button>
           </div>
 
-          <!-- Theme Section -->
-          <div class="customizer-section" id="theme-section">
-            <p class="section-title">2. Choose Theme</p>
-
-            <section class="options options-theme">
-              <button class="option-btn theme-btn" data-theme="undertheocean">
-                <img src="images/undertheocean-icon.png" alt="undertheocean" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="animal">
-                <img src="images/animal-icon.png" alt="animal" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="dino">
-                <img src="images/dino-icon.png" alt="dino" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="unicorn">
-                <img src="images/unicorn-icon.png" alt="unicorn" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="space">
-                <img src="images/space-icon.png" alt="space" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="cuteicon">
-                <img src="images/cuteicon-icon.png" alt="cuteicon" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="vehicles">
-                <img src="images/vehicles-icon.png" alt="vehicles" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="pastel mood">
-                <img src="images/pastelmood-icon.png" alt="pastelmood" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="puppy">
-                <img src="images/Puppy-icon.png" alt="puppy" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="kitty">
-                <img src="images/Kitty-icon.png" alt="kitty" />
-              </button>
-
-              <button class="option-btn theme-btn" data-theme="nameonly">
-                <img src="images/nameonly-icon.png" alt="nameonly" />
-              </button>
-            </section>
-          </div>
-
-          <!-- Text Section -->
-          <div class="customizer-section" id="text-section">
-            <p class="section-title">3. Add your text</p>
-            <section class="inputs">
-              <input type="text" id="user-text" class="text-input" placeholder="First Name" />
-              <input type="text" id="user-text-last-name" class="text-input" placeholder="Last Name (Or Leave Blank)" />
-            </section>
-          </div>
-
-          <!-- Color Section -->
-          <div class="customizer-section" id="font-color-section">
-            <p class="section-title">
-              4. Choose a Font Color
-              <span class="font-color-note">(White shown with outline for visibility only)</span>
-            </p>
-
-            <section class="options options-font-color">
-              <button class="option-btn color-btn active" data-color="#000000" title="Black">
-                <span class="color-preview" style="background: #000000"></span>
-              </button>
-
-              <button class="option-btn color-btn" data-color="#FFFFFF" title="White">
-                <span class="color-preview color-white"></span>
-              </button>
-
-              <button class="option-btn color-btn" data-color="#1F3A5F" title="Navy">
-                <span class="color-preview" style="background: #1f3a5f"></span>
-              </button>
-
-              <button class="option-btn color-btn" data-color="#43BBEC" title="Sky Blue">
-                <span class="color-preview" style="background: #43bbec"></span>
-              </button>
-
-              <button class="option-btn color-btn" data-color="#2F6B4F" title="Forest Green">
-                <span class="color-preview" style="background: #2f6b4f"></span>
-              </button>
-
-              <button class="option-btn color-btn" data-color="#F5A3B7" title="Soft Pink">
-                <span class="color-preview" style="background: #f5a3b7"></span>
-              </button>
-
-              <button class="option-btn color-btn" data-color="#8B5E3C" title="Warm Brown">
-                <span class="color-preview" style="background: #8b5e3c"></span>
-              </button>
-            </section>
-          </div>
-
-          <!-- 🔥 SAVE BUTTON (추가만 함) -->
-          <button id="save-png-btn" class="save-btn">Save PNG ×4</button>
+          <button type="submit" class="product-form__submit add-btn">
+            <img src="{{ 'addtocart.svg' | asset_url }}" alt="Add to cart" class="cart-icon" />
+            <span>Add to Cart</span>
+          </button>
         </div>
-      </div>
+      </form>
+
     </div>
   </div>
-
-  <!-- JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="customizer.js?v=2"></script>
-  <script src="export.js?v=2"></script>
-</body>
-
-</html>
+</div>
