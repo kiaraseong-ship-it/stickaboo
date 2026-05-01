@@ -694,7 +694,8 @@ function initCustomizer(root) {
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
-    const bottomOffset = isMobile ? 0.66 : 0.66
+    const cellWidthBottom = (isMobile ? 94 : 96) / cols;
+    const bottomOffset = isMobile ? 0.66 : 0.66;
     const leftOffsetBottom = isMobile ? 0.98 : 0.96;
 
     for (let r = 0; r < bottomRows; r++) {
@@ -702,7 +703,7 @@ function initCustomizer(root) {
         overlays.push({
           id: `small-text${id++}`,
           top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidth}%`,
+          left: `${(c + leftOffsetBottom) * cellWidthBottom}%`, // ⭐ 변경
           width: isMobile ? "75px" : "90px",
           textAlign: "left",
           area: "bottom"
@@ -1485,7 +1486,7 @@ function initCustomizer(root) {
 
         if (area === "bottom") {
           if (twoLines) {
-            const fs = len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 7;
+            const fs = len <= 5 ? 11 : len <= 7 ? 10 : len <= 9 ? 9 : 7;
             return { fs, lh1: clampPx(fs), fs2: fs, lh2: clampPx(fs) };
           } else {
             const fs = len <= 5 ? 15 : len <= 7 ? 13 : len <= 9 ? 9 : 7;
