@@ -1574,16 +1574,30 @@ function initCustomizer(root) {
           (size === "ml-mix" && id === "mlmix-large-bottom8")
         )
       ) {
-        const fs = isMobile
-          ? (len <= 5 ? 16 : len <= 7 ? 13 : len <= 9 ? 11 : 12)
-          : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 16);
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
+            : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
 
-        return {
-          fs,
-          lh1: clampPx(Math.max(8, fs - 2))
-        };
+          const lh = fs - 1;
+
+          return {
+            fs,
+            lh1: clampPx(lh),
+            fs2: fs,
+            lh2: clampPx(lh)
+          };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 16 : len <= 7 ? 13 : len <= 9 ? 11 : 12)
+            : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 16);
+
+          return {
+            fs,
+            lh1: clampPx(Math.max(8, fs - 2))
+          };
+        }
       }
-
       // ------------------------
       // 🐶🐱 PUPPY + KITTY - SMALL TOP / BOTTOM
       // ------------------------
