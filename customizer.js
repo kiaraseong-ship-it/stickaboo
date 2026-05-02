@@ -1371,8 +1371,8 @@ function initCustomizer(root) {
 
 
       // ------------------------
-      // PUPPY - LARGE large-text8 + smlmix-large-bottom4 + smlmix-large-bottom5
-      // 한 줄 고정
+      // PUPPY - LARGE large-text8 + smlmix-large-bottom4
+      // 한 줄 고정 + First/Last 합친 길이 기준
       // ------------------------
       if (
         theme?.toLowerCase() === "puppy" &&
@@ -1381,9 +1381,11 @@ function initCustomizer(root) {
           (size === "sml-mix" && id === "smlmix-large-bottom4")
         )
       ) {
+        const fullLen = isTwoLines ? (name1 + " " + name2).length : len;
+
         const fs = isMobile
-          ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 12)
-          : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 16);
+          ? (fullLen <= 5 ? 20 : fullLen <= 7 ? 17 : fullLen <= 9 ? 15 : fullLen <= 12 ? 12 : 10)
+          : (fullLen <= 5 ? 26 : fullLen <= 7 ? 20 : fullLen <= 9 ? 18 : fullLen <= 12 ? 14 : 12);
 
         return {
           fs,
@@ -1435,15 +1437,24 @@ function initCustomizer(root) {
           const fs = isMobile
             ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 7 : 7)
             : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
-          const lh = fs;
 
-          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          const lh = fs - 2; // ⭐ 여기 변경
+
+          return {
+            fs,
+            lh1: clampPx(lh),
+            fs2: fs,
+            lh2: clampPx(lh)
+          };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 17 : len <= 7 ? 13 : len <= 9 ? 12 : 10)
             : (len <= 5 ? 22 : len <= 7 ? 16 : len <= 9 ? 15 : 12);
 
-          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+          return {
+            fs,
+            lh1: clampPx(Math.max(8, fs - 2))
+          };
         }
       }
 
