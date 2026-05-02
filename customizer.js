@@ -711,8 +711,8 @@ function initCustomizer(root) {
         "ml-mix": {
           "mlmix-large-top2": {
             fontSize: "10px",
-            top: "14.5%",
-            left: "49%",
+            top: "15.5%",
+            left: "51%",
             width: "130px",
             textAlign: "center",
           },
