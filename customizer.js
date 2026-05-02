@@ -738,8 +738,8 @@ function initCustomizer(root) {
       },
       puppy: {
         "sml-mix": {
-          "smlmix-large-bottom4": { fontSize: "10px", top: "29%", left: "30%", width: "130px", textAlign: "center" },
-          "smlmix-large-bottom5": { fontSize: "10px", top: "30%", left: "73%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom4": { fontSize: "10px", top: "29%", left: "29%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "30.5%", left: "73%", width: "130px", textAlign: "center" },
         },
         "ml-mix": {
           "mlmix-large-top4": { top: "34%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
