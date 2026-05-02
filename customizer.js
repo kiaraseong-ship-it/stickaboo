@@ -695,9 +695,9 @@ function initCustomizer(root) {
     themeOverrides = {
       dino: {
         large: {
-          "large-text7": { top: "50%", left: "18%", width: "140px", fontSize: "10px" },
-          "large-text8": { top: "52%", left: "49%", width: "140px", fontSize: "10px" },
-          "large-text9": { top: "52%", left: "74%", width: "140px", fontSize: "10px" },
+          "large-text7": { top: "52.8%", left: "15.5%", width: "140px", fontSize: "10px" },
+          "large-text8": { top: "54.5%", left: "51.5%", width: "140px", fontSize: "10px" },
+          "large-text9": { top: "54.5%", left: "81%", width: "140px", fontSize: "10px" },
         },
         "sml-mix": {
           "smlmix-large-top2": {
