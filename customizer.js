@@ -744,7 +744,7 @@ function initCustomizer(root) {
         "ml-mix": {
           "mlmix-large-top4": { top: "34%", left: "18.5%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top5": { top: "34%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "25.5", left: "83.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "25.5%", left: "83.5%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-bottom7": { top: "53%", left: "27.5%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-bottom8": { top: "53%", left: "72.5%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
