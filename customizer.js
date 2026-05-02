@@ -672,8 +672,8 @@ function initCustomizer(root) {
           "mlmix-large-top4": { top: "32.5%", left: "19%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top5": { top: "33%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top6": { top: "25%", left: "82%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom7": { top: "50%", left: "28%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom8": { top: "50.5%", left: "72%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "52%", left: "26%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "50.5%", left: "74%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
       Kitty: {
@@ -742,11 +742,11 @@ function initCustomizer(root) {
           "smlmix-large-bottom5": { fontSize: "10px", top: "30.5%", left: "73%", width: "130px", textAlign: "center" },
         },
         "ml-mix": {
-          "mlmix-large-top4": { top: "34%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top4": { top: "34%", left: "18.5%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top5": { top: "35%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top6": { top: "25%", left: "84%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom7": { top: "52%", left: "30%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom8": { top: "53%", left: "70%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "53%", left: "27.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "53%", left: "72.5%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
       kitty: {
