@@ -720,7 +720,7 @@ function initCustomizer(root) {
       },
       unicorn: {
         large: {
-          "large-text7": { top: "54%", left: "21%", width: "140px", fontSize: "22px" },
+          "large-text7": { top: "56.5%", left: "17.5%", width: "140px", fontSize: "22px" },
         },
       },
       "jesus loves": {
