@@ -1573,6 +1573,119 @@ function initCustomizer(root) {
         };
       }
 
+      // ------------------------
+      // 🐶🐱 PUPPY + KITTY - SMALL TOP / BOTTOM
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        size === "small"
+      ) {
+        const area = currentOverlays.find(o => o.id === id)?.area;
+
+        // SMALL TOP
+        if (area === "top") {
+          if (twoLines) {
+            const fs = len <= 5 ? 13 : len <= 7 ? 11 : len <= 9 ? 10 : 8;
+            const lh = fs - 1;
+
+            return {
+              fs,
+              lh1: clampPx(lh),
+              fs2: fs,
+              lh2: clampPx(lh)
+            };
+          } else {
+            const fs = len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10;
+            const lh = fs - 2;
+
+            return {
+              fs,
+              lh1: clampPx(lh)
+            };
+          }
+        }
+
+        // SMALL BOTTOM
+        if (area === "bottom") {
+          if (twoLines) {
+            const fs = len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 7;
+            const lh = fs - 1;
+
+            return {
+              fs,
+              lh1: clampPx(lh),
+              fs2: fs,
+              lh2: clampPx(lh)
+            };
+          } else {
+            const fs = len <= 5 ? 15 : len <= 7 ? 13 : len <= 9 ? 11 : 9;
+            const lh = fs - 2;
+
+            return {
+              fs,
+              lh1: clampPx(lh)
+            };
+          }
+        }
+      }
+
+
+      // ------------------------
+      // 🐶🐱 PUPPY + KITTY - MEDIUM TOP / BOTTOM
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        size === "medium"
+      ) {
+        const area = currentOverlays.find(o => o.id === id)?.area;
+
+        // MEDIUM TOP
+        if (area === "top") {
+          if (twoLines) {
+            const fs = len <= 5 ? 18 : len <= 7 ? 15 : len <= 9 ? 13 : 11;
+            const lh = fs - 2;
+
+            return {
+              fs,
+              lh1: clampPx(lh),
+              fs2: fs,
+              lh2: clampPx(lh)
+            };
+          } else {
+            const fs = len <= 5 ? 22 : len <= 7 ? 20 : len <= 9 ? 16 : 12;
+            const lh = fs - 2;
+
+            return {
+              fs,
+              lh1: clampPx(lh)
+            };
+          }
+        }
+
+        // MEDIUM BOTTOM
+        if (area === "bottom") {
+          if (twoLines) {
+            const fs = len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 8 : 6;
+            const lh = fs - 1;
+
+            return {
+              fs,
+              lh1: clampPx(lh),
+              fs2: fs,
+              lh2: clampPx(lh)
+            };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 14 : 12;
+            const lh = fs - 2;
+
+            return {
+              fs,
+              lh1: clampPx(lh)
+            };
+          }
+        }
+      }
+
 
 
 
