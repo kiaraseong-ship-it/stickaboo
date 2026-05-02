@@ -62,8 +62,8 @@ function initCustomizer(root) {
       const suffix = isCharacter ? "-co" : "";
 
       const themeFile =
-        selectedTheme?.toLowerCase() === "puppy" ? "Puppy" :
-          selectedTheme?.toLowerCase() === "kitty" ? "Kitty" :
+        selectedTheme?.toLowerCase() === "Puppy" ? "Puppy" :
+          selectedTheme?.toLowerCase() === "Kitty" ? "Kitty" :
             selectedTheme;
 
       const fileName = `${selectedSize}-${themeFile}${suffix}.png`;
@@ -595,69 +595,175 @@ function initCustomizer(root) {
     return overlays;
   }
 
-  // =========================================================
-  // ✅ Theme Overrides (DESKTOP ONLY)
-  // =========================================================
-  const themeOverrides = {
-    dino: {
-      large: {
-        "large-text7": { top: "52.8%", left: "15.4%", width: "140px", fontSize: "8px" },
-        "large-text8": { top: "54.5%", left: "51%", width: "140px", fontSize: "10px" },
-        "large-text9": { top: "54.5%", left: "81%", width: "140px", fontSize: "10px" },
-      },
-      "sml-mix": {
-        "smlmix-large-top2": { fontSize: "10px", top: "15.3%", left: "51%", width: "130px", textAlign: "center" },
-      },
-      "ml-mix": {
-        "mlmix-large-top2": { fontSize: "10px", top: "15.3%", left: "51%", width: "130px", textAlign: "center" },
-      },
-    },
-    unicorn: {
-      large: {
-        "large-text7": { fontSize: "6px", top: "56.5%", left: "18%", width: "130px", textAlign: "center" },
-      },
-    },
-    "jesus loves": {
-      large: {
-        "large-text5": { top: "32.4%", left: "50%", width: "140px", fontSize: "10px" },
-        "large-text6": { top: "33.5%", left: "82.8%", width: "140px", fontSize: "10px" },
-      },
-      "sml-mix": {
-        "smlmix-large-top2": { fontSize: "10px", top: "14.2%", left: "50.9%", width: "130px", textAlign: "center" },
-      },
-      "ml-mix": {
-        "mlmix-large-top5": { top: "32.3%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
-        "mlmix-large-top6": { top: "33.7%", left: "82.8%", width: "140px", fontSize: "10px", textAlign: "center" },
-      },
+  const isMobile = window.innerWidth <= 768; // 📱 모바일 감지
 
-      Puppy: {
+  let themeOverrides;
+
+  if (isMobile) {
+    // ----- 📱 MOBILE -----
+    themeOverrides = {
+      dino: {
+        large: {
+          "large-text7": { top: "50.3%", left: "16%", width: "120px", fontSize: "9px" },
+          "large-text8": { top: "52%", left: "51%", width: "120px", fontSize: "9px" },
+          "large-text9": { top: "52%", left: "80%", width: "120px", fontSize: "9px" },
+        },
         "sml-mix": {
-          "smlmix-large-bottom4": { fontSize: "10px", top: "27.8%", left: "30%", width: "130px", textAlign: "center" },
-          "smlmix-large-bottom5": { fontSize: "10px", top: "29%", left: "73%", width: "130px", textAlign: "left" },
+          "smlmix-large-top2": {
+            fontSize: "9px",
+            top: "14.5%",
+            left: "50.5%",
+            width: "120px",
+            textAlign: "center",
+          },
         },
         "ml-mix": {
-          "mlmix-large-top4": { top: "32.5%", left: "21.5%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top5": { top: "33%", left: "48%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "25%", left: "76%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom7": { top: "50%", left: "30%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom8": { top: "50.5%", left: "68%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top2": {
+            fontSize: "9px",
+            top: "14.4%",
+            left: "50.5%",
+            width: "120px",
+            textAlign: "center",
+          },
+        },
+      },
+      unicorn: {
+        large: {
+          "large-text7": { top: "54%", left: "18%", width: "120px", fontSize: "20px" },
+        },
+      },
+      "jesus loves": {
+        large: {
+          "large-text5": { top: "31%", left: "49.5%", width: "120px", fontSize: "9px" },
+          "large-text6": { top: "32%", left: "81.6%", width: "120px", fontSize: "9px" },
+        },
+        "sml-mix": {
+          "smlmix-large-top2": {
+            fontSize: "9px",
+            top: "13.3%",
+            left: "51%",
+            width: "120px",
+            textAlign: "center",
+          },
+        },
+        "ml-mix": {
+          "mlmix-large-top5": {
+            top: "31.2%",
+            left: "49%",
+            width: "120px",
+            fontSize: "9px",
+            textAlign: "center",
+          },
+          "mlmix-large-top6": {
+            top: "32.6%",
+            left: "80.8%",
+            width: "120px",
+            fontSize: "9px",
+            textAlign: "center",
+          },
+        },
+      },
+      Puppy: {
+        "sml-mix": {
+          "smlmix-large-bottom4": { fontSize: "10px", top: "27.8%", left: "29%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "29%", left: "72%", width: "130px", textAlign: "center" },
+        },
+        "ml-mix": {
+          "mlmix-large-top4": { top: "32.5%", left: "19%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top5": { top: "33%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "25%", left: "82%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "50%", left: "28%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "50.5%", left: "72%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
       Kitty: {
         "sml-mix": {
-          "smlmix-large-bottom4": { fontSize: "10px", top: "27.8%", left: "30%", width: "130px", textAlign: "center" },
-          "smlmix-large-bottom5": { fontSize: "10px", top: "29%", left: "68%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom4": { fontSize: "10px", top: "27%", left: "38%", width: "130px", textAlign: "left" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "27%", left: "75%", width: "130px", textAlign: "center" },
         },
         "ml-mix": {
-          "mlmix-large-top4": { top: "32.5%", left: "21%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top5": { top: "35%", left: "48%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "24.5%", left: "75.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top4": { top: "33%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top5": { top: "34.5%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "24.5%", left: "82%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "50%", left: "44%", width: "140px", fontSize: "10px", textAlign: "left" },
+          "mlmix-large-bottom8": { top: "48%", left: "89%", width: "140px", fontSize: "10px", textAlign: "left" },
+        },
+      },
+    };
+  } else {
+    // ----- 💻 DESKTOP -----
+    themeOverrides = {
+      dino: {
+        large: {
+          "large-text7": { top: "50%", left: "18%", width: "140px", fontSize: "10px" },
+          "large-text8": { top: "52%", left: "49%", width: "140px", fontSize: "10px" },
+          "large-text9": { top: "52%", left: "74%", width: "140px", fontSize: "10px" },
+        },
+        "sml-mix": {
+          "smlmix-large-top2": {
+            fontSize: "10px",
+            top: "14.5%",
+            left: "49%",
+            width: "130px",
+            textAlign: "center",
+          },
+        },
+        "ml-mix": {
+          "mlmix-large-top2": {
+            fontSize: "10px",
+            top: "14.5%",
+            left: "49%",
+            width: "130px",
+            textAlign: "center",
+          },
+        },
+      },
+      unicorn: {
+        large: {
+          "large-text7": { top: "54%", left: "21%", width: "140px", fontSize: "22px" },
+        },
+      },
+      "jesus loves": {
+        large: {
+          "large-text5": { top: "30.8%", left: "48%", width: "140px", fontSize: "10px" },
+          "large-text6": { top: "31.8%", left: "75.6%", width: "140px", fontSize: "10px" },
+        },
+        "sml-mix": {
+          "smlmix-large-top2": { fontSize: "10px", top: "13.2%", left: "49.5%", width: "130px", textAlign: "center" },
+        },
+        "ml-mix": {
+          "mlmix-large-top5": { top: "31.3%", left: "47.6%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "32.4%", left: "75.1%", width: "140px", fontSize: "10px", textAlign: "center" },
+        },
+      },
+      puppy: {
+        "sml-mix": {
+          "smlmix-large-bottom4": { fontSize: "10px", top: "29%", left: "30%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "30%", left: "73%", width: "130px", textAlign: "center" },
+        },
+        "ml-mix": {
+          "mlmix-large-top4": { top: "34%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top5": { top: "35%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "25%", left: "84%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "52%", left: "30%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "53%", left: "70%", width: "140px", fontSize: "10px", textAlign: "center" },
+        },
+      },
+      kitty: {
+        "sml-mix": {
+          "smlmix-large-bottom4": { fontSize: "10px", top: "27.8%", left: "36%", width: "130px", textAlign: "left" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "29%", left: "76%", width: "130px", textAlign: "center" },
+        },
+        "ml-mix": {
+          "mlmix-large-top4": { top: "34%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top5": { top: "36.5%", left: "51%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "26%", left: "86%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-bottom7": { top: "50%", left: "30%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
-    },
-  };
 
+    };
+  }
   function generateSmallPetOverlays() {
     const overlays = [];
     let id = 1;
@@ -780,7 +886,7 @@ function initCustomizer(root) {
     // ======================
     // DESKTOP
     // ======================
-    const KittyCoords = [
+    const kittyCoords = [
       { top: "16%", left: "21%", width: "140px" },
       { top: "16%", left: "48%", width: "140px" },
       { top: "16%", left: "75%", width: "140px" },
@@ -799,7 +905,7 @@ function initCustomizer(root) {
       { top: "88%", left: "68.5%", width: "260px" },
     ];
 
-    const PuppyCoords = [
+    const puppyCoords = [
       { top: "16%", left: "21%", width: "150px" },
       { top: "16%", left: "48%", width: "150px" },
       { top: "16%", left: "75%", width: "150px" },
@@ -824,7 +930,7 @@ function initCustomizer(root) {
     // ======================
     let coords;
 
-    coords = themeKey === "kitty" ? kittyCoords : PuppyCoords;
+    coords = themeKey === "kitty" ? kittyCoords : puppyCoords;
 
     coords.forEach((cfg, index) => {
       overlays.push({
@@ -886,8 +992,10 @@ function initCustomizer(root) {
     currentOverlays = (baseConfig || []).map(c => ({ ...c }));
 
     currentOverlays.forEach(config => {
-      if (themeOverrides[selectedTheme] && themeOverrides[selectedTheme][size]) {
-        const override = themeOverrides[selectedTheme][size][config.id];
+      const themeKey = selectedTheme?.toLowerCase();
+
+      if (themeOverrides[themeKey] && themeOverrides[themeKey][size]) {
+        const override = themeOverrides[themeKey][size][config.id];
         if (override) Object.assign(config, override);
       }
 
@@ -1186,7 +1294,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text4 / mlmix-large-top4
       // ------------------------
       if (
-        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "Kitty") &&
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
         (
           (size === "large" && id === "large-text4") ||
           (size === "ml-mix" && id === "mlmix-large-top4")
@@ -1213,7 +1321,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text6 / mlmix-large-top6
       // ------------------------
       if (
-        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "Kitty") &&
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
         (
           (size === "large" && id === "large-text6") ||
           (size === "ml-mix" && id === "mlmix-large-top6")
@@ -1240,7 +1348,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text7 + smlmix-large-bottom4
       // ------------------------
       if (
-        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "Kitty") &&
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
         (
           (size === "large" && id === "large-text7")
         )
@@ -1267,7 +1375,7 @@ function initCustomizer(root) {
       // 한 줄 고정
       // ------------------------
       if (
-        theme?.toLowerCase() === "Puppy" &&
+        theme?.toLowerCase() === "puppy" &&
         (
           (size === "large" && id === "large-text8") ||
           (size === "sml-mix" && id === "smlmix-large-bottom4")
@@ -1289,7 +1397,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text9 / mlmix-large-bottom7
       // ------------------------
       if (
-        (theme?.toLowerCase() === "Puppy" || theme?.toLowerCase() === "Kitty") &&
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
         (
           (size === "large" && id === "large-text9") ||
           (size === "ml-mix" && id === "mlmix-large-bottom7")
@@ -1316,7 +1424,7 @@ function initCustomizer(root) {
       // PUPPY - LARGE large-text10 + smlmix-large-bottom5 + mlmix-large-bottom8
       // ------------------------
       if (
-        theme?.toLowerCase() === "Puppy" &&
+        theme?.toLowerCase() === "puppy" &&
         (
           (size === "large" && id === "large-text10") ||
           (size === "sml-mix" && id === "smlmix-large-bottom5") ||
@@ -1344,7 +1452,7 @@ function initCustomizer(root) {
       // PUPPY - LARGE large-text11
       // ------------------------
       if (
-        theme?.toLowerCase() === "Puppy" &&
+        theme?.toLowerCase() === "puppy" &&
         size === "large" &&
         id === "large-text11"
       ) {
@@ -1398,7 +1506,7 @@ function initCustomizer(root) {
       if (
         (
           // 🐱 kitty (ml-mix)
-          theme?.toLowerCase() === "Kitty" &&
+          theme?.toLowerCase() === "kitty" &&
           size === "ml-mix" &&
           (
             id === "mlmix-large-top1" ||
@@ -1410,7 +1518,7 @@ function initCustomizer(root) {
         ||
         (
           // 🐶 puppy (large)
-          theme?.toLowerCase() === "Puppy" &&
+          theme?.toLowerCase() === "puppy" &&
           size === "large" &&
           (
             id === "large-text1" ||
@@ -1465,65 +1573,10 @@ function initCustomizer(root) {
         };
       }
 
-      // ------------------------
-      // 🐶🐱 PUPPY + KITTY - SMALL TOP / BOTTOM
-      // ------------------------
-      if (
-        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
-        size === "small"
-      ) {
-        const area = currentOverlays.find(o => o.id === id)?.area;
 
-        if (area === "top") {
-          if (twoLines) {
-            const fs = len <= 5 ? 13 : len <= 7 ? 11 : len <= 9 ? 10 : 8;
-            return { fs, lh1: clampPx(fs), fs2: fs, lh2: clampPx(fs) };
-          } else {
-            const fs = len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10;
-            return { fs, lh1: clampPx(fs - 2) };
-          }
-        }
 
-        if (area === "bottom") {
-          if (twoLines) {
-            const fs = len <= 5 ? 11 : len <= 7 ? 10 : len <= 9 ? 9 : 7;
-            return { fs, lh1: clampPx(fs), fs2: fs, lh2: clampPx(fs) };
-          } else {
-            const fs = len <= 5 ? 15 : len <= 7 ? 13 : len <= 9 ? 9 : 7;
-            return { fs, lh1: clampPx(fs - 2) };
-          }
-        }
-      }
 
-      // ------------------------
-      // 🐶🐱 PUPPY + KITTY - MEDIUM TOP / BOTTOM
-      // ------------------------
-      if (
-        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
-        size === "medium"
-      ) {
-        const area = currentOverlays.find(o => o.id === id)?.area;
 
-        if (area === "top") {
-          if (twoLines) {
-            const fs = len <= 5 ? 18 : len <= 7 ? 15 : len <= 9 ? 13 : 11;
-            return { fs, lh1: clampPx(fs - 2) };
-          } else {
-            const fs = len <= 5 ? 22 : len <= 7 ? 20 : len <= 9 ? 16 : 12;
-            return { fs, lh1: clampPx(fs - 2) };
-          }
-        }
-
-        if (area === "bottom") {
-          if (twoLines) {
-            const fs = len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 8 : 6;
-            return { fs, lh1: clampPx(fs - 2) };
-          } else {
-            const fs = len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 14 : 10;
-            return { fs, lh1: clampPx(fs - 2) };
-          }
-        }
-      }
       return null;
     }
 
