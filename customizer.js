@@ -757,7 +757,7 @@ function initCustomizer(root) {
         "ml-mix": {
           "mlmix-large-top4": { top: "34%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top5": { top: "36.5%", left: "51%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "26%", left: "86%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "25%", left: "84%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-bottom7": { top: "50%", left: "30%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
@@ -1321,7 +1321,7 @@ function initCustomizer(root) {
       // PUPPY + KITTY - LARGE large-text6 / mlmix-large-top6
       // ------------------------
       if (
-        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (theme?.toLowerCase() === "puppy") &&
         (
           (size === "large" && id === "large-text6") ||
           (size === "ml-mix" && id === "mlmix-large-top6")
@@ -1338,6 +1338,32 @@ function initCustomizer(root) {
           const fs = isMobile
             ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 11)
             : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 14);
+
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+      // ------------------------
+      // PUPPY + KITTY - LARGE large-text6 / mlmix-large-top6
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "kitty") &&
+        (
+          (size === "large" && id === "large-text6") ||
+          (size === "ml-mix" && id === "mlmix-large-top6")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 13 : len <= 7 ? 12 : len <= 9 ? 10 : 9)
+            : (len <= 5 ? 18 : len <= 7 ? 16 : len <= 9 ? 14 : 12);
+          const lh = fs;
+
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 11)
+            : (len <= 5 ? 24 : len <= 7 ? 22 : len <= 9 ? 20 : 14);
 
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
