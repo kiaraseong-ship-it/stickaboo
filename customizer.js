@@ -758,7 +758,8 @@ function initCustomizer(root) {
           "mlmix-large-top4": { top: "34%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top5": { top: "36.5%", left: "51%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top6": { top: "25%", left: "84%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom7": { top: "50%", left: "30%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "52%", left: "28.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "50%", left: "76%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
 
@@ -1441,7 +1442,7 @@ function initCustomizer(root) {
         } else {
           const fs = isMobile
             ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 13 : 11)
-            : (len <= 5 ? 24 : len <= 7 ? 18 : len <= 9 ? 17 : 15);
+            : (len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 17 : 15);
 
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
