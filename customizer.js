@@ -1753,10 +1753,22 @@ function initCustomizer(root) {
       const el = root.querySelector(`#${config.id}`);
       if (!el) return;
 
+      // ⭐ 특정 위치 색 강제 변경 (puppy + kitty)
       if (
-        selectedTheme?.toLowerCase() === "puppy" &&
-        selectedSize === "ml-mix" &&
-        config.id === "mlmix-large-top4" &&
+        (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
+        (
+          // ml-mix (top4 + top6)
+          (selectedSize === "ml-mix" && (
+            config.id === "mlmix-large-top4" ||
+            config.id === "mlmix-large-top6"
+          )) ||
+
+          // large
+          (selectedSize === "large" && (
+            config.id === "large-text4" ||
+            config.id === "large-text6"
+          ))
+        ) &&
         selectedFontColor === "#FFFFFF"
       ) {
         el.style.color = "#000000";
