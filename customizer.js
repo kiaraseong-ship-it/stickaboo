@@ -797,23 +797,26 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4 rows) -----
     const bottomRows = 4;
-    const bottomHeight = isMobile ? 31.4 : 32.6;
+    const bottomHeight = isMobile ? 31 : 32.2;
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
     const cellWidthBottom = (isMobile ? 94 : 96) / cols;
-    const bottomOffset = isMobile ? 0.66 : 0.66;
-    const leftOffsetBottom = isMobile ? 0.98 : 0.96;
+    const bottomOffset = isMobile ? 0.7 : 0.7;
+    const leftOffsetBottom = isMobile ? 0.98 : 0.94;
 
     for (let r = 0; r < bottomRows; r++) {
       for (let c = 0; c < cols; c++) {
         overlays.push({
           id: `small-text${id++}`,
           top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidthBottom}%`, // ⭐ 변경
+          left: `${(c + leftOffsetBottom) * cellWidthBottom}%`,
           width: isMobile ? "75px" : "90px",
           textAlign: "left",
-          area: "bottom"
+          area: "bottom",
+
+          // ⭐ bottom은 두 줄 입력해도 한 줄로 합치기
+          forceSingleLine: true
         });
       }
     }
@@ -1752,6 +1755,11 @@ function initCustomizer(root) {
 
       let d1 = name1;
       let d2 = name2;
+
+      if (config.forceSingleLine && d2) {
+        d1 = `${d1} ${d2}`;
+        d2 = "";
+      }
 
       // 글자수 컷 (기존 유지)
       if (selectedSize === "large" && config.area === "top") {
