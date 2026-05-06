@@ -1753,6 +1753,17 @@ function initCustomizer(root) {
       const el = root.querySelector(`#${config.id}`);
       if (!el) return;
 
+      if (
+        selectedTheme?.toLowerCase() === "puppy" &&
+        selectedSize === "ml-mix" &&
+        config.id === "mlmix-large-top4" &&
+        selectedFontColor === "#FFFFFF"
+      ) {
+        el.style.color = "#000000";
+      } else {
+        el.style.color = selectedFontColor;
+      }
+
       let d1 = name1;
       let d2 = name2;
 
