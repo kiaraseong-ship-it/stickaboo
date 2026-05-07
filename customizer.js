@@ -744,7 +744,7 @@ function initCustomizer(root) {
         "ml-mix": {
           "mlmix-large-top4": { top: "34%", left: "18.5%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top5": { top: "34%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "26%", left: "83%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "25.5%", left: "83%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-bottom7": { top: "53%", left: "27.5%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-bottom8": { top: "53%", left: "72.5%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
@@ -1620,7 +1620,7 @@ function initCustomizer(root) {
         } else {
           const fs = isMobile
             ? (len <= 5 ? 16 : len <= 7 ? 13 : len <= 9 ? 11 : 12)
-            : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 16);
+            : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 13);
 
           return {
             fs,
