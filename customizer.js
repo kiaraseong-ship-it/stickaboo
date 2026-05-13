@@ -860,7 +860,7 @@ function initCustomizer(root) {
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
-    const bottomOffset = isMobile ? 0.67 : 0.7;
+    const bottomOffset = isMobile ? 0.66 : 0.67;
     const leftOffsetBottom = isMobile ? 0.88 : 0.88;
 
     for (let r = 0; r < bottomRows; r++) {
