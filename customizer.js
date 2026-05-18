@@ -1479,7 +1479,7 @@ function initCustomizer(root) {
         } else {
           const fs = isMobile
             ? (len <= 5 ? 17 : len <= 7 ? 13 : len <= 9 ? 12 : 10)
-            : (len <= 5 ? 22 : len <= 7 ? 16 : len <= 9 ? 15 : 12);
+            : (len <= 5 ? 22 : len <= 7 ? 16 : len <= 9 ? 12 : 12);
 
           return {
             fs,
