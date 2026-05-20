@@ -855,7 +855,7 @@ function initCustomizer(root) {
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
-    const bottomOffset = isMobile ? 0.67 : 0.68;
+    const bottomOffset = isMobile ? 0.66 : 0.67;
     const leftOffsetBottom = isMobile ? 0.88 : 0.88;
 
     for (let r = 0; r < bottomRows; r++) {
@@ -1623,24 +1623,31 @@ function initCustomizer(root) {
       if (!el) return;
 
       // ⭐ 특정 위치 색 강제 변경 (puppy + kitty)
-      if (
-        (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
+      const forceBlack =
+        // 기존: puppy+kitty 흰색일 때 특정 슬롯 검정 강제
         (
-          (selectedSize === "ml-mix" && (
-            config.id === "mlmix-large-top4" ||
-            config.id === "mlmix-large-top6"
-          )) ||
-          (selectedSize === "large" && (
-            config.id === "large-text4" ||
-            config.id === "large-text6"
-          ))
-        ) &&
-        selectedFontColor === "#FFFFFF"
-      ) {
-        el.style.color = "#000000";
-      } else {
-        el.style.color = selectedFontColor;
-      }
+          (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
+          (
+            (selectedSize === "ml-mix" && (
+              config.id === "mlmix-large-top4" ||
+              config.id === "mlmix-large-top6"
+            )) ||
+            (selectedSize === "large" && (
+              config.id === "large-text4" ||
+              config.id === "large-text6"
+            ))
+          ) &&
+          selectedFontColor === "#FFFFFF"
+        ) ||
+        // ✅ 추가: kitty sml-mix 5번(smlmix-large-bottom5) 핑크일 때 검정 강제
+        (
+          selectedTheme?.toLowerCase() === "kitty" &&
+          selectedSize === "sml-mix" &&
+          config.id === "smlmix-large-bottom5" &&
+          selectedFontColor === "#F5A3B7"
+        );
+
+      el.style.color = forceBlack ? "#000000" : selectedFontColor;
 
       let d1 = name1;
       let d2 = name2;
