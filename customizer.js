@@ -491,8 +491,6 @@ function initCustomizer(root) {
       }
     }
 
-
-
     // Medium
     const mediumRows = 3, mediumCols = 3;
     const rowGapMedium = 9.8;
@@ -567,7 +565,6 @@ function initCustomizer(root) {
         });
       }
     }
-
 
     // Medium
     const mediumRows = 4, mediumCols = 3;
@@ -762,9 +759,9 @@ function initCustomizer(root) {
           "mlmix-large-bottom8": { top: "50%", left: "76%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
-
     };
   }
+
   function generateSmallPetOverlays() {
     const overlays = [];
     let id = 1;
@@ -814,8 +811,6 @@ function initCustomizer(root) {
           width: isMobile ? "75px" : "90px",
           textAlign: "left",
           area: "bottom",
-
-          // ⭐ bottom은 두 줄 입력해도 한 줄로 합치기
           forceSingleLine: true
         });
       }
@@ -860,7 +855,7 @@ function initCustomizer(root) {
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
-    const bottomOffset = isMobile ? 0.66 : 0.67;
+    const bottomOffset = isMobile ? 0.67 : 0.68;
     const leftOffsetBottom = isMobile ? 0.88 : 0.88;
 
     for (let r = 0; r < bottomRows; r++) {
@@ -868,10 +863,11 @@ function initCustomizer(root) {
         overlays.push({
           id: `medium-text${id++}`,
           top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidth}%`, // ⭐ 여기 변경
+          left: `${(c + leftOffsetBottom) * cellWidth}%`,
           width: isMobile ? "85px" : "105px",
           textAlign: "left",
-          area: "bottom"
+          area: "bottom",
+          forceSingleLine: true  // ✅ 수정: medium pet bottom도 한 줄 고정
         });
       }
     }
@@ -883,7 +879,6 @@ function initCustomizer(root) {
     const overlays = [];
     const isMobile = window.innerWidth <= 600;
     const themeKey = theme?.toLowerCase();
-
 
     const fontSize = isMobile ? "18px" : "28px";
 
@@ -927,7 +922,6 @@ function initCustomizer(root) {
       { top: "84.2%", left: "36%", width: "260px" },
       { top: "87.5%", left: "68.5%", width: "260px" },
     ];
-
 
     // ======================
     // 선택
@@ -1069,8 +1063,6 @@ function initCustomizer(root) {
       // ✅ MIX (SML 규칙처럼 "분리해서" 명시)
       // =========================
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-top") {
-        // large-top은 top처럼 타이트하게 (-2 느낌)
-        // (원하면 매핑으로 더 정확히 박아도 됨)
         return byFont({ 24: 22, 22: 20, 20: 18, 18: 16 });
       }
 
@@ -1084,15 +1076,12 @@ function initCustomizer(root) {
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "small") {
-        // small-top/ small-bottom 개념이 없어서, small은 그냥 타이트하게 (-2)
-        // (원하면 너가 쓰는 small 폰트 step에 맞춰 매핑도 가능)
         return Math.max(10, fs - 2) + "px";
       }
 
       // fallback
       return Math.max(10, fs - 2) + "px";
     }
-
 
     // ✅ 1줄 (기존 비율 유지)
     if (area === "large-bottom") return "1.05";
@@ -1166,7 +1155,6 @@ function initCustomizer(root) {
     function getSpecialTypography({ theme, size, id, len, twoLines }) {
       // helpers
       const clampPx = (n) => `${Math.max(1, Math.round(n))}px`;
-      const is = (t, s, i) => theme === t && size === s && id === i;
 
       // ------------------------
       // DINO - LARGE
@@ -1175,14 +1163,11 @@ function initCustomizer(root) {
         // large-text7
         if (id === "large-text7") {
           if (twoLines) {
-            // 두 줄: 9글자 이하 10px lh10, 그 이상 6px lh6
             const fs = len <= 9 ? 10 : 6;
             const lh = len <= 9 ? 10 : 6;
             return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
-            // 한 줄: <=5 16px, <=7 12px, <=9 8px, 그 이상 6px
             const fs = len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 10 : 8;
-            // 한 줄은 기존 비율로 두되, 작은 텍스트라 픽셀 라인하이트가 더 안전함
             return { fs, lh1: clampPx(Math.max(6, fs)) };
           }
         }
@@ -1190,12 +1175,10 @@ function initCustomizer(root) {
         // large-text8 / large-text9
         if (id === "large-text8" || id === "large-text9") {
           if (twoLines) {
-            // 두 줄: 9글자 이하 14px lh12, 그 이상 10px lh8
             const fs = len <= 9 ? 14 : 10;
             const lh = len <= 9 ? 12 : 8;
             return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
-            // 한 줄: <=5 22px, <=8 16px, <=12 12px, 그 이상 10px
             const fs = len <= 5 ? 22 : len <= 9 ? 16 : len <= 12 ? 14 : 12;
             return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
           }
@@ -1203,17 +1186,15 @@ function initCustomizer(root) {
       }
 
       // ------------------------
-      // DINO - SML/M L MIX large-top2 (smlmix-large-top2 / mlmix-large-top2)
+      // DINO - SML/ML MIX large-top2
       // ------------------------
       if (theme === "dino" && (size === "sml-mix" || size === "ml-mix")) {
         if (id === "smlmix-large-top2" || id === "mlmix-large-top2") {
           if (twoLines) {
-            // 두 줄: 9글자 이하 14px lh12, 그 이상 10px lh8
             const fs = len <= 9 ? 14 : 10;
             const lh = len <= 9 ? 12 : 8;
             return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
-            // 한 줄: <=5 22px, <=8 16px, <=12 12px, 그 이상 10px
             const fs = len <= 5 ? 22 : len <= 9 ? 15 : len <= 12 ? 14 : 12;
             return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
           }
@@ -1225,12 +1206,10 @@ function initCustomizer(root) {
       // ------------------------
       if (theme === "unicorn" && size === "large" && id === "large-text7") {
         if (twoLines) {
-          // 두줄: <=8 10px lh8, <=12 8px lh8, 그 이상 6px lh6
           const fs = len <= 8 ? 10 : len <= 12 ? 8 : 6;
           const lh = len <= 8 ? 8 : len <= 12 ? 8 : 6;
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
-          // 한줄: <=5 16px, <=7 12px, <=9 10px, 그 이상 8px
           const fs = len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 11 : 9;
           return { fs, lh1: clampPx(Math.max(6, fs - 2)) };
         }
@@ -1240,7 +1219,6 @@ function initCustomizer(root) {
       // jesus loves - LARGE
       // ------------------------
       if (theme === "jesus loves" && size === "large") {
-        // large-text5
         if (id === "large-text5") {
           if (twoLines) {
             const fs = len <= 9 ? 10 : 6;
@@ -1252,7 +1230,6 @@ function initCustomizer(root) {
           }
         }
 
-        // large-text6
         if (id === "large-text6") {
           if (twoLines) {
             const fs = len <= 9 ? 10 : 6;
@@ -1266,7 +1243,7 @@ function initCustomizer(root) {
       }
 
       // ------------------------
-      // jesusloves - SML MIX large-top2 (smlmix-large-top2)
+      // jesus loves - SML MIX
       // ------------------------
       if (theme === "jesus loves" && (size === "sml-mix")) {
         if (id === "smlmix-large-top2") {
@@ -1309,20 +1286,17 @@ function initCustomizer(root) {
             ? (len <= 5 ? 10 : len <= 7 ? 9 : len <= 9 ? 8 : 7)
             : (len <= 5 ? 14 : len <= 7 ? 12 : len <= 9 ? 10 : 8);
           const lh = fs;
-
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 15 : len <= 7 ? 13 : len <= 9 ? 11 : 8)
             : (len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 16 : 10);
-
           return { fs, lh1: clampPx(Math.max(6, fs - 2)) };
         }
       }
 
-
       // ------------------------
-      // PUPPY + KITTY - LARGE large-text6 / mlmix-large-top6
+      // PUPPY - large-text6 / mlmix-large-top6
       // ------------------------
       if (
         (theme?.toLowerCase() === "puppy") &&
@@ -1336,19 +1310,17 @@ function initCustomizer(root) {
             ? (len <= 5 ? 13 : len <= 7 ? 12 : len <= 9 ? 10 : 9)
             : (len <= 5 ? 18 : len <= 7 ? 16 : len <= 9 ? 14 : 12);
           const lh = fs;
-
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 11)
             : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 14);
-
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
 
       // ------------------------
-      // PUPPY + KITTY - LARGE large-text6 / mlmix-large-top6
+      // KITTY - large-text6 / mlmix-large-top6
       // ------------------------
       if (
         (theme?.toLowerCase() === "kitty") &&
@@ -1362,47 +1334,38 @@ function initCustomizer(root) {
             ? (len <= 5 ? 13 : len <= 7 ? 12 : len <= 9 ? 10 : 9)
             : (len <= 5 ? 18 : len <= 7 ? 16 : len <= 9 ? 14 : 12);
           const lh = fs;
-
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 11)
             : (len <= 5 ? 24 : len <= 7 ? 22 : len <= 9 ? 20 : 14);
-
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
 
-
       // ------------------------
-      // PUPPY + KITTY - LARGE large-text7 + smlmix-large-bottom4
+      // PUPPY + KITTY - large-text7
       // ------------------------
       if (
         (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
-        (
-          (size === "large" && id === "large-text7")
-        )
+        (size === "large" && id === "large-text7")
       ) {
         if (twoLines) {
           const fs = isMobile
             ? (len <= 5 ? 24 : len <= 7 ? 20 : len <= 9 ? 18 : 16)
             : (len <= 5 ? 32 : len <= 7 ? 26 : len <= 9 ? 22 : 20);
           const lh = isMobile ? fs - 2 : fs;
-
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 28 : len <= 7 ? 24 : len <= 9 ? 20 : 18)
             : (len <= 5 ? 38 : len <= 7 ? 34 : len <= 9 ? 28 : 23);
-
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
 
-
       // ------------------------
-      // PUPPY - LARGE large-text8 + smlmix-large-bottom4
-      // 한 줄 고정 + First/Last 합친 길이 기준
+      // PUPPY - large-text8 + smlmix-large-bottom4
       // ------------------------
       if (
         theme?.toLowerCase() === "puppy" &&
@@ -1424,9 +1387,8 @@ function initCustomizer(root) {
         };
       }
 
-
       // ------------------------
-      // PUPPY + KITTY - LARGE large-text9 / mlmix-large-bottom7
+      // PUPPY + KITTY - large-text9 / mlmix-large-bottom7
       // ------------------------
       if (
         (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
@@ -1440,20 +1402,17 @@ function initCustomizer(root) {
             ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
             : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
           const lh = fs;
-
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 13 : 11)
             : (len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 17 : 15);
-
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
 
-
       // ------------------------
-      // PUPPY - LARGE large-text10 + smlmix-large-bottom5 + mlmix-large-bottom8
+      // PUPPY - large-text10 + smlmix-large-bottom5 + mlmix-large-bottom8
       // ------------------------
       if (
         theme?.toLowerCase() === "puppy" &&
@@ -1467,30 +1426,18 @@ function initCustomizer(root) {
           const fs = isMobile
             ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 7 : 7)
             : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
-
-          const lh = fs - 2; // ⭐ 여기 변경
-
-          return {
-            fs,
-            lh1: clampPx(lh),
-            fs2: fs,
-            lh2: clampPx(lh)
-          };
+          const lh = fs - 2;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 17 : len <= 7 ? 13 : len <= 9 ? 12 : 10)
             : (len <= 5 ? 22 : len <= 7 ? 16 : len <= 9 ? 12 : 12);
-
-          return {
-            fs,
-            lh1: clampPx(Math.max(8, fs - 2))
-          };
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
 
-
       // ------------------------
-      // PUPPY - LARGE large-text11
+      // PUPPY - large-text11
       // ------------------------
       if (
         theme?.toLowerCase() === "puppy" &&
@@ -1502,20 +1449,17 @@ function initCustomizer(root) {
             ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
             : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
           const lh = fs;
-
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 13 : 11)
             : (len <= 5 ? 24 : len <= 7 ? 18 : len <= 9 ? 17 : 15);
-
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
 
-
       // ------------------------
-      // PUPPY - LARGE large-text12
+      // PUPPY - large-text12
       // ------------------------
       if (
         theme?.toLowerCase() === "puppy" &&
@@ -1527,26 +1471,21 @@ function initCustomizer(root) {
             ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 12 : 10)
             : (len <= 5 ? 32 : len <= 7 ? 24 : len <= 9 ? 22 : 20);
           const lh = isMobile ? fs - 3 : fs - 3;
-
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 28 : len <= 7 ? 24 : len <= 9 ? 20 : 18)
             : (len <= 5 ? 38 : len <= 7 ? 34 : len <= 9 ? 28 : 23);
           const lh = fs - 2;
-
           return { fs, lh1: clampPx(Math.max(8, lh)) };
         }
       }
 
-
       // ------------------------
       // KITTY (ml-mix) + PUPPY (large) top 1,2,3,5
-      // same as existing large top rule
       // ------------------------
       if (
         (
-          // 🐱 kitty (ml-mix)
           theme?.toLowerCase() === "kitty" &&
           size === "ml-mix" &&
           (
@@ -1558,7 +1497,6 @@ function initCustomizer(root) {
         )
         ||
         (
-          // 🐶 puppy (large)
           theme?.toLowerCase() === "puppy" &&
           size === "large" &&
           (
@@ -1574,28 +1512,17 @@ function initCustomizer(root) {
             ? (len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 16 : 13)
             : (len <= 5 ? 20 : len <= 7 ? 20 : len <= 9 ? 20 : 18);
           const lh = fs - 2;
-
-          return {
-            fs,
-            lh1: clampPx(lh),
-            fs2: fs,
-            lh2: clampPx(lh)
-          };
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 24 : len <= 7 ? 21 : len <= 9 ? 18 : 15)
             : (len <= 5 ? 32 : len <= 7 ? 28 : len <= 9 ? 24 : 20);
-
-          return {
-            fs,
-            lh1: clampPx(Math.max(8, fs - 2))
-          };
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
+
       // ------------------------
-      // KITTY - SML MIX smlmix-large-bottom5
-      // + ML MIX mlmix-large-bottom8
-      // same size as large-text8
+      // KITTY - smlmix-large-bottom5 / mlmix-large-bottom8
       // ------------------------
       if (
         theme?.toLowerCase() === "kitty" &&
@@ -1608,26 +1535,16 @@ function initCustomizer(root) {
           const fs = isMobile
             ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
             : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
-
           const lh = fs - 1;
-
-          return {
-            fs,
-            lh1: clampPx(lh),
-            fs2: fs,
-            lh2: clampPx(lh)
-          };
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
           const fs = isMobile
             ? (len <= 5 ? 16 : len <= 7 ? 13 : len <= 9 ? 11 : 12)
             : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 13);
-
-          return {
-            fs,
-            lh1: clampPx(Math.max(8, fs - 2))
-          };
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
+
       // ------------------------
       // 🐶🐱 PUPPY + KITTY - SMALL TOP / BOTTOM
       // ------------------------
@@ -1637,53 +1554,30 @@ function initCustomizer(root) {
       ) {
         const area = currentOverlays.find(o => o.id === id)?.area;
 
-        // SMALL TOP
         if (area === "top") {
           if (twoLines) {
             const fs = len <= 5 ? 13 : len <= 7 ? 11 : len <= 9 ? 10 : 8;
             const lh = fs - 1;
-
-            return {
-              fs,
-              lh1: clampPx(lh),
-              fs2: fs,
-              lh2: clampPx(lh)
-            };
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
             const fs = len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10;
             const lh = fs - 2;
-
-            return {
-              fs,
-              lh1: clampPx(lh)
-            };
+            return { fs, lh1: clampPx(lh) };
           }
         }
 
-        // SMALL BOTTOM
         if (area === "bottom") {
           if (twoLines) {
             const fs = len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 7;
             const lh = fs - 1;
-
-            return {
-              fs,
-              lh1: clampPx(lh),
-              fs2: fs,
-              lh2: clampPx(lh)
-            };
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
             const fs = len <= 5 ? 15 : len <= 7 ? 13 : len <= 9 ? 11 : 9;
             const lh = fs - 2;
-
-            return {
-              fs,
-              lh1: clampPx(lh)
-            };
+            return { fs, lh1: clampPx(lh) };
           }
         }
       }
-
 
       // ------------------------
       // 🐶🐱 PUPPY + KITTY - MEDIUM TOP / BOTTOM
@@ -1694,60 +1588,35 @@ function initCustomizer(root) {
       ) {
         const area = currentOverlays.find(o => o.id === id)?.area;
 
-        // MEDIUM TOP
         if (area === "top") {
           if (twoLines) {
             const fs = len <= 5 ? 18 : len <= 7 ? 15 : len <= 9 ? 13 : 11;
             const lh = fs - 2;
-
-            return {
-              fs,
-              lh1: clampPx(lh),
-              fs2: fs,
-              lh2: clampPx(lh)
-            };
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
             const fs = len <= 5 ? 22 : len <= 7 ? 20 : len <= 9 ? 16 : 12;
             const lh = fs - 2;
-
-            return {
-              fs,
-              lh1: clampPx(lh)
-            };
+            return { fs, lh1: clampPx(lh) };
           }
         }
 
-        // MEDIUM BOTTOM
         if (area === "bottom") {
           if (twoLines) {
             const fs = len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 8 : 6;
             const lh = fs - 1;
-
-            return {
-              fs,
-              lh1: clampPx(lh),
-              fs2: fs,
-              lh2: clampPx(lh)
-            };
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
             const fs = len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 14 : 12;
             const lh = fs - 2;
-
-            return {
-              fs,
-              lh1: clampPx(lh)
-            };
+            return { fs, lh1: clampPx(lh) };
           }
         }
+
+        return null;
       }
-
-
-
-
 
       return null;
     }
-
 
     currentOverlays.forEach(config => {
       const el = root.querySelector(`#${config.id}`);
@@ -1757,13 +1626,10 @@ function initCustomizer(root) {
       if (
         (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
         (
-          // ml-mix (top4 + top6)
           (selectedSize === "ml-mix" && (
             config.id === "mlmix-large-top4" ||
             config.id === "mlmix-large-top6"
           )) ||
-
-          // large
           (selectedSize === "large" && (
             config.id === "large-text4" ||
             config.id === "large-text6"
@@ -1797,16 +1663,16 @@ function initCustomizer(root) {
       // ✅ 두 줄이면 긴 줄 기준으로 둘 다 같이 작아지게
       const dominantLen = Math.max(d1.length, d2.length || 0);
       const scale = dominantLen >= 7 ? getGlobalScale(dominantLen) : 1;
+      const effectiveTwoLines = !!d2;
+      const effectiveLen = effectiveTwoLines ? dominantLen : d1.length;
 
-      const effectiveLen = isTwoLines ? dominantLen : d1.length;
-
-      // ✅ Special override typography (dino/unicorn specific overlays)
+      // ✅ Special override typography
       const special = getSpecialTypography({
         theme: selectedTheme,
         size: selectedSize,
         id: config.id,
-        len: effectiveLen,   // ✅ 두 줄일 땐 긴 줄 기준
-        twoLines: isTwoLines,
+        len: effectiveLen,
+        twoLines: effectiveTwoLines,
       });
 
       if (special) {
@@ -1815,7 +1681,7 @@ function initCustomizer(root) {
 
         const lh1 = special.lh1 ?? getLineHeightPx({
           theme: selectedTheme,
-          twoLines: isTwoLines,
+          twoLines: effectiveTwoLines,
           size: selectedSize,
           area: config.area,
           fontSizePx: fs1,
@@ -1824,7 +1690,7 @@ function initCustomizer(root) {
         const lh2 = fs2 != null
           ? (special.lh2 ?? getLineHeightPx({
             theme: selectedTheme,
-            twoLines: isTwoLines,
+            twoLines: effectiveTwoLines,
             size: selectedSize,
             area: config.area,
             fontSizePx: fs2,
@@ -1833,34 +1699,33 @@ function initCustomizer(root) {
 
         if (special?.forceSingleLine) {
           el.innerHTML = `
-              <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
-                ${d1}${d2 ? " " + d2 : ""}
-              </div>
-            `;
+            <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
+              ${d1}${d2 ? " " + d2 : ""}
+            </div>
+          `;
           return;
         }
 
         el.innerHTML = `
-    <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
-      ${d1}
-    </div>
-    ${d2
+          <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
+            ${d1}
+          </div>
+          ${d2
             ? `<div style="font-size:${fs2}px; line-height:${lh2}; text-align:${config.textAlign || "left"};">
-            ${d2}
-          </div>`
+                ${d2}
+              </div>`
             : ""
           }
-  `;
-        return; // ✅ 이 overlay는 예외 규칙으로 끝 (아래 일반 로직 타지 않음)
+        `;
+        return;
       }
-
 
       const fs1 = Number(
         getLineFontSize({
           size: selectedSize,
           area: config.area,
           len: effectiveLen,
-          twoLines: isTwoLines,
+          twoLines: effectiveTwoLines,
           theme: selectedTheme,
         }) * scale
       );
@@ -1870,19 +1735,18 @@ function initCustomizer(root) {
           getLineFontSize({
             size: selectedSize,
             area: config.area,
-            len: effectiveLen, // ✅ 핵심: d2.length 쓰지 않음
-            twoLines: isTwoLines,
+            len: effectiveLen,
+            twoLines: effectiveTwoLines,
             theme: selectedTheme,
           }) * scale
         )
         : null;
 
-      // ✅ 안전장치: 2번째 줄이 1번째 줄보다 커지지 않게
       const fs2 = rawFs2 != null ? Math.min(rawFs2, fs1) : null;
 
       const lh1 = getLineHeightPx({
         theme: selectedTheme,
-        twoLines: isTwoLines,
+        twoLines: effectiveTwoLines,
         size: selectedSize,
         area: config.area,
         fontSizePx: fs1,
@@ -1891,7 +1755,7 @@ function initCustomizer(root) {
       const lh2 = fs2 != null
         ? getLineHeightPx({
           theme: selectedTheme,
-          twoLines: isTwoLines,
+          twoLines: effectiveTwoLines,
           size: selectedSize,
           area: config.area,
           fontSizePx: fs2,
@@ -1904,8 +1768,8 @@ function initCustomizer(root) {
         </div>
         ${d2
           ? `<div style="font-size:${fs2}px; line-height:${lh2}; text-align:${config.textAlign || "left"};">
-                ${d2}
-              </div>`
+              ${d2}
+            </div>`
           : ""
         }
       `;
@@ -1957,11 +1821,7 @@ function initCustomizer(root) {
 
       root.querySelectorAll(".text-overlay").forEach(text => {
         text.style.color = selectedFontColor;
-        if (selectedFontColor === "#FFFFFF") {
-          text.style.textShadow = "none";
-        } else {
-          text.style.textShadow = "none";
-        }
+        text.style.textShadow = "none";
       });
     });
   });
