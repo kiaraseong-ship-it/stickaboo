@@ -1,0 +1,996 @@
+/* ── Prevent double-tap zoom on all buttons ── */
+button,
+.xl-category-btn,
+.xl-theme-btn,
+.xl-font-style-btn,
+.xl-option-btn,
+.xl-color-btn,
+.xl-qty-btn,
+.xl-add-btn,
+.xl-theme-carousel-arrow,
+.xl-font-carousel-arrow {
+  touch-action: manipulation;
+}
+
+/* ─────────────────────────────────────────
+   LAYOUT: two-column (preview | customizer)
+───────────────────────────────────────── */
+/* ── Escape Shopify page-width container ── */
+.xl-full-bleed {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 40px;
+  overflow-x: clip;
+}
+
+.xl-page-wrap {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  width: 100%;
+  max-width: 1400px;
+  padding: 40px 0;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* ─────────────────────────────────────────
+   LEFT: PREVIEW  (40% width, scaled down)
+───────────────────────────────────────── */
+.xl-preview-col {
+  flex: 0 0 40%;
+  max-width: 40%;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* Scale the preview canvas to fit 40% column */
+.xl-preview-scaler {
+  transform-origin: top left;
+  /* transform scale is set dynamically by JS */
+  pointer-events: none;
+}
+
+.xl-preview-scaler canvas,
+.xl-preview-scaler .xl-label-cell {
+  pointer-events: none;
+}
+
+#xl-preview-wrap {
+  position: relative;
+  user-select: none;
+  /* natural size set by JS; scaler shrinks it */
+}
+
+#xl-label-canvas {
+  display: block;
+  position: absolute;
+  background: transparent;
+  border: 1.5px dashed #33AEFF;
+}
+
+#xl-label-grid {
+  position: absolute;
+  pointer-events: none;
+}
+
+.xl-label-cell {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: none;
+  overflow: xl-hidden;
+  gap: 2px;
+}
+
+.xl-label-cell img.cell-icon {
+  object-fit: contain;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.xl-label-cell .cell-name {
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: xl-hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+  line-height: 1;
+}
+
+.tick-x, .tick-y {
+  position: absolute;
+  color: #999;
+  font-size: 9px;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────
+   RIGHT: CUSTOMIZER
+───────────────────────────────────────── */
+.xl-selection-wrapper {
+  flex: 0 0 58%;
+  max-width: 58%;
+  min-width: 0;
+}
+
+.xl-customizer-container {
+  background: #eaf4fb;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.xl-customizer-section {}
+
+.xl-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a2e4a;
+  margin: 0 0 10px 0;
+}
+
+.xl-section-subtitle {
+  font-size: 12px;
+  font-weight: 400;
+  color: #888;
+  margin-left: 6px;
+}
+
+/* ── Generic option row ── */
+.xl-page-wrap .xl-options {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 8px !important;
+}
+
+/* ── Size buttons ── */
+.xl-option-btn {
+  background: #fff;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 10px 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex: 0 0 80px;
+  min-width: 80px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.xl-option-btn label {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a2e4a;
+  cursor: pointer;
+}
+
+.xl-option-btn p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+.xl-option-btn:hover {
+  border-color: #33AEFF;
+}
+
+.xl-option-btn.xl-active {
+  border-color: #33AEFF;
+  box-shadow: 0 0 0 2px rgba(51,174,255,0.2);
+  background: #ffffff;
+}
+
+/* ── Category nav ── */
+.xl-category-carousel-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.xl-category-carousel-outer {
+  overflow: xl-hidden;
+  flex: 1;
+}
+
+.xl-category-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.xl-category-btn {
+  background: #ffffff;
+  border: 1.5px solid transparent;
+  border-radius: 20px;
+  padding: 6px 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.xl-category-btn:hover {
+  border-color: #33AEFF;
+  color: #33AEFF;
+}
+
+.xl-category-btn.xl-active {
+  background: #33AEFF;
+  border-color: #33AEFF;
+  color: #fff;
+}
+
+/* ── Theme image buttons ── */
+.xl-options-theme {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.xl-theme-btn {
+  width: 56px;
+  height: 56px;
+  padding: 4px;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.xl-theme-btn img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+}
+
+.xl-theme-btn:hover {
+  border-color: #33AEFF;
+}
+
+.xl-theme-btn.xl-active {
+  border-color: #33AEFF;
+  box-shadow: 0 0 0 2px rgba(51,174,255,0.2);
+  background: #ffffff;
+}
+
+.xl-theme-btn.xl-hidden {
+  display: none;
+}
+
+/* ── Text inputs ── */
+.xl-customizer-section input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1.5px solid #cde0f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 16px;
+  color: #aab8c2;
+  background: #fff;
+  margin-bottom: 8px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.xl-customizer-section input[type="text"]::placeholder {
+  color: #aab8c2;
+}
+
+.xl-customizer-section input[type="text"]:not(:placeholder-shown) {
+  color: #1a2e4a;
+}
+
+.xl-customizer-section input[type="text"]:focus {
+  border-color: #2a7fd4;
+}
+
+.xl-input-wrap {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.xl-input-wrap input[type="text"] {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.xl-char-count {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: #aaa;
+  pointer-events: none;
+  transition: color 0.15s;
+}
+
+.xl-char-count.warn {
+  color: #e07a00;
+}
+
+.xl-char-count.limit {
+  color: #d93025;
+  font-weight: 700;
+}
+
+/* ── Color buttons ── */
+.xl-color-btn {
+  width: 64px;
+  height: 44px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  padding: 0;
+}
+
+.xl-color-btn:hover {
+  border-color: #33AEFF;
+  box-shadow: 0 0 0 3px rgba(51,174,255,0.2);
+}
+
+.xl-color-btn.xl-active {
+  border-color: #33AEFF;
+  box-shadow: 0 0 0 3px rgba(51,174,255,0.25);
+}
+
+/* ── Font buttons ── */
+/* ── Font carousel ── */
+.xl-font-carousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.xl-font-carousel-track-outer {
+  overflow: xl-hidden;
+  flex: 1;
+  border-radius: 10px;
+}
+
+.xl-font-carousel-track {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: 80px;
+  gap: 8px;
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
+
+.xl-font-style-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 10px 10px;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  flex: 0 0 80px;
+  min-width: 80px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.xl-font-style-btn:hover {
+  border-color: #33AEFF;
+}
+
+.xl-font-style-btn.xl-active {
+  border-color: #33AEFF;
+  box-shadow: 0 0 0 2px rgba(51,174,255,0.2);
+  background: #ffffff;
+}
+
+.xl-font-preview {
+  font-size: 26px;
+  line-height: 1;
+  color: #1a2e4a;
+}
+
+.xl-font-style-btn label {
+  font-size: 10px;
+  font-weight: 700;
+  color: #555;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 72px;
+  word-break: break-word;
+}
+
+.xl-font-carousel-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid #cde0f0;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #2a7fd4;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+  user-select: none;
+}
+
+.xl-font-carousel-arrow:hover {
+  background: #ffffff;
+  border-color: #2a7fd4;
+}
+
+.xl-font-carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* ── Quantity + Add to Cart ── */
+.xl-action-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e0edf7;
+}
+
+.xl-quantity-box {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #cde0f0;
+  border-radius: 8px;
+  overflow: xl-hidden;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.xl-qty-btn {
+  width: 36px;
+  height: 42px;
+  border: 1.5px dashed #33AEFF;
+  background: transparent;
+  font-size: 20px;
+  color: #2a7fd4;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  line-height: 1;
+}
+
+.xl-qty-btn:hover {
+  background: #f0f9ff;
+}
+
+#xl-qty-value {
+  min-width: 32px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a2e4a;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.xl-add-btn {
+  flex: 1;
+  height: 42px;
+  background: #33AEFF;
+  border: 1.5px dashed #33AEFF;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s, box-shadow 0.15s;
+  letter-spacing: 0.3px;
+}
+
+.xl-add-btn:hover {
+  background: #1a9ff0;
+  box-shadow: 0 2px 8px rgba(51,174,255,0.35);
+}
+
+.xl-add-btn:xl-active {
+  background: #0d8fd8;
+}
+
+.cart-icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* ── Force horizontal layout on all option rows (override Shopify theme) ── */
+.xl-page-wrap .xl-options-size,
+.xl-page-wrap .xl-options-color,
+.xl-page-wrap .xl-options-theme,
+.xl-page-wrap .options-font,
+.xl-page-wrap .xl-category-nav,
+.xl-page-wrap .xl-font-carousel-wrap,
+.xl-page-wrap .xl-action-row {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+}
+
+.xl-page-wrap .xl-options-theme,
+.xl-page-wrap .xl-options-size,
+.xl-page-wrap .options-font {
+  gap: 8px !important;
+}
+
+.xl-page-wrap .xl-options-color {
+  gap: 8px !important;
+  flex-wrap: nowrap !important;
+}
+
+.xl-page-wrap .xl-category-nav {
+  flex-wrap: nowrap !important;
+  gap: 6px !important;
+  align-items: center !important;
+  overflow: visible !important;
+}
+
+.xl-page-wrap .xl-action-row {
+  flex-wrap: nowrap !important;
+  gap: 12px !important;
+}
+
+/* ── Theme carousel ── */
+.xl-theme-carousel-wrap {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 6px;
+}
+
+.xl-theme-carousel-outer {
+  overflow: xl-hidden;
+  flex: 1;
+  border-radius: 10px;
+}
+
+.xl-page-wrap .xl-options-theme {
+  display: grid !important;
+  grid-template-rows: 1fr 1fr;
+  grid-auto-flow: column;
+  grid-auto-columns: 56px;
+  gap: 6px;
+  transition: transform 0.3s ease;
+  will-change: transform;
+  flex-wrap: nowrap !important;
+}
+
+.xl-theme-carousel-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #33AEFF;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+  user-select: none;
+}
+
+.xl-theme-carousel-arrow:hover {
+  background: #f0f9ff;
+  border-color: #33AEFF;
+}
+
+.xl-theme-carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+
+
+/* ════════════════════════════════════════
+   BLUE LEFT BAR — matching Name Label style
+════════════════════════════════════════ */
+
+/* Size xl-options */
+#xl-size-section .xl-options-size {
+  border-left: 5px solid #33AEFF !important;
+  padding-left: 10px !important;
+}
+
+/* Design — NO bar */
+#xl-theme-section .xl-theme-carousel-wrap {
+  border-left: none !important;
+  padding-left: 0 !important;
+}
+
+/* Text inputs — single continuous bar across both inputs */
+#xl-text-section .xl-inputs-group {
+  border-left: 5px solid #33AEFF;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#xl-text-section .xl-input-wrap {
+  border-left: none !important;
+  padding-left: 0 !important;
+  margin-bottom: 0;
+}
+
+/* Font color xl-options */
+#xl-color-section .xl-options-color {
+  border-left: 5px solid #33AEFF !important;
+  padding-left: 10px !important;
+}
+
+/* Font style — NO bar */
+#xl-font-section .xl-font-carousel-wrap {
+  border-left: none !important;
+  padding-left: 0 !important;
+}
+
+/* ── Remove blue bar from design & font sections ── */
+#xl-theme-section .xl-category-nav,
+#xl-theme-section .xl-theme-carousel-wrap,
+#xl-theme-section .xl-options-theme,
+#xl-font-section .xl-font-carousel-wrap,
+#xl-font-section .options-font {
+  border-left: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* ════════════════════════════════════════════════════════
+   MOBILE RESPONSIVE — max-width: 768px
+════════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+
+  .xl-full-bleed {
+    padding: 0 5% !important;
+  }
+
+  /* ── Layout: stack vertically ── */
+  .xl-page-wrap {
+    flex-direction: column !important;
+    margin: 0 !important;
+    padding: 16px 0 !important;
+    gap: 16px !important;
+  }
+
+  /* ── Preview: full width on mobile ── */
+  .xl-preview-col {
+    flex: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  #xl-label-canvas {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* ── Customizer: full width ── */
+  .xl-selection-wrapper {
+    flex: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .xl-customizer-container {
+    padding: 10px 10px !important;
+    gap: 12px !important;
+    border-radius: 10px !important;
+  }
+
+  /* ── Section titles ── */
+  .xl-section-title {
+    font-size: 14px !important;
+    margin-bottom: 8px !important;
+  }
+
+  /* ── Size buttons ── */
+  .xl-page-wrap .xl-options-size {
+    gap: 6px !important;
+  }
+
+  .xl-option-btn {
+    flex: 0 0 auto !important;
+    min-width: 64px !important;
+    padding: 8px 6px !important;
+  }
+
+  .xl-option-btn label {
+    font-size: 15px !important;
+  }
+
+  .xl-option-btn p {
+    font-size: 11px !important;
+  }
+
+  /* ── Category nav: wrap freely ── */
+  .xl-category-nav {
+    flex-wrap: nowrap !important;
+    gap: 5px !important;
+    overflow: visible !important;
+  }
+
+  .xl-category-btn {
+    font-size: 13px !important;
+    padding: 6px 13px !important;
+  }
+
+  /* ── Theme carousel ── */
+  .xl-theme-carousel-wrap {
+    gap: 4px !important;
+  }
+
+  .xl-theme-btn {
+    width: 60px !important;
+    height: 60px !important;
+  }
+
+  .xl-theme-btn img {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .xl-theme-carousel-arrow {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 16px !important;
+  }
+
+  /* ── Text inputs ── */
+  .xl-inputs-group {
+    gap: 6px !important;
+  }
+
+  .xl-customizer-section input[type="text"] {
+    font-size: 16px !important;
+    padding: 9px 10px !important;
+  }
+
+  .xl-char-count {
+    font-size: 10px !important;
+  }
+
+  /* ── Color buttons ── */
+  .xl-color-btn {
+    width: 60px !important;
+    height: 42px !important;
+    border-radius: 8px !important;
+  }
+
+  .xl-page-wrap .xl-options-color {
+    gap: 5px !important;
+    flex-wrap: wrap !important;
+  }
+
+  /* ── Font carousel ── */
+  .xl-font-carousel-wrap {
+    gap: 4px !important;
+  }
+
+  .xl-font-style-btn {
+    flex: 0 0 68px !important;
+    min-width: 68px !important;
+    padding: 8px 6px !important;
+  }
+
+  .xl-font-preview {
+    font-size: 22px !important;
+  }
+
+  .xl-font-style-btn label {
+    font-size: 9px !important;
+  }
+
+  .xl-font-carousel-arrow {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 16px !important;
+  }
+
+  /* ── Quantity + Add to Cart ── */
+  .xl-action-row {
+    margin-top: 12px !important;
+    padding-top: 12px !important;
+    gap: 8px !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .xl-quantity-box {
+    flex-shrink: 0 !important;
+  }
+
+  .xl-qty-btn {
+    width: 30px !important;
+    height: 38px !important;
+    font-size: 18px !important;
+  }
+
+  #xl-qty-value {
+    font-size: 14px !important;
+    min-width: 24px !important;
+  }
+
+  .xl-add-btn {
+    height: 38px !important;
+    font-size: 14px !important;
+    padding: 0 16px !important;
+  }
+
+  .cart-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  /* ── Blue bars ── */
+  #xl-size-section .xl-options-size {
+    border-left-width: 4px !important;
+    padding-left: 8px !important;
+  }
+
+  #xl-text-section .xl-inputs-group {
+    border-left-width: 4px !important;
+    padding-left: 8px !important;
+  }
+
+  #xl-color-section .xl-options-color {
+    border-left-width: 4px !important;
+    padding-left: 8px !important;
+  }
+}
+
+/* ════════════════════════════════════════════════════════
+   SMALL MOBILE — max-width: 480px
+════════════════════════════════════════════════════════ */
+@media (max-width: 400px) {
+
+  .xl-page-wrap {
+    margin: 0 !important;
+  }
+
+  .xl-customizer-container {
+    padding: 12px !important;
+    gap: 14px !important;
+  }
+
+  .xl-category-btn {
+    font-size: 12px !important;
+    padding: 5px 11px !important;
+  }
+
+  .xl-theme-btn {
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .xl-theme-btn img {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .xl-color-btn {
+    width: 52px !important;
+    height: 38px !important;
+  }
+
+  .xl-font-style-btn {
+    flex: 0 0 60px !important;
+    min-width: 60px !important;
+  }
+
+  .xl-font-preview {
+    font-size: 20px !important;
+  }
+
+  .xl-option-btn {
+    min-width: 56px !important;
+  }
+}
+
+/* ── Mobile layout ── */
+@media (max-width: 600px) {
+  .xl-preview-col {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: xl-hidden !important;
+    padding: 0 !important;
+  }
+
+  .xl-preview-scaler {
+    transform-origin: top left !important;
+    overflow: xl-hidden !important;
+  }
+
+  .xl-selection-wrapper {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+}
+
+/* ── Mobile preview card ── */
+@media (max-width: 600px) {
+  .xl-preview-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: visible !important;
+  }
+
+  #xl-label-canvas {
+    border-radius: 14px !important;
+    box-shadow: 0 4px 20px rgba(51,174,255,0.12);
+  }
+
+  #xl-mobile-size-guide {
+    text-align: center;
+    font-size: 12px;
+    color: #aab8c2;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-family: 'Helvetica Neue', sans-serif;
+    letter-spacing: 0.5px;
+    width: 100%;
+  }
+}
+
+/* ── Name Label theme: prevent double-tap zoom on all buttons ── */
+[data-custom-root] button,
+[data-custom-root] .xl-option-btn,
+[data-custom-root] .xl-theme-btn,
+[data-custom-root] .xl-color-btn,
+[data-custom-root] .xl-qty-btn,
+[data-custom-root] .xl-add-btn,
+[data-custom-root] .gift-qty-btn {
+  touch-action: manipulation;
+}

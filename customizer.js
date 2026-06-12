@@ -1606,7 +1606,7 @@ function initCustomizer(root) {
             const lh = fs - 1;
             return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
-            const fs = len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 14 : 11;
+            const fs = len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 14 : 12;
             const lh = fs - 2;
             return { fs, lh1: clampPx(lh) };
           }
@@ -1663,8 +1663,8 @@ function initCustomizer(root) {
         if (d2.length > 12) d2 = d2.slice(0, 12);
       }
       if (selectedSize === "large" && config.area === "bottom") {
-        if (d1.length > 10) d1 = d1.slice(0, 12);
-        if (d2.length > 10) d2 = d2.slice(0, 12);
+        if (d1.length > 10) d1 = d1.slice(0, 10);
+        if (d2.length > 10) d2 = d2.slice(0, 10);
       }
 
       // ✅ 두 줄이면 긴 줄 기준으로 둘 다 같이 작아지게
