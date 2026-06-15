@@ -1663,8 +1663,8 @@ function initCustomizer(root) {
         if (d2.length > 12) d2 = d2.slice(0, 12);
       }
       if (selectedSize === "large" && config.area === "bottom") {
-        if (d1.length > 10) d1 = d1.slice(0, 10);
-        if (d2.length > 10) d2 = d2.slice(0, 10);
+        if (d1.length > 10) d1 = d1.slice(0, 14);
+        if (d2.length > 10) d2 = d2.slice(0, 14);
       }
 
       // ✅ 두 줄이면 긴 줄 기준으로 둘 다 같이 작아지게
