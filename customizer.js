@@ -1047,16 +1047,16 @@ function initCustomizer(root) {
       }
 
       if (size === "medium" && area === "top") {
-        return byFont({ 24: 23, 22: 22, 20: 20, 18: 18, 16: 16, 14: 14, 12: 11 });
+        return byFont({ 24: 23, 22: 21, 20: 19, 18: 17, 16: 15, 14: 13, 12: 11 });
       }
 
       if (size === "large" && area === "top") {
-        return byFont({ 24: 22, 22: 20, 20: 18, 18: 16 });
+        return byFont({ 24: 24, 22: 22, 20: 20, 18: 18 });
       }
 
       if (size === "large" && area === "bottom") {
         // ✅ 규칙: line-height = font-size - 2px
-        return Math.max(10, fs - 2) + "px";
+        return Math.max(10, fs - 0) + "px";
       }
 
       // =========================
