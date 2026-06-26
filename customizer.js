@@ -1056,7 +1056,7 @@ function initCustomizer(root) {
 
       if (size === "large" && area === "bottom") {
         // ✅ 규칙: line-height = font-size - 2px
-        return Math.max(10, fs - 2) + "px";
+        return Math.max(10, fs - 0) + "px";
       }
 
       // =========================
