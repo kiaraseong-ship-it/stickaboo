@@ -1043,7 +1043,7 @@ function initCustomizer(root) {
       // ✅ NORMAL
       // =========================
       if (size === "small" && area === "top") {
-        return byFont({ 20: 18, 18: 16, 16: 14, 14: 12, 12: 10 });
+        return byFont({ 20: 22, 18: 20, 16: 18, 14: 16, 12: 14 });
       }
 
       if (size === "medium" && area === "top") {
@@ -1134,7 +1134,7 @@ function initCustomizer(root) {
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(34, 26, 24, 22);
-        if (area === "large-bottom") return twoLines ? step(36, 28, 26, 22) : step(40, 30, 28, 28);
+        if (area === "large-bottom") return twoLines ? step(36, 30, 26, 22) : step(40, 30, 28, 28);
         if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(22, 20, 18, 18);
         if (area === "small") return step(16, 14, 13, 13);
       }
