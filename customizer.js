@@ -379,6 +379,75 @@ function initCustomizer(root) {
   }
 
   // =========================================================
+  // ✅ Sports Generators (좌표: 배경 이미지 실측 기준, % 값)
+  // =========================================================
+  function generateSmallSportsOverlays() {
+    const overlays = [];
+    let id = 1;
+    // 위 8줄 × 4칸 — 배경 없음 (아이콘 오른쪽)
+    const topCols = [11, 35, 59, 83];
+    const topRows = [5.4, 13.4, 21.5, 29.7, 37.6, 45.9, 53.8, 62.0];
+    for (const top of topRows) {
+      for (const left of topCols) {
+        overlays.push({ id: `small-text${id++}`, top: `${top}%`, left: `${left}%`, width: "85px", textAlign: "left", area: "top" });
+      }
+    }
+    // 아래 4줄 × 4칸 — 뱃지(배경) 있음 (아이콘 오른쪽)
+    const botCols = [10, 34, 58, 81.5];
+    const botRows = [69.9, 78.0, 86.0, 94.3];
+    for (const top of botRows) {
+      for (const left of botCols) {
+        overlays.push({ id: `small-text${id++}`, top: `${top}%`, left: `${left}%`, width: "90px", textAlign: "left", area: "bottom" });
+      }
+    }
+    return overlays;
+  }
+
+  function generateMediumSportsOverlays() {
+    const overlays = [];
+    let id = 1;
+    // 위 6줄 × 3칸 — 배경 없음
+    const topCols = [12, 44, 76];
+    const topRows = [6.1, 15.9, 25.7, 35.5, 44.9, 54.8];
+    for (const top of topRows) {
+      for (const left of topCols) {
+        overlays.push({ id: `medium-text${id++}`, top: `${top}%`, left: `${left}%`, width: "100px", textAlign: "left", area: "top" });
+      }
+    }
+    // 아래 4줄 × 3칸 — 뱃지(배경) 있음
+    const botCols = [10, 42, 74];
+    const botRows = [64.5, 74.3, 84.0, 93.6];
+    for (const top of botRows) {
+      for (const left of botCols) {
+        overlays.push({ id: `medium-text${id++}`, top: `${top}%`, left: `${left}%`, width: "105px", textAlign: "left", area: "bottom" });
+      }
+    }
+    return overlays;
+  }
+
+  function generateLargeSportsOverlays() {
+    const overlays = [];
+    let id = 1;
+    // 위 2줄 × 3칸 — 아이콘 아래 이름(가운데 정렬)
+    const topCols = [17.4, 49.7, 81.9];
+    const topRows = [15, 35]; // ⚠️ 아이콘 바로 아래. 프리뷰 보고 이 두 값만 미세조정
+    for (const top of topRows) {
+      for (const left of topCols) {
+        overlays.push({ id: `large-text${id++}`, top: `${top}%`, left: `${left}%`, width: "120px", textAlign: "center", area: "top" });
+      }
+    }
+    // 아래 3줄 × 2칸 — 아이콘 오른쪽 이름
+    const botCols = [20, 68];
+    const botRows = [49.5, 68.7, 88.6];
+    for (const top of botRows) {
+      for (const left of botCols) {
+        overlays.push({ id: `large-text${id++}`, top: `${top}%`, left: `${left}%`, width: "140px", textAlign: "left", area: "bottom" });
+      }
+    }
+    return overlays;
+  }
+
+  // =========================================================
   // ✅ Nameonly Generators (DESKTOP ONLY)
   // =========================================================
   function generateNameOnlySmall() {
@@ -968,6 +1037,12 @@ function initCustomizer(root) {
       if (size === "large") return generateLargePetOverlays(theme);
       if (size === "sml-mix") return generateSmlMixOverlays();
       if (size === "ml-mix") return generateMlMixOverlays();
+      // ✅ SPORTS (지금은 s/m/l만)
+      if (themeKey === "sports") {
+        if (size === "small") return generateSmallSportsOverlays();
+        if (size === "medium") return generateMediumSportsOverlays();
+        if (size === "large") return generateLargeSportsOverlays();
+      }
     }
 
     return overlayConfigsBySize[size];
@@ -1116,6 +1191,18 @@ function initCustomizer(root) {
           if (area === "large-top") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 42, 36);
           if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
           if (area === "small") return twoLines ? step(18, 16, 14, 12) : step(20, 18, 16, 14);
+        }
+      }
+
+      // ✅ SPORTS: top은 기존 규칙, bottom만 5% 축소 (large는 기존 그대로 통과)
+      if (theme?.toLowerCase() === "sports") {
+        if (size === "small") {
+          const base = step(16, 14, 13, 11.5);
+          return area === "bottom" ? base * 0.95 : base;
+        }
+        if (size === "medium") {
+          const base = step(22, 20, 18, 17);
+          return area === "bottom" ? base * 0.95 : base;
         }
       }
 
