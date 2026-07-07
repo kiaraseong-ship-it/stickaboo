@@ -10,38 +10,41 @@
 
   <!-- Google Fonts for font preview -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
+
   <script>
-  /* Prevent double-tap zoom */
-  (function() {
-    var lastTap = 0;
-    document.addEventListener('touchend', function(e) {
-      var now = Date.now();
-      if (now - lastTap < 300) e.preventDefault();
-      lastTap = now;
-    }, { passive: false });
-  })();
+    /* Prevent double-tap zoom */
+    (function () {
+      var lastTap = 0;
+      document.addEventListener('touchend', function (e) {
+        var now = Date.now();
+        if (now - lastTap < 300) e.preventDefault();
+        lastTap = now;
+      }, { passive: false });
+    })();
   </script>
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <style>
-  @font-face {
-    font-family: 'Comfortaa';
-    src: url("https://stickaboo.shop/cdn/shop/files/Comfortaa-VariableFont_wght.ttf") format('truetype');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'Cloudsofa';
-    src: url("https://stickaboo.shop/cdn/shop/files/Cloudsofa_namgim-Regular.ttf") format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
+    @font-face {
+      font-family: 'Comfortaa';
+      src: url("https://stickaboo.shop/cdn/shop/files/Comfortaa-VariableFont_wght.ttf") format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Cloudsofa';
+      src: url("https://stickaboo.shop/cdn/shop/files/Cloudsofa_namgim-Regular.ttf") format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Jua&family=Fredoka+One&family=Baloo+2:wght@800&family=Poppins:wght@800&family=Bubblegum+Sans&family=Quicksand:wght@700&family=Chewy&family=Balsamiq+Sans:wght@700&family=Dancing+Script:wght@700&family=Poppins:wght@700&family=Josefin+Sans:wght@700&family=Paytone+One&family=Titan+One&family=Lilita+One&family=Sacramento&family=Great+Vibes&family=Pacifico&family=Satisfy&family=Yellowtail&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&family=Jua&family=Fredoka+One&family=Baloo+2:wght@800&family=Poppins:wght@800&family=Bubblegum+Sans&family=Quicksand:wght@700&family=Chewy&family=Balsamiq+Sans:wght@700&family=Dancing+Script:wght@700&family=Poppins:wght@700&family=Josefin+Sans:wght@700&family=Paytone+One&family=Titan+One&family=Lilita+One&family=Sacramento&family=Great+Vibes&family=Pacifico&family=Satisfy&family=Yellowtail&display=swap"
+    rel="stylesheet">
+
   <link rel="stylesheet" href="xl-print.css" />
 </head>
 
@@ -93,6 +96,10 @@
             <p class="section-title">2. Choose Theme</p>
 
             <section class="options options-theme">
+              <button class="option-btn theme-btn" data-theme="sports">
+                <img src="images/sports-icon.png" alt="sports" />
+              </button>
+
               <button class="option-btn theme-btn" data-theme="undertheocean">
                 <img src="images/undertheocean-icon.png" alt="undertheocean" />
               </button>
@@ -201,838 +208,871 @@
   <hr style="margin: 60px 0; border: none; border-top: 2px dashed #ccc;" />
   <div class="page-width">
     <h2 style="margin-bottom: 24px;">XL Size Label — Save PNG</h2>
-<div class="xl-full-bleed">
-<div class="xl-page-wrap">
+    <div class="xl-full-bleed">
+      <div class="xl-page-wrap">
 
-  <!-- ───────────────────────────────
+        <!-- ───────────────────────────────
        LEFT: PREVIEW (40%)
   ─────────────────────────────────── -->
-  <div class="xl-preview-col">
-    <div class="xl-preview-scaler" id="xl-preview-scaler">
-      <div id="xl-preview-wrap">
-        <div id="xl-ruler-y-axis" style="position:absolute; left:0; top:0;"></div>
-        <div id="xl-ruler-x-axis" style="position:absolute; left:0; top:0;"></div>
-        <canvas id="xl-label-canvas"></canvas>
-        <div id="xl-label-grid"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ───────────────────────────────
-       RIGHT: CUSTOMIZER (58%)
-  ─────────────────────────────────── -->
-  <div class="xl-selection-wrapper" style="flex:0 0 58%; max-width:58%;">
-    <div class="xl-customizer-container">
-
-      <!-- SECTION 1: SIZE -->
-      <div class="xl-customizer-section" id="xl-size-section">
-        <p class="xl-section-title">1. Choose the size</p>
-        <section class="xl-options xl-options-size">
-
-          <button type="button" class="xl-option-btn xl-size-btn xl-active" data-size="4-inch"
-            data-variant-id="45019139375173"
-            data-price="$4.99">
-            <label>4"</label>
-            <p>$4.99</p>
-          </button>
-          <button type="button" class="xl-option-btn xl-size-btn" data-size="5-inch"
-            data-variant-id="45019139407941"
-            data-price="$5.99">
-            <label>5"</label>
-            <p>$5.99</p>
-          </button>
-          <button type="button" class="xl-option-btn xl-size-btn" data-size="6-inch"
-            data-variant-id="45019139440709"
-            data-price="$6.99">
-            <label>6"</label>
-            <p>$6.99</p>
-          </button>
-        </section>
-      </div>
-
-      <!-- SECTION 2: DESIGN -->
-      <div class="xl-customizer-section" id="xl-theme-section">
-        <p class="xl-section-title">2. Choose Design</p>
-
-        <!-- Category navigation -->
-        <div class="xl-category-carousel-wrap">
-          <button type="button" class="xl-theme-carousel-arrow" id="xl-cat-prev" aria-label="Previous categories">&#8249;</button>
-          <div class="xl-category-carousel-outer">
-            <div class="xl-category-nav" id="xl-category-nav">
-              <button type="button" class="xl-category-btn xl-active" data-category="ocean">Under the Ocean</button>
-              <button type="button" class="xl-category-btn" data-category="vehicle">Vehicle</button>
-              <button type="button" class="xl-category-btn" data-category="animal">Animal</button>
-              <button type="button" class="xl-category-btn" data-category="dino">Dino</button>
-              <button type="button" class="xl-category-btn" data-category="unicorn">Unicorn</button>
-              <button type="button" class="xl-category-btn" data-category="space">Space</button>
-              <button type="button" class="xl-category-btn" data-category="cute-icon">Cute Icon</button>
-              <button type="button" class="xl-category-btn" data-category="pastel">Pastel Mood</button>
-              <button type="button" class="xl-category-btn" data-category="puppy">Puppy</button>
-              <button type="button" class="xl-category-btn" data-category="kitty">Kitty</button>
-              <button type="button" class="xl-category-btn" data-category="name-only">Name Only</button>
+        <div class="xl-preview-col">
+          <div class="xl-preview-scaler" id="xl-preview-scaler">
+            <div id="xl-preview-wrap">
+              <div id="xl-ruler-y-axis" style="position:absolute; left:0; top:0;"></div>
+              <div id="xl-ruler-x-axis" style="position:absolute; left:0; top:0;"></div>
+              <canvas id="xl-label-canvas"></canvas>
+              <div id="xl-label-grid"></div>
             </div>
           </div>
-          <button type="button" class="xl-theme-carousel-arrow" id="xl-cat-next" aria-label="Next categories">&#8250;</button>
         </div>
 
-        <!-- Design image buttons -->
-        <div class="xl-theme-carousel-wrap">
-          <button type="button" class="xl-theme-carousel-arrow" id="xl-theme-prev" aria-label="Previous">&#8249;</button>
-          <div class="xl-theme-carousel-outer">
-            <div class="xl-options xl-options-theme" id="xl-theme-options">
+        <!-- ───────────────────────────────
+       RIGHT: CUSTOMIZER (58%)
+  ─────────────────────────────────── -->
+        <div class="xl-selection-wrapper" style="flex:0 0 58%; max-width:58%;">
+          <div class="xl-customizer-container">
 
-          
+            <!-- SECTION 1: SIZE -->
+            <div class="xl-customizer-section" id="xl-size-section">
+              <p class="xl-section-title">1. Choose the size</p>
+              <section class="xl-options xl-options-size">
 
-          <!-- Under the Ocean -->
-          <button type="button" class="xl-theme-btn" data-theme="ocean-1" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-1.png" alt="Under the Ocean 1" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-2" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-2.png" alt="Under the Ocean 2" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-3" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-3.png" alt="Under the Ocean 3" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-4" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-4.png" alt="Under the Ocean 4" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-5" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-5.png" alt="Under the Ocean 5" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-6" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-6.png" alt="Under the Ocean 6" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-7" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-7.png" alt="Under the Ocean 7" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-8" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-8.png" alt="Under the Ocean 8" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-9" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-9.png" alt="Under the Ocean 9" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-10" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-10.png" alt="Under the Ocean 10" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-11" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-11.png" alt="Under the Ocean 11" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-12" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-12.png" alt="Under the Ocean 12" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-13" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-13.png" alt="Under the Ocean 13" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-14" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-14.png" alt="Under the Ocean 14" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-15" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-15.png" alt="Under the Ocean 15" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-16" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-16.png" alt="Under the Ocean 16" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-17" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-17.png" alt="Under the Ocean 17" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-18" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-18.png" alt="Under the Ocean 18" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-19" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-19.png" alt="Under the Ocean 19" />
-          </button>
-          <button type="button" class="xl-theme-btn" data-theme="ocean-20" data-category="ocean">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-20.png" alt="Under the Ocean 20" />
-          </button>
+                <button type="button" class="xl-option-btn xl-size-btn xl-active" data-size="4-inch"
+                  data-variant-id="45019139375173" data-price="$4.99">
+                  <label>4"</label>
+                  <p>$4.99</p>
+                </button>
+                <button type="button" class="xl-option-btn xl-size-btn" data-size="5-inch"
+                  data-variant-id="45019139407941" data-price="$5.99">
+                  <label>5"</label>
+                  <p>$5.99</p>
+                </button>
+                <button type="button" class="xl-option-btn xl-size-btn" data-size="6-inch"
+                  data-variant-id="45019139440709" data-price="$6.99">
+                  <label>6"</label>
+                  <p>$6.99</p>
+                </button>
+              </section>
+            </div>
 
-          <!-- Vehicle -->
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-1" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-1.png" alt="Vehicle 1" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-2" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-2.png" alt="Vehicle 2" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-3" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-3.png" alt="Vehicle 3" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-4" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-4.png" alt="Vehicle 4" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-5" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-5.png" alt="Vehicle 5" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-6" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-6.png" alt="Vehicle 6" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-7" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-7.png" alt="Vehicle 7" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-8" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-8.png" alt="Vehicle 8" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-9" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-9.png" alt="Vehicle 9" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-10" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-10.png" alt="Vehicle 10" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-11" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-11.png" alt="Vehicle 11" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-12" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-12.png" alt="Vehicle 12" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-13" data-category="vehicle">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-13.png" alt="Vehicle 13" />
-          </button>
+            <!-- SECTION 2: DESIGN -->
+            <div class="xl-customizer-section" id="xl-theme-section">
+              <p class="xl-section-title">2. Choose Design</p>
 
-          <!-- Animal -->
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-1" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-1.png" alt="Animal 1" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-2" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-2.png" alt="Animal 2" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-3" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-3.png" alt="Animal 3" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-4" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-4.png" alt="Animal 4" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-5" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-5.png" alt="Animal 5" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-6" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-6.png" alt="Animal 6" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-7" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-7.png" alt="Animal 7" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-8" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-8.png" alt="Animal 8" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-9" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-9.png" alt="Animal 9" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-10" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-10.png" alt="Animal 10" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-11" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-11.png" alt="Animal 11" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-12" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-12.png" alt="Animal 12" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-13" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-13.png" alt="Animal 13" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-14" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-14.png" alt="Animal 14" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-15" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-15.png" alt="Animal 15" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-16" data-category="animal">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-16.png" alt="Animal 16" />
-          </button>
+              <!-- Category navigation -->
+              <div class="xl-category-carousel-wrap">
+                <button type="button" class="xl-theme-carousel-arrow" id="xl-cat-prev"
+                  aria-label="Previous categories">&#8249;</button>
+                <div class="xl-category-carousel-outer">
+                  <div class="xl-category-nav" id="xl-category-nav">
+                    <button type="button" class="xl-category-btn xl-active" data-category="ocean">Under the
+                      Ocean</button>
+                    <button type="button" class="xl-category-btn" data-category="vehicle">Vehicle</button>
+                    <button type="button" class="xl-category-btn" data-category="animal">Animal</button>
+                    <button type="button" class="xl-category-btn" data-category="dino">Dino</button>
+                    <button type="button" class="xl-category-btn" data-category="unicorn">Unicorn</button>
+                    <button type="button" class="xl-category-btn" data-category="space">Space</button>
+                    <button type="button" class="xl-category-btn" data-category="cute-icon">Cute Icon</button>
+                    <button type="button" class="xl-category-btn" data-category="pastel">Pastel Mood</button>
+                    <button type="button" class="xl-category-btn" data-category="puppy">Puppy</button>
+                    <button type="button" class="xl-category-btn" data-category="kitty">Kitty</button>
+                    <button type="button" class="xl-category-btn" data-category="name-only">Name Only</button>
+                  </div>
+                </div>
+                <button type="button" class="xl-theme-carousel-arrow" id="xl-cat-next"
+                  aria-label="Next categories">&#8250;</button>
+              </div>
 
-          <!-- Dino -->
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-1" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-1.png" alt="Dino 1" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-2" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-2.png" alt="Dino 2" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-3" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-3.png" alt="Dino 3" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-4" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-4.png" alt="Dino 4" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-5" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-5.png" alt="Dino 5" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-6" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-6.png" alt="Dino 6" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-7" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-7.png" alt="Dino 7" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-8" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-8.png" alt="Dino 8" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-9" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-9.png" alt="Dino 9" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-10" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-10.png" alt="Dino 10" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-11" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-11.png" alt="Dino 11" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-12" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-12.png" alt="Dino 12" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-13" data-category="dino">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-13.png" alt="Dino 13" />
-          </button>
-
-          <!-- Unicorn -->
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-1" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-1.png" alt="Unicorn 1" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-2" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-2.png" alt="Unicorn 2" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-3" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-3.png" alt="Unicorn 3" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-4" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-4.png" alt="Unicorn 4" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-5" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-5.png" alt="Unicorn 5" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-6" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-6.png" alt="Unicorn 6" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-7" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-7.png" alt="Unicorn 7" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-8" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-8.png" alt="Unicorn 8" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-9" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-9.png" alt="Unicorn 9" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-10" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-10.png" alt="Unicorn 10" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-11" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-11.png" alt="Unicorn 11" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-12" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-12.png" alt="Unicorn 12" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-13" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-13.png" alt="Unicorn 13" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-14" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-14.png" alt="Unicorn 14" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-15" data-category="unicorn">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-15.png" alt="Unicorn 15" />
-          </button>
-
-          <!-- Space -->
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-1" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-1.png" alt="Space 1" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-2" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-2.png" alt="Space 2" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-3" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-3.png" alt="Space 3" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-4" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-4.png" alt="Space 4" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-5" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-5.png" alt="Space 5" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-6" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-6.png" alt="Space 6" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-7" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-7.png" alt="Space 7" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-8" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-8.png" alt="Space 8" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-9" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-9.png" alt="Space 9" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-10" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-10.png" alt="Space 10" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-11" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-11.png" alt="Space 11" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-12" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-12.png" alt="Space 12" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-13" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-13.png" alt="Space 13" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-14" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-14.png" alt="Space 14" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-15" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-15.png" alt="Space 15" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-16" data-category="space">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-space-16.png" alt="Space 16" />
-          </button>
-
-          <!-- Cute Icon -->
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-1" data-category="cute-icon">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-1.png" alt="Cute Icon 1" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-2" data-category="cute-icon">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-2.png" alt="Cute Icon 2" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-3" data-category="cute-icon">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-3.png" alt="Cute Icon 3" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-4" data-category="cute-icon">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-4.png" alt="Cute Icon 4" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-5" data-category="cute-icon">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-5.png" alt="Cute Icon 5" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-6" data-category="cute-icon">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-6.png" alt="Cute Icon 6" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-7" data-category="cute-icon">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-7.png" alt="Cute Icon 7" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-8" data-category="cute-icon">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-8.png" alt="Cute Icon 8" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-9" data-category="cute-icon">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-9.png" alt="Cute Icon 9" />
-          </button>
-
-          <!-- Pastel Mood -->
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-1" data-category="pastel">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-1.png" alt="Pastel Mood 1" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-2" data-category="pastel">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-2.png" alt="Pastel Mood 2" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-3" data-category="pastel">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-3.png" alt="Pastel Mood 3" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-4" data-category="pastel">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-4.png" alt="Pastel Mood 4" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-5" data-category="pastel">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-5.png" alt="Pastel Mood 5" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-6" data-category="pastel">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-6.png" alt="Pastel Mood 6" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-7" data-category="pastel">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-7.png" alt="Pastel Mood 7" />
-          </button>
-
-          <!-- Puppy -->
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-1" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-1.png" alt="Puppy 1" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-2" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-2.png" alt="Puppy 2" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-3" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-3.png" alt="Puppy 3" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-4" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-4.png" alt="Puppy 4" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-5" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-5.png" alt="Puppy 5" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-6" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-6.png" alt="Puppy 6" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-7" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-7.png" alt="Puppy 7" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-8" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-8.png" alt="Puppy 8" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-9" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-9.png" alt="Puppy 9" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-10" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-10.png" alt="Puppy 10" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-11" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-11.png" alt="Puppy 11" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-12" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-12.png" alt="Puppy 12" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-13" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-13.png" alt="Puppy 13" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-14" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-14.png" alt="Puppy 14" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-15" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-15.png" alt="Puppy 15" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-16" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-16.png" alt="Puppy 16" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-17" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-17.png" alt="Puppy 17" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-18" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-18.png" alt="Puppy 18" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-19" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-19.png" alt="Puppy 19" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-20" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-20.png" alt="Puppy 20" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-21" data-category="puppy">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-21.png" alt="Puppy 21" />
-          </button>
-
-          <!-- Kitty -->
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-1" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-1.png" alt="Kitty 1" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-2" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-2.png" alt="Kitty 2" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-3" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-3.png" alt="Kitty 3" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-4" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-4.png" alt="Kitty 4" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-5" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-5.png" alt="Kitty 5" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-6" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-6.png" alt="Kitty 6" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-7" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-7.png" alt="Kitty 7" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-8" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-8.png" alt="Kitty 8" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-9" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-9.png" alt="Kitty 9" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-10" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-10.png" alt="Kitty 10" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-11" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-11.png" alt="Kitty 11" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-12" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-12.png" alt="Kitty 12" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-13" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-13.png" alt="Kitty 13" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-14" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-14.png" alt="Kitty 14" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-15" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-15.png" alt="Kitty 15" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-16" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-16.png" alt="Kitty 16" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-17" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-17.png" alt="Kitty 17" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-18" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-18.png" alt="Kitty 18" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-19" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-19.png" alt="Kitty 19" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-20" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-20.png" alt="Kitty 20" />
-          </button>
-          <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-21" data-category="kitty">
-            <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-21.png" alt="Kitty 21" />
-          </button>
+              <!-- Design image buttons -->
+              <div class="xl-theme-carousel-wrap">
+                <button type="button" class="xl-theme-carousel-arrow" id="xl-theme-prev"
+                  aria-label="Previous">&#8249;</button>
+                <div class="xl-theme-carousel-outer">
+                  <div class="xl-options xl-options-theme" id="xl-theme-options">
 
 
-          <!-- Name Only -->
-          <button type="button" class="xl-theme-btn xl-hidden xl-name-only-btn" data-theme="name-only" data-category="name-only" data-no-icon="true">
-            <span style="font-size:11px; font-weight:700; color:#555; text-align:center; line-height:1.3; padding:4px;">Name<br>Only</span>
-          </button>
 
-            </div><!-- /.xl-options-theme -->
-          </div><!-- /.xl-theme-carousel-outer -->
-          <button type="button" class="xl-theme-carousel-arrow" id="xl-theme-next" aria-label="Next">&#8250;</button>
-        </div><!-- /.xl-theme-carousel-wrap -->
-      </div>
+                    <!-- Under the Ocean -->
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-1" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-1.png" alt="Under the Ocean 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-2" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-2.png" alt="Under the Ocean 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-3" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-3.png" alt="Under the Ocean 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-4" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-4.png" alt="Under the Ocean 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-5" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-5.png" alt="Under the Ocean 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-6" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-6.png" alt="Under the Ocean 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-7" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-7.png" alt="Under the Ocean 7" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-8" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-8.png" alt="Under the Ocean 8" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-9" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-9.png" alt="Under the Ocean 9" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-10" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-10.png" alt="Under the Ocean 10" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-11" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-11.png" alt="Under the Ocean 11" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-12" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-12.png" alt="Under the Ocean 12" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-13" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-13.png" alt="Under the Ocean 13" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-14" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-14.png" alt="Under the Ocean 14" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-15" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-15.png" alt="Under the Ocean 15" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-16" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-16.png" alt="Under the Ocean 16" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-17" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-17.png" alt="Under the Ocean 17" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-18" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-18.png" alt="Under the Ocean 18" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-19" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-19.png" alt="Under the Ocean 19" />
+                    </button>
+                    <button type="button" class="xl-theme-btn" data-theme="ocean-20" data-category="ocean">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-ocean-20.png" alt="Under the Ocean 20" />
+                    </button>
 
-      <!-- SECTION 3: TEXT -->
-      <div class="xl-customizer-section" id="xl-text-section">
-        <p class="xl-section-title">3. Add your text</p>
-        <div class="xl-inputs-group">
-          <div class="xl-input-wrap">
-            <input type="text" id="xl-first-name" name="properties[First Name]" placeholder="First Name" maxlength="15" />
-            <span class="xl-char-count" id="xl-first-name-count">0/15</span>
-          </div>
-          <div class="xl-input-wrap">
-            <input type="text" id="xl-last-name" name="properties[Last Name]" placeholder="Last Name (Or Leave Blank)" maxlength="15" />
-            <span class="xl-char-count" id="xl-last-name-count">0/15</span>
-          </div>
-        </div>
-      </div>
+                    <!-- Vehicle -->
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-1" data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-1.png" alt="Vehicle 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-2" data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-2.png" alt="Vehicle 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-3" data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-3.png" alt="Vehicle 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-4" data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-4.png" alt="Vehicle 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-5" data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-5.png" alt="Vehicle 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-6" data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-6.png" alt="Vehicle 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-7" data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-7.png" alt="Vehicle 7" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-8" data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-8.png" alt="Vehicle 8" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-9" data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-9.png" alt="Vehicle 9" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-10"
+                      data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-10.png" alt="Vehicle 10" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-11"
+                      data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-11.png" alt="Vehicle 11" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-12"
+                      data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-12.png" alt="Vehicle 12" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="vehicle-13"
+                      data-category="vehicle">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-vehicle-13.png" alt="Vehicle 13" />
+                    </button>
 
-      <!-- SECTION 4: FONT COLOR -->
-      <div class="xl-customizer-section" id="xl-color-section">
-        <p class="xl-section-title">
-          4. Choose a Font Color
-          <span class="xl-section-subtitle">(White shown with outline for visibility only)</span>
-        </p>
-        <section class="xl-options xl-options-color">
-          <button type="button" class="xl-color-btn xl-active" data-color="black"  style="background:#000000;"></button>
-          <button type="button" class="xl-color-btn"        data-color="white"  style="background:#ffffff; border:2px solid #ccc;"></button>
-          <button type="button" class="xl-color-btn"        data-color="navy"   style="background:#1a2e5a;"></button>
-          <button type="button" class="xl-color-btn"        data-color="blue"   style="background:#4db8e8;"></button>
-          <button type="button" class="xl-color-btn"        data-color="green"  style="background:#2d6e3e;"></button>
-          <button type="button" class="xl-color-btn"        data-color="pink"   style="background:#f4a7c3;"></button>
-          <button type="button" class="xl-color-btn"        data-color="brown"  style="background:#8b5e3c;"></button>
-        </section>
-        <input type="hidden" name="properties[Font Color]" id="xl-hidden-font-color" value="black" />
-      </div>
+                    <!-- Animal -->
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-1" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-1.png" alt="Animal 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-2" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-2.png" alt="Animal 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-3" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-3.png" alt="Animal 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-4" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-4.png" alt="Animal 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-5" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-5.png" alt="Animal 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-6" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-6.png" alt="Animal 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-7" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-7.png" alt="Animal 7" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-8" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-8.png" alt="Animal 8" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-9" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-9.png" alt="Animal 9" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-10" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-10.png" alt="Animal 10" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-11" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-11.png" alt="Animal 11" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-12" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-12.png" alt="Animal 12" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-13" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-13.png" alt="Animal 13" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-14" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-14.png" alt="Animal 14" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-15" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-15.png" alt="Animal 15" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="animal-16" data-category="animal">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-animal-16.png" alt="Animal 16" />
+                    </button>
 
-      <!-- SECTION 5: FONT STYLE (replaces Gift Option) -->
-      <div class="xl-customizer-section" id="xl-font-section">
-        <p class="xl-section-title">5. Choose a Font</p>
+                    <!-- Dino -->
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-1" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-1.png" alt="Dino 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-2" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-2.png" alt="Dino 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-3" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-3.png" alt="Dino 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-4" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-4.png" alt="Dino 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-5" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-5.png" alt="Dino 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-6" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-6.png" alt="Dino 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-7" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-7.png" alt="Dino 7" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-8" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-8.png" alt="Dino 8" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-9" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-9.png" alt="Dino 9" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-10" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-10.png" alt="Dino 10" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-11" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-11.png" alt="Dino 11" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-12" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-12.png" alt="Dino 12" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="dino-13" data-category="dino">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-dino-13.png" alt="Dino 13" />
+                    </button>
 
-        <div class="xl-font-carousel-wrap">
-          <!-- Prev arrow -->
-          <button type="button" class="xl-font-carousel-arrow" id="xl-font-prev" aria-label="Previous fonts">&#8249;</button>
+                    <!-- Unicorn -->
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-1" data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-1.png" alt="Unicorn 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-2" data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-2.png" alt="Unicorn 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-3" data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-3.png" alt="Unicorn 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-4" data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-4.png" alt="Unicorn 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-5" data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-5.png" alt="Unicorn 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-6" data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-6.png" alt="Unicorn 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-7" data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-7.png" alt="Unicorn 7" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-8" data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-8.png" alt="Unicorn 8" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-9" data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-9.png" alt="Unicorn 9" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-10"
+                      data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-10.png" alt="Unicorn 10" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-11"
+                      data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-11.png" alt="Unicorn 11" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-12"
+                      data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-12.png" alt="Unicorn 12" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-13"
+                      data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-13.png" alt="Unicorn 13" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-14"
+                      data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-14.png" alt="Unicorn 14" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="unicorn-15"
+                      data-category="unicorn">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-unicorn-15.png" alt="Unicorn 15" />
+                    </button>
 
-          <!-- Scrolling track -->
-          <div class="xl-font-carousel-track-outer">
-            <div class="xl-font-carousel-track" id="xl-font-track">
+                    <!-- Space -->
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-1" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-1.png" alt="Space 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-2" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-2.png" alt="Space 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-3" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-3.png" alt="Space 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-4" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-4.png" alt="Space 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-5" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-5.png" alt="Space 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-6" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-6.png" alt="Space 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-7" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-7.png" alt="Space 7" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-8" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-8.png" alt="Space 8" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-9" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-9.png" alt="Space 9" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-10" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-10.png" alt="Space 10" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-11" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-11.png" alt="Space 11" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-12" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-12.png" alt="Space 12" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-13" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-13.png" alt="Space 13" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-14" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-14.png" alt="Space 14" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-15" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-15.png" alt="Space 15" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="space-16" data-category="space">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-space-16.png" alt="Space 16" />
+                    </button>
 
-              <button type="button" class="xl-font-style-btn xl-active" data-font="Nunito">
-                <span class="xl-font-preview" style="font-family:'Nunito', sans-serif;">Aa</span>
-                <label>Nunito</label>
+                    <!-- Cute Icon -->
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-1"
+                      data-category="cute-icon">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-1.png" alt="Cute Icon 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-2"
+                      data-category="cute-icon">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-2.png" alt="Cute Icon 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-3"
+                      data-category="cute-icon">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-3.png" alt="Cute Icon 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-4"
+                      data-category="cute-icon">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-4.png" alt="Cute Icon 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-5"
+                      data-category="cute-icon">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-5.png" alt="Cute Icon 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-6"
+                      data-category="cute-icon">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-6.png" alt="Cute Icon 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-7"
+                      data-category="cute-icon">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-7.png" alt="Cute Icon 7" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-8"
+                      data-category="cute-icon">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-8.png" alt="Cute Icon 8" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="cute-icon-9"
+                      data-category="cute-icon">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-cute-icon-9.png" alt="Cute Icon 9" />
+                    </button>
+
+                    <!-- Pastel Mood -->
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-1" data-category="pastel">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-1.png" alt="Pastel Mood 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-2" data-category="pastel">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-2.png" alt="Pastel Mood 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-3" data-category="pastel">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-3.png" alt="Pastel Mood 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-4" data-category="pastel">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-4.png" alt="Pastel Mood 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-5" data-category="pastel">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-5.png" alt="Pastel Mood 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-6" data-category="pastel">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-6.png" alt="Pastel Mood 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="pastel-7" data-category="pastel">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-pastel-7.png" alt="Pastel Mood 7" />
+                    </button>
+
+                    <!-- Puppy -->
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-1" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-1.png" alt="Puppy 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-2" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-2.png" alt="Puppy 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-3" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-3.png" alt="Puppy 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-4" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-4.png" alt="Puppy 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-5" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-5.png" alt="Puppy 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-6" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-6.png" alt="Puppy 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-7" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-7.png" alt="Puppy 7" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-8" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-8.png" alt="Puppy 8" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-9" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-9.png" alt="Puppy 9" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-10" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-10.png" alt="Puppy 10" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-11" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-11.png" alt="Puppy 11" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-12" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-12.png" alt="Puppy 12" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-13" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-13.png" alt="Puppy 13" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-14" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-14.png" alt="Puppy 14" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-15" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-15.png" alt="Puppy 15" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-16" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-16.png" alt="Puppy 16" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-17" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-17.png" alt="Puppy 17" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-18" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-18.png" alt="Puppy 18" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-19" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-19.png" alt="Puppy 19" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-20" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-20.png" alt="Puppy 20" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="puppy-21" data-category="puppy">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-puppy-21.png" alt="Puppy 21" />
+                    </button>
+
+                    <!-- Kitty -->
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-1" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-1.png" alt="Kitty 1" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-2" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-2.png" alt="Kitty 2" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-3" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-3.png" alt="Kitty 3" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-4" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-4.png" alt="Kitty 4" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-5" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-5.png" alt="Kitty 5" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-6" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-6.png" alt="Kitty 6" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-7" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-7.png" alt="Kitty 7" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-8" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-8.png" alt="Kitty 8" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-9" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-9.png" alt="Kitty 9" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-10" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-10.png" alt="Kitty 10" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-11" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-11.png" alt="Kitty 11" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-12" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-12.png" alt="Kitty 12" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-13" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-13.png" alt="Kitty 13" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-14" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-14.png" alt="Kitty 14" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-15" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-15.png" alt="Kitty 15" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-16" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-16.png" alt="Kitty 16" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-17" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-17.png" alt="Kitty 17" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-18" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-18.png" alt="Kitty 18" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-19" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-19.png" alt="Kitty 19" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-20" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-20.png" alt="Kitty 20" />
+                    </button>
+                    <button type="button" class="xl-theme-btn xl-hidden" data-theme="kitty-21" data-category="kitty">
+                      <img src="https://stickaboo.shop/cdn/shop/files/theme-kitty-21.png" alt="Kitty 21" />
+                    </button>
+
+
+                    <!-- Name Only -->
+                    <button type="button" class="xl-theme-btn xl-hidden xl-name-only-btn" data-theme="name-only"
+                      data-category="name-only" data-no-icon="true">
+                      <span
+                        style="font-size:11px; font-weight:700; color:#555; text-align:center; line-height:1.3; padding:4px;">Name<br>Only</span>
+                    </button>
+
+                  </div><!-- /.xl-options-theme -->
+                </div><!-- /.xl-theme-carousel-outer -->
+                <button type="button" class="xl-theme-carousel-arrow" id="xl-theme-next"
+                  aria-label="Next">&#8250;</button>
+              </div><!-- /.xl-theme-carousel-wrap -->
+            </div>
+
+            <!-- SECTION 3: TEXT -->
+            <div class="xl-customizer-section" id="xl-text-section">
+              <p class="xl-section-title">3. Add your text</p>
+              <div class="xl-inputs-group">
+                <div class="xl-input-wrap">
+                  <input type="text" id="xl-first-name" name="properties[First Name]" placeholder="First Name"
+                    maxlength="15" />
+                  <span class="xl-char-count" id="xl-first-name-count">0/15</span>
+                </div>
+                <div class="xl-input-wrap">
+                  <input type="text" id="xl-last-name" name="properties[Last Name]"
+                    placeholder="Last Name (Or Leave Blank)" maxlength="15" />
+                  <span class="xl-char-count" id="xl-last-name-count">0/15</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 4: FONT COLOR -->
+            <div class="xl-customizer-section" id="xl-color-section">
+              <p class="xl-section-title">
+                4. Choose a Font Color
+                <span class="xl-section-subtitle">(White shown with outline for visibility only)</span>
+              </p>
+              <section class="xl-options xl-options-color">
+                <button type="button" class="xl-color-btn xl-active" data-color="black"
+                  style="background:#000000;"></button>
+                <button type="button" class="xl-color-btn" data-color="white"
+                  style="background:#ffffff; border:2px solid #ccc;"></button>
+                <button type="button" class="xl-color-btn" data-color="navy" style="background:#1a2e5a;"></button>
+                <button type="button" class="xl-color-btn" data-color="blue" style="background:#4db8e8;"></button>
+                <button type="button" class="xl-color-btn" data-color="green" style="background:#2d6e3e;"></button>
+                <button type="button" class="xl-color-btn" data-color="pink" style="background:#f4a7c3;"></button>
+                <button type="button" class="xl-color-btn" data-color="brown" style="background:#8b5e3c;"></button>
+              </section>
+              <input type="hidden" name="properties[Font Color]" id="xl-hidden-font-color" value="black" />
+            </div>
+
+            <!-- SECTION 5: FONT STYLE (replaces Gift Option) -->
+            <div class="xl-customizer-section" id="xl-font-section">
+              <p class="xl-section-title">5. Choose a Font</p>
+
+              <div class="xl-font-carousel-wrap">
+                <!-- Prev arrow -->
+                <button type="button" class="xl-font-carousel-arrow" id="xl-font-prev"
+                  aria-label="Previous fonts">&#8249;</button>
+
+                <!-- Scrolling track -->
+                <div class="xl-font-carousel-track-outer">
+                  <div class="xl-font-carousel-track" id="xl-font-track">
+
+                    <button type="button" class="xl-font-style-btn xl-active" data-font="Nunito">
+                      <span class="xl-font-preview" style="font-family:'Nunito', sans-serif;">Aa</span>
+                      <label>Nunito</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Cloudsofa">
+                      <span class="xl-font-preview" style="font-family:'Cloudsofa', cursive;">Aa</span>
+                      <label>Cloudsofa</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Genty">
+                      <span class="xl-font-preview" style="font-family:'Baloo 2', cursive;">Aa</span>
+                      <label>Genty</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Fredoka">
+                      <span class="xl-font-preview" style="font-family:'Fredoka One', cursive;">Aa</span>
+                      <label>Fredoka</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Baloo 2">
+                      <span class="xl-font-preview" style="font-family:'Baloo 2', cursive;">Aa</span>
+                      <label>Baloo 2</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Poppins ExtraBold">
+                      <span class="xl-font-preview"
+                        style="font-family:'Poppins', sans-serif; font-weight:800;">Aa</span>
+                      <label>Poppins ExtraBold</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Bubblegum Sans">
+                      <span class="xl-font-preview" style="font-family:'Bubblegum Sans', cursive;">Aa</span>
+                      <label>Bubblegum Sans</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Quicksand Bold">
+                      <span class="xl-font-preview"
+                        style="font-family:'Quicksand', sans-serif; font-weight:700;">Aa</span>
+                      <label>Quicksand Bold</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Chewy">
+                      <span class="xl-font-preview" style="font-family:'Chewy', cursive;">Aa</span>
+                      <label>Chewy</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Cooper Black">
+                      <span class="xl-font-preview" style="font-family:'Cooper Black', serif;">Aa</span>
+                      <label>Cooper Black</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Balsamiq Sans">
+                      <span class="xl-font-preview" style="font-family:'Balsamiq Sans', cursive;">Aa</span>
+                      <label>Balsamiq Sans</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="BMJUA">
+                      <span class="xl-font-preview" style="font-family:'Jua', sans-serif;">Aa</span>
+                      <label>BMJUA</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Comic Sans">
+                      <span class="xl-font-preview" style="font-family:'Comic Sans MS', cursive;">Aa</span>
+                      <label>Comic Sans</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Cursive">
+                      <span class="xl-font-preview" style="font-family:'Dancing Script', cursive;">Aa</span>
+                      <label>Cursive</label>
+                    </button>
+
+
+                    <button type="button" class="xl-font-style-btn" data-font="Poppins Bold">
+                      <span class="xl-font-preview"
+                        style="font-family:'Poppins', sans-serif; font-weight:700;">Aa</span>
+                      <label>Poppins Bold</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Josefin Sans">
+                      <span class="xl-font-preview"
+                        style="font-family:'Josefin Sans', sans-serif; font-weight:700;">Aa</span>
+                      <label>Josefin Sans</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Paytone One">
+                      <span class="xl-font-preview" style="font-family:'Paytone One', cursive;">Aa</span>
+                      <label>Paytone One</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Titan One">
+                      <span class="xl-font-preview" style="font-family:'Titan One', cursive;">Aa</span>
+                      <label>Titan One</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Lilita One">
+                      <span class="xl-font-preview" style="font-family:'Lilita One', cursive;">Aa</span>
+                      <label>Lilita One</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Sacramento">
+                      <span class="xl-font-preview" style="font-family:'Sacramento', cursive;">Aa</span>
+                      <label>Sacramento</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Great Vibes">
+                      <span class="xl-font-preview" style="font-family:'Great Vibes', cursive;">Aa</span>
+                      <label>Great Vibes</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Pacifico">
+                      <span class="xl-font-preview" style="font-family:'Pacifico', cursive;">Aa</span>
+                      <label>Pacifico</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Satisfy">
+                      <span class="xl-font-preview" style="font-family:'Satisfy', cursive;">Aa</span>
+                      <label>Satisfy</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Yellowtail">
+                      <span class="xl-font-preview" style="font-family:'Yellowtail', cursive;">Aa</span>
+                      <label>Yellowtail</label>
+                    </button>
+
+                    <button type="button" class="xl-font-style-btn" data-font="Comfortaa">
+                      <span class="xl-font-preview" style="font-family:'Comfortaa', cursive; font-weight:700;">Aa</span>
+                      <label>Comfortaa</label>
+                    </button>
+
+                  </div><!-- /.xl-font-carousel-track -->
+                </div><!-- /.xl-font-carousel-track-outer -->
+
+                <!-- Next arrow -->
+                <button type="button" class="xl-font-carousel-arrow" id="xl-font-next"
+                  aria-label="Next fonts">&#8250;</button>
+              </div><!-- /.xl-font-carousel-wrap -->
+
+              <input type="hidden" name="properties[Font Style]" id="xl-hidden-font-style" value="Nunito" />
+            </div>
+
+
+            <!-- EXISTING SHOPIFY HIDDEN INPUTS — keep intact -->
+            <input type="hidden" name="properties[Size]" id="xl-hidden-size" value="4-inch" />
+            <input type="hidden" name="properties[Design]" id="xl-hidden-design" />
+
+          </div><!-- /.xl-customizer-container -->
+
+          <!-- Quantity + Add to Cart — outside container -->
+          <form method="post" action="/cart/add" class="xl-product-form" id="xl-custom-product-form">
+            <input type="hidden" name="id" id="xl-form-variant-id" value="45019139375173" />
+            <input type="hidden" name="properties[First Name]" id="xl-form-first-name" />
+            <input type="hidden" name="properties[Last Name]" id="xl-form-last-name" />
+            <input type="hidden" name="properties[Selected Size]" id="xl-form-size" />
+            <input type="hidden" name="properties[Selected Theme]" id="xl-form-theme" />
+            <input type="hidden" name="properties[Font Color]" id="xl-form-font-color" />
+            <input type="hidden" name="properties[Font Style]" id="xl-form-font-style" />
+            <input type="hidden" name="quantity" id="xl-form-quantity" value="1" />
+
+            <div class="xl-action-row">
+              <div class="xl-quantity-box">
+                <button type="button" class="xl-qty-btn" id="xl-qty-minus">−</button>
+                <span id="xl-qty-value">1</span>
+                <button type="button" class="xl-qty-btn" id="xl-qty-plus">+</button>
+              </div>
+              <button type="button" class="xl-add-btn" id="xl-save-xl-png-btn">
+                <span>Save PNG</span>
               </button>
+            </div>
+          </form>
+        </div><!-- /.xl-selection-wrapper -->
 
-              <button type="button" class="xl-font-style-btn" data-font="Cloudsofa">
-                <span class="xl-font-preview" style="font-family:'Cloudsofa', cursive;">Aa</span>
-                <label>Cloudsofa</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Genty">
-                <span class="xl-font-preview" style="font-family:'Baloo 2', cursive;">Aa</span>
-                <label>Genty</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Fredoka">
-                <span class="xl-font-preview" style="font-family:'Fredoka One', cursive;">Aa</span>
-                <label>Fredoka</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Baloo 2">
-                <span class="xl-font-preview" style="font-family:'Baloo 2', cursive;">Aa</span>
-                <label>Baloo 2</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Poppins ExtraBold">
-                <span class="xl-font-preview" style="font-family:'Poppins', sans-serif; font-weight:800;">Aa</span>
-                <label>Poppins ExtraBold</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Bubblegum Sans">
-                <span class="xl-font-preview" style="font-family:'Bubblegum Sans', cursive;">Aa</span>
-                <label>Bubblegum Sans</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Quicksand Bold">
-                <span class="xl-font-preview" style="font-family:'Quicksand', sans-serif; font-weight:700;">Aa</span>
-                <label>Quicksand Bold</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Chewy">
-                <span class="xl-font-preview" style="font-family:'Chewy', cursive;">Aa</span>
-                <label>Chewy</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Cooper Black">
-                <span class="xl-font-preview" style="font-family:'Cooper Black', serif;">Aa</span>
-                <label>Cooper Black</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Balsamiq Sans">
-                <span class="xl-font-preview" style="font-family:'Balsamiq Sans', cursive;">Aa</span>
-                <label>Balsamiq Sans</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="BMJUA">
-                <span class="xl-font-preview" style="font-family:'Jua', sans-serif;">Aa</span>
-                <label>BMJUA</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Comic Sans">
-                <span class="xl-font-preview" style="font-family:'Comic Sans MS', cursive;">Aa</span>
-                <label>Comic Sans</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Cursive">
-                <span class="xl-font-preview" style="font-family:'Dancing Script', cursive;">Aa</span>
-                <label>Cursive</label>
-              </button>
+      </div><!-- /.xl-page-wrap -->
+    </div><!-- /.xl-full-bleed -->
 
 
-              <button type="button" class="xl-font-style-btn" data-font="Poppins Bold">
-                <span class="xl-font-preview" style="font-family:'Poppins', sans-serif; font-weight:700;">Aa</span>
-                <label>Poppins Bold</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Josefin Sans">
-                <span class="xl-font-preview" style="font-family:'Josefin Sans', sans-serif; font-weight:700;">Aa</span>
-                <label>Josefin Sans</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Paytone One">
-                <span class="xl-font-preview" style="font-family:'Paytone One', cursive;">Aa</span>
-                <label>Paytone One</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Titan One">
-                <span class="xl-font-preview" style="font-family:'Titan One', cursive;">Aa</span>
-                <label>Titan One</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Lilita One">
-                <span class="xl-font-preview" style="font-family:'Lilita One', cursive;">Aa</span>
-                <label>Lilita One</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Sacramento">
-                <span class="xl-font-preview" style="font-family:'Sacramento', cursive;">Aa</span>
-                <label>Sacramento</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Great Vibes">
-                <span class="xl-font-preview" style="font-family:'Great Vibes', cursive;">Aa</span>
-                <label>Great Vibes</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Pacifico">
-                <span class="xl-font-preview" style="font-family:'Pacifico', cursive;">Aa</span>
-                <label>Pacifico</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Satisfy">
-                <span class="xl-font-preview" style="font-family:'Satisfy', cursive;">Aa</span>
-                <label>Satisfy</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Yellowtail">
-                <span class="xl-font-preview" style="font-family:'Yellowtail', cursive;">Aa</span>
-                <label>Yellowtail</label>
-              </button>
-
-              <button type="button" class="xl-font-style-btn" data-font="Comfortaa">
-                <span class="xl-font-preview" style="font-family:'Comfortaa', cursive; font-weight:700;">Aa</span>
-                <label>Comfortaa</label>
-              </button>
-
-            </div><!-- /.xl-font-carousel-track -->
-          </div><!-- /.xl-font-carousel-track-outer -->
-
-          <!-- Next arrow -->
-          <button type="button" class="xl-font-carousel-arrow" id="xl-font-next" aria-label="Next fonts">&#8250;</button>
-        </div><!-- /.xl-font-carousel-wrap -->
-
-        <input type="hidden" name="properties[Font Style]" id="xl-hidden-font-style" value="Nunito" />
-      </div>
-
-
-      <!-- EXISTING SHOPIFY HIDDEN INPUTS — keep intact -->
-      <input type="hidden" name="properties[Size]"   id="xl-hidden-size"   value="4-inch" />
-      <input type="hidden" name="properties[Design]" id="xl-hidden-design" />
-
-    </div><!-- /.xl-customizer-container -->
-
-      <!-- Quantity + Add to Cart — outside container -->
-      <form method="post" action="/cart/add" class="xl-product-form" id="xl-custom-product-form">
-        <input type="hidden" name="id" id="xl-form-variant-id" value="45019139375173" />
-        <input type="hidden" name="properties[First Name]"    id="xl-form-first-name" />
-        <input type="hidden" name="properties[Last Name]"     id="xl-form-last-name" />
-        <input type="hidden" name="properties[Selected Size]" id="xl-form-size" />
-        <input type="hidden" name="properties[Selected Theme]" id="xl-form-theme" />
-        <input type="hidden" name="properties[Font Color]"    id="xl-form-font-color" />
-        <input type="hidden" name="properties[Font Style]"    id="xl-form-font-style" />
-        <input type="hidden" name="quantity"                  id="xl-form-quantity" value="1" />
-
-        <div class="xl-action-row">
-          <div class="xl-quantity-box">
-            <button type="button" class="xl-qty-btn" id="xl-qty-minus">−</button>
-            <span id="xl-qty-value">1</span>
-            <button type="button" class="xl-qty-btn" id="xl-qty-plus">+</button>
-          </div>
-          <button type="button" class="xl-add-btn" id="xl-save-xl-png-btn">
-            <span>Save PNG</span>
-          </button>
-        </div>
-      </form>
-  </div><!-- /.xl-selection-wrapper -->
-
-</div><!-- /.xl-page-wrap -->
-</div><!-- /.xl-full-bleed -->
-
-
-<!-- ═══════════════════════════════════════════════════════════════
+    <!-- ═══════════════════════════════════════════════════════════════
      JAVASCRIPT
 ═══════════════════════════════════════════════════════════════ -->
-<script src="xl-print.js" defer></script>
+    <script src="xl-print.js" defer></script>
 
-<script>
-(function () {
-  function slug(txt) {
-    return (txt || '')
-      .trim()
-      .toLowerCase()
-      .replace(/[^a-z0-9가-힣\s-]/g, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-');
-  }
+    <script>
+      (function () {
+        function slug(txt) {
+          return (txt || '')
+            .trim()
+            .toLowerCase()
+            .replace(/[^a-z0-9가-힣\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+        }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    // Prevent the form from ever submitting (no cart on this page)
-    var form = document.getElementById('xl-custom-product-form');
-    if (form) {
-      form.addEventListener('submit', function (e) { e.preventDefault(); });
-    }
+        document.addEventListener('DOMContentLoaded', function () {
+          // Prevent the form from ever submitting (no cart on this page)
+          var form = document.getElementById('xl-custom-product-form');
+          if (form) {
+            form.addEventListener('submit', function (e) { e.preventDefault(); });
+          }
 
-    var saveBtn = document.getElementById('xl-save-xl-png-btn');
-    if (!saveBtn) return;
+          var saveBtn = document.getElementById('xl-save-xl-png-btn');
+          if (!saveBtn) return;
 
-    saveBtn.addEventListener('click', function () {
-      var canvas = document.getElementById('xl-label-canvas');
-      if (!canvas) return;
+          saveBtn.addEventListener('click', function () {
+            var canvas = document.getElementById('xl-label-canvas');
+            if (!canvas) return;
 
-      var first = document.getElementById('xl-first-name')?.value || 'firstname';
-      var last  = document.getElementById('xl-last-name')?.value || '';
-      var size  = document.querySelector('.xl-size-btn.xl-active')?.dataset.size || 'size';
-      var theme = document.getElementById('xl-hidden-design')?.value || 'theme';
+            var first = document.getElementById('xl-first-name')?.value || 'firstname';
+            var last = document.getElementById('xl-last-name')?.value || '';
+            var size = document.querySelector('.xl-size-btn.xl-active')?.dataset.size || 'size';
+            var theme = document.getElementById('xl-hidden-design')?.value || 'theme';
 
-      var baseName = slug(first) + (last ? '-' + slug(last) : '') + '-' + slug(size) + '-' + slug(theme);
+            var baseName = slug(first) + (last ? '-' + slug(last) : '') + '-' + slug(size) + '-' + slug(theme);
 
-      canvas.toBlob(function (blob) {
-        var url = URL.createObjectURL(blob);
-        var link = document.createElement('a');
-        link.href = url;
-        link.download = baseName + '.png';
-        link.click();
-        URL.revokeObjectURL(url);
-      }, 'image/png');
-    });
-  });
-})();
-</script>
+            canvas.toBlob(function (blob) {
+              var url = URL.createObjectURL(blob);
+              var link = document.createElement('a');
+              link.href = url;
+              link.download = baseName + '.png';
+              link.click();
+              URL.revokeObjectURL(url);
+            }, 'image/png');
+          });
+        });
+      })();
+    </script>
 
   </div>
 </body>
