@@ -409,9 +409,9 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4줄) — 뱃지(배경) 있음 -----
     const bottomRows = 4;
-    const bottomHeight = 32.3;
+    const bottomHeight = 32.5;
     const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.675;
+    const bottomOffset = 0.67;
     const leftOffsetBottom = 0.86;
 
     for (let r = 0; r < bottomRows; r++) {
