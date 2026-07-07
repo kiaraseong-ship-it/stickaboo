@@ -379,25 +379,51 @@ function initCustomizer(root) {
   }
 
   // =========================================================
-  // ✅ Sports Generators (좌표: 배경 이미지 실측 기준, % 값)
+  // ✅ Sports Generators (top/bottom 분리, 상수 기반)
   // =========================================================
   function generateSmallSportsOverlays() {
     const overlays = [];
     let id = 1;
-    // 위 8줄 × 4칸 — 배경 없음 (아이콘 오른쪽)
-    const topCols = [11, 35, 59, 83];
-    const topRows = [5.4, 13.4, 21.5, 29.7, 37.6, 45.9, 53.8, 62.0];
-    for (const top of topRows) {
-      for (const left of topCols) {
-        overlays.push({ id: `small-text${id++}`, top: `${top}%`, left: `${left}%`, width: "85px", textAlign: "left", area: "top" });
+    const cols = 4;
+
+    // ----- TOP (8줄) — 배경 없음 -----
+    const topRows = 8;
+    const topHeight = 64.6;
+    const cellWidth = 96.5 / cols;               // 24
+    const cellHeightTop = topHeight / topRows;
+    const topOffset = 0.69;
+    const leftOffset = 0.845;                   // ← 아이콘과 이름 간격(키우면 오른쪽으로)
+
+    for (let r = 0; r < topRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `small-text${id++}`,
+          top: `${(r + topOffset) * cellHeightTop}%`,
+          left: `${(c + leftOffset) * cellWidth}%`,
+          width: "85px",
+          textAlign: "left",
+          area: "top",
+        });
       }
     }
-    // 아래 4줄 × 4칸 — 뱃지(배경) 있음 (아이콘 오른쪽)
-    const botCols = [10, 34, 58, 81.5];
-    const botRows = [69.9, 78.0, 86.0, 94.3];
-    for (const top of botRows) {
-      for (const left of botCols) {
-        overlays.push({ id: `small-text${id++}`, top: `${top}%`, left: `${left}%`, width: "90px", textAlign: "left", area: "bottom" });
+
+    // ----- BOTTOM (4줄) — 뱃지(배경) 있음 -----
+    const bottomRows = 4;
+    const bottomHeight = 32.3;
+    const cellHeightBottom = bottomHeight / bottomRows;
+    const bottomOffset = 0.675;
+    const leftOffsetBottom = 0.86;
+
+    for (let r = 0; r < bottomRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `small-text${id++}`,
+          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
+          left: `${(c + leftOffsetBottom) * cellWidth}%`,
+          width: "90px",
+          textAlign: "left",
+          area: "bottom",
+        });
       }
     }
     return overlays;
@@ -406,20 +432,46 @@ function initCustomizer(root) {
   function generateMediumSportsOverlays() {
     const overlays = [];
     let id = 1;
-    // 위 6줄 × 3칸 — 배경 없음
-    const topCols = [12, 44, 76];
-    const topRows = [6.1, 15.9, 25.7, 35.5, 44.9, 54.8];
-    for (const top of topRows) {
-      for (const left of topCols) {
-        overlays.push({ id: `medium-text${id++}`, top: `${top}%`, left: `${left}%`, width: "100px", textAlign: "left", area: "top" });
+    const cols = 3;
+
+    // ----- TOP (6줄) -----
+    const topRows = 6;
+    const topHeight = 59;
+    const cellWidth = 96 / cols;               // 32
+    const cellHeightTop = topHeight / topRows;
+    const topOffset = 0.62;
+    const leftOffset = 0.76;
+
+    for (let r = 0; r < topRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `medium-text${id++}`,
+          top: `${(r + topOffset) * cellHeightTop}%`,
+          left: `${(c + leftOffset) * cellWidth}%`,
+          width: "100px",
+          textAlign: "left",
+          area: "top",
+        });
       }
     }
-    // 아래 4줄 × 3칸 — 뱃지(배경) 있음
-    const botCols = [10, 42, 74];
-    const botRows = [64.5, 74.3, 84.0, 93.6];
-    for (const top of botRows) {
-      for (const left of botCols) {
-        overlays.push({ id: `medium-text${id++}`, top: `${top}%`, left: `${left}%`, width: "105px", textAlign: "left", area: "bottom" });
+
+    // ----- BOTTOM (4줄) -----
+    const bottomRows = 4;
+    const bottomHeight = 39;
+    const cellHeightBottom = bottomHeight / bottomRows;
+    const bottomOffset = 0.57;
+    const leftOffsetBottom = 0.76;
+
+    for (let r = 0; r < bottomRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `medium-text${id++}`,
+          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
+          left: `${(c + leftOffsetBottom) * cellWidth}%`,
+          width: "105px",
+          textAlign: "left",
+          area: "bottom",
+        });
       }
     }
     return overlays;
@@ -428,20 +480,48 @@ function initCustomizer(root) {
   function generateLargeSportsOverlays() {
     const overlays = [];
     let id = 1;
-    // 위 2줄 × 3칸 — 아이콘 아래 이름(가운데 정렬)
-    const topCols = [17.4, 49.7, 81.9];
-    const topRows = [15, 35]; // ⚠️ 아이콘 바로 아래. 프리뷰 보고 이 두 값만 미세조정
-    for (const top of topRows) {
-      for (const left of topCols) {
-        overlays.push({ id: `large-text${id++}`, top: `${top}%`, left: `${left}%`, width: "120px", textAlign: "center", area: "top" });
+
+    // ----- TOP (2줄 × 3칸) — 아이콘 아래 이름(가운데) -----
+    const topRows = 2, topCols = 3;
+    const topHeight = 39;
+    const cellWidthTop = 96 / topCols;         // 32
+    const cellHeightTop = topHeight / topRows;
+    const spacingFactorTop = 1.0;
+    const topOffsetTop = 0.85;                  // ← 아이콘 바로 아래. 이 값으로 위아래 조정
+    const leftOffsetTop = 0.56;
+
+    for (let row = 0; row < topRows; row++) {
+      for (let col = 0; col < topCols; col++) {
+        overlays.push({
+          id: `large-text${id++}`,
+          top: `${(row * spacingFactorTop + topOffsetTop) * cellHeightTop}%`,
+          left: `${(col + leftOffsetTop) * cellWidthTop}%`,
+          width: "120px",
+          textAlign: "center",
+          area: "top",
+        });
       }
     }
-    // 아래 3줄 × 2칸 — 아이콘 오른쪽 이름
-    const botCols = [20, 68];
-    const botRows = [49.5, 68.7, 88.6];
-    for (const top of botRows) {
-      for (const left of botCols) {
-        overlays.push({ id: `large-text${id++}`, top: `${top}%`, left: `${left}%`, width: "140px", textAlign: "left", area: "bottom" });
+
+    // ----- BOTTOM (3줄 × 2칸) — 아이콘 오른쪽 이름 -----
+    const bottomRows = 3, bottomCols = 2;
+    const bottomHeight = 58;
+    const cellWidthBottom = 96 / bottomCols;   // 48
+    const cellHeightBottom = bottomHeight / bottomRows;
+    const spacingFactorBottom = 1.0;
+    const topOffsetBottom = 0.55;
+    const leftOffsetBottom = 0.76;
+
+    for (let row = 0; row < bottomRows; row++) {
+      for (let col = 0; col < bottomCols; col++) {
+        overlays.push({
+          id: `large-text${id++}`,
+          top: `${topHeight + (row * spacingFactorBottom + topOffsetBottom) * cellHeightBottom}%`,
+          left: `${(col + leftOffsetBottom) * cellWidthBottom}%`,
+          width: "140px",
+          textAlign: "left",
+          area: "bottom",
+        });
       }
     }
     return overlays;
