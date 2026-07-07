@@ -1037,12 +1037,13 @@ function initCustomizer(root) {
       if (size === "large") return generateLargePetOverlays(theme);
       if (size === "sml-mix") return generateSmlMixOverlays();
       if (size === "ml-mix") return generateMlMixOverlays();
-      // ✅ SPORTS (지금은 s/m/l만)
-      if (themeKey === "sports") {
-        if (size === "small") return generateSmallSportsOverlays();
-        if (size === "medium") return generateMediumSportsOverlays();
-        if (size === "large") return generateLargeSportsOverlays();
-      }
+    }
+
+    // ✅ SPORTS (지금은 s/m/l만)
+    if (themeKey === "sports") {
+      if (size === "small") return generateSmallSportsOverlays();
+      if (size === "medium") return generateMediumSportsOverlays();
+      if (size === "large") return generateLargeSportsOverlays();
     }
 
     return overlayConfigsBySize[size];
