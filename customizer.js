@@ -411,8 +411,8 @@ function initCustomizer(root) {
     const bottomRows = 4;
     const bottomHeight = 32.5;
     const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.67;
-    const leftOffsetBottom = 0.86;
+    const bottomOffset = 0.665;
+    const leftOffsetBottom = 0.865;
 
     for (let r = 0; r < bottomRows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -1120,7 +1120,7 @@ function initCustomizer(root) {
     }
 
     // ✅ SPORTS (지금은 s/m/l만)
-    if (themeKey === "sports") {
+    if (theme === "sports" || theme === "monster") {
       if (size === "small") return generateSmallSportsOverlays();
       if (size === "medium") return generateMediumSportsOverlays();
       if (size === "large") return generateLargeSportsOverlays();
@@ -1275,8 +1275,7 @@ function initCustomizer(root) {
         }
       }
 
-      // ✅ SPORTS: top은 기존 규칙, bottom만 5% 축소 (large는 기존 그대로 통과)
-      if (theme?.toLowerCase() === "sports") {
+      if (theme?.toLowerCase() === "sports" || theme?.toLowerCase() === "monster") {
         if (size === "small") {
           const base = step(16, 14, 13, 11.5);
           return area === "bottom" ? base * 0.95 : base;
