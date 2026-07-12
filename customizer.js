@@ -1120,7 +1120,7 @@ function initCustomizer(root) {
     }
 
     // ✅ SPORTS (지금은 s/m/l만)
-    if (theme === "sports" || theme === "monster" || theme === "flower" || theme === "flower2") {
+    if (theme === "sports" || theme === "monster" || theme === "flower" || theme === "flower2" || theme === "princess") {
       if (size === "small") return generateSmallSportsOverlays();
       if (size === "medium") return generateMediumSportsOverlays();
       if (size === "large") return generateLargeSportsOverlays();
@@ -1275,7 +1275,7 @@ function initCustomizer(root) {
         }
       }
 
-      if (theme?.toLowerCase() === "sports" || theme?.toLowerCase() === "monster" || theme?.toLowerCase() === "flower" || theme?.toLowerCase() === "flower2") {
+      if (theme?.toLowerCase() === "sports" || theme?.toLowerCase() === "monster" || theme?.toLowerCase() === "princess" || theme?.toLowerCase() === "flower" || theme?.toLowerCase() === "flower2") {
         if (size === "small") {
           const base = step(16, 14, 13, 11.5);
           return area === "bottom" ? base * 0.95 : base;
