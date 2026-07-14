@@ -1341,16 +1341,7 @@ function initCustomizer(root) {
         }
       }
 
-      if (theme?.toLowerCase() === "sports" || theme?.toLowerCase() === "monster" || theme?.toLowerCase() === "princess" || theme?.toLowerCase() === "flower" || theme?.toLowerCase() === "flower2") {
-        if (size === "small") {
-          const base = step(16, 14, 13, 11.5);
-          return area === "bottom" ? base * 0.9 : base;
-        }
-        if (size === "medium") {
-          const base = step(22, 20, 18, 17);
-          return area === "bottom" ? base * 0.9 : base;
-        }
-      }
+
 
       // ✅ NORMAL
       if (size === "small") {
@@ -1363,13 +1354,13 @@ function initCustomizer(root) {
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(32, 26, 24, 20);
-        if (area === "bottom") return twoLines ? step(38, 32, 28, 28) : step(40, 32, 28, 28);
+        if (area === "bottom") return twoLines ? step(38, 32, 28, 28) : step(40, 32, 28, 26);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(34, 26, 24, 22);
-        if (area === "large-bottom") return twoLines ? step(38, 30, 28, 26) : step(40, 38, 30, 28);
+        if (area === "large-bottom") return twoLines ? step(38, 30, 28, 26) : step(40, 38, 26, 26);
         if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(22, 20, 18, 18);
         if (area === "small") return step(16, 14, 13, 13);
       }
