@@ -1283,6 +1283,36 @@ function initCustomizer(root) {
     return "1.1";
   }
 
+  function shouldForceBlack(config) {
+    return (
+      (
+        (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
+        (
+          (selectedSize === "ml-mix" && (
+            config.id === "mlmix-large-top4" ||
+            config.id === "mlmix-large-top6"
+          )) ||
+          (selectedSize === "large" && (
+            config.id === "large-text4" ||
+            config.id === "large-text6"
+          ))
+        ) &&
+        selectedFontColor === "#FFFFFF"
+      ) ||
+      (
+        selectedTheme?.toLowerCase() === "kitty" &&
+        selectedSize === "sml-mix" &&
+        config.id === "smlmix-large-bottom5" &&
+        selectedFontColor === "#F5A3B7"
+      ) ||
+      (
+        (selectedSize === "small" || selectedSize === "medium") &&
+        config.area === "bottom" &&
+        selectedFontColor === "#FFFFFF"
+      )
+    );
+  }
+
   // =========================================================
   // ✅ Text update (두 줄이면 둘 다 같이 작아지게 적용)
   // =========================================================
@@ -1830,32 +1860,35 @@ function initCustomizer(root) {
       const el = root.querySelector(`#${config.id}`);
       if (!el) return;
 
-      // ⭐ 특정 위치 색 강제 변경 (puppy + kitty)
-      const forceBlack =
-        // 기존: puppy+kitty 흰색일 때 특정 슬롯 검정 강제
-        (
-          (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
+      function shouldForceBlack(config) {
+        return (
           (
-            (selectedSize === "ml-mix" && (
-              config.id === "mlmix-large-top4" ||
-              config.id === "mlmix-large-top6"
-            )) ||
-            (selectedSize === "large" && (
-              config.id === "large-text4" ||
-              config.id === "large-text6"
-            ))
-          ) &&
-          selectedFontColor === "#FFFFFF"
-        ) ||
-        // ✅ 추가: kitty sml-mix 5번(smlmix-large-bottom5) 핑크일 때 검정 강제
-        (
-          selectedTheme?.toLowerCase() === "kitty" &&
-          selectedSize === "sml-mix" &&
-          config.id === "smlmix-large-bottom5" &&
-          selectedFontColor === "#F5A3B7"
+            (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
+            (
+              (selectedSize === "ml-mix" && (
+                config.id === "mlmix-large-top4" ||
+                config.id === "mlmix-large-top6"
+              )) ||
+              (selectedSize === "large" && (
+                config.id === "large-text4" ||
+                config.id === "large-text6"
+              ))
+            ) &&
+            selectedFontColor === "#FFFFFF"
+          ) ||
+          (
+            selectedTheme?.toLowerCase() === "kitty" &&
+            selectedSize === "sml-mix" &&
+            config.id === "smlmix-large-bottom5" &&
+            selectedFontColor === "#F5A3B7"
+          ) ||
+          (
+            (selectedSize === "small" || selectedSize === "medium") &&
+            config.area === "bottom" &&
+            selectedFontColor === "#FFFFFF"
+          )
         );
-
-      el.style.color = forceBlack ? "#000000" : selectedFontColor;
+      }
 
       let d1 = name1;
       let d2 = name2;
@@ -1912,8 +1945,8 @@ function initCustomizer(root) {
           }))
           : null;
 
-        const fw1special = hasKorean(d1) ? "400" : "900";
-        const fw2special = d2 ? (hasKorean(d2) ? "400" : "900") : null;
+        const fw1special = hasKorean(d1) ? "800" : "900";
+        const fw2special = d2 ? (hasKorean(d2) ? "800" : "900") : null;
 
         if (special?.forceSingleLine) {
           el.innerHTML = `
@@ -1980,8 +2013,8 @@ function initCustomizer(root) {
         })
         : null;
 
-      const fw1 = hasKorean(d1) ? "400" : "900";
-      const fw2 = d2 ? (hasKorean(d2) ? "400" : "900") : null;
+      const fw1 = hasKorean(d1) ? "800" : "900";
+      const fw2 = d2 ? (hasKorean(d2) ? "800" : "900") : null;
 
       el.innerHTML = `
           <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"}; font-weight:${fw1};">
@@ -2039,8 +2072,11 @@ function initCustomizer(root) {
       selectedFontColor = btn.dataset.color;
       if (hiddenFontColor) hiddenFontColor.value = selectedFontColor;
 
-      root.querySelectorAll(".text-overlay").forEach(text => {
-        text.style.color = selectedFontColor;
+      currentOverlays.forEach(config => {
+        const text = root.querySelector(`#${config.id}`);
+        if (!text) return;
+        const forceBlack = shouldForceBlack(config);
+        text.style.color = forceBlack ? "#000000" : selectedFontColor;
         text.style.textShadow = "none";
       });
     });
