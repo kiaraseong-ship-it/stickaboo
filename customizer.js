@@ -1350,7 +1350,7 @@ function initCustomizer(root) {
       }
       if (size === "medium") {
         const base = step(22, 20, 18, 17);
-        return area === "bottom" ? base * 0.9 : base;
+        return area === "bottom" ? base * 0.95 : base;
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(32, 26, 24, 20);
