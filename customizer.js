@@ -899,11 +899,7 @@ function initCustomizer(root) {
           },
         },
       },
-      unicorn: {
-        large: {
-          "large-text7": { top: "56.5%", left: "17.5%", width: "140px", fontSize: "22px" },
-        },
-      },
+
       "jesus loves": {
         large: {
           "large-text5": { top: "30.8%", left: "48%", width: "140px", fontSize: "10px" },
@@ -1439,19 +1435,7 @@ function initCustomizer(root) {
         }
       }
 
-      // ------------------------
-      // UNICORN - LARGE large-text7
-      // ------------------------
-      if (theme === "unicorn" && size === "large" && id === "large-text7") {
-        if (twoLines) {
-          const fs = len <= 8 ? 10 : len <= 12 ? 8 : 6;
-          const lh = len <= 8 ? 8 : len <= 12 ? 8 : 6;
-          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
-        } else {
-          const fs = len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 11 : 9;
-          return { fs, lh1: clampPx(Math.max(6, fs - 2)) };
-        }
-      }
+
 
       // ------------------------
       // jesus loves - LARGE
