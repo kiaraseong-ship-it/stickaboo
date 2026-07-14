@@ -92,59 +92,94 @@ function initCustomizer(root) {
   // =========================================================
   function generateSmallOverlays() {
     const overlays = [];
-    let idCounter = 1;
-
-    const rows = 10;
+    let id = 1;
     const cols = 4;
 
-    const totalHeight = 94; // 기존 top + bottom 합친 높이
-    const cellWidth = 96 / cols;
-    const cellHeight = totalHeight / rows;
+    // ----- TOP (8줄) — 배경 없음 -----
+    const topRows = 8;
+    const topHeight = 64.6;
+    const cellWidth = 96.5 / cols;               // 24
+    const cellHeightTop = topHeight / topRows;
+    const topOffset = 0.69;
+    const leftOffset = 0.845;                   // ← 아이콘과 이름 간격(키우면 오른쪽으로)
 
-    const spacingFactor = 0.86;   // 세로 간격 미세 조정
-    const topOffset = 2.3;          // 전체 위 여백 조정
-    const leftOffset = 0.87;      // 좌측 여백 조정
-
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
+    for (let r = 0; r < topRows; r++) {
+      for (let c = 0; c < cols; c++) {
         overlays.push({
-          id: `small-text${idCounter++}`,
-          top: `calc(${(row * spacingFactor + topOffset) * cellHeight}%)`,
-          left: `${(col + leftOffset) * cellWidth}%`,
+          id: `small-text${id++}`,
+          top: `${(r + topOffset) * cellHeightTop}%`,
+          left: `${(c + leftOffset) * cellWidth}%`,
           width: "85px",
           textAlign: "left",
-          area: "full", // 이제 top/bottom 구분 없음
+          area: "top",
         });
       }
     }
 
+    // ----- BOTTOM (4줄) — 뱃지(배경) 있음 -----
+    const bottomRows = 4;
+    const bottomHeight = 32.5;
+    const cellHeightBottom = bottomHeight / bottomRows;
+    const bottomOffset = 0.665;
+    const leftOffsetBottom = 0.865;
+
+    for (let r = 0; r < bottomRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `small-text${id++}`,
+          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
+          left: `${(c + leftOffsetBottom) * cellWidth}%`,
+          width: "90px",
+          textAlign: "left",
+          area: "bottom",
+        });
+      }
+    }
     return overlays;
   }
 
   function generateMediumOverlays() {
     const overlays = [];
-    let idCounter = 1;
+    let id = 1;
+    const cols = 3;
 
-    const topRows = 8, topCols = 3;
-
-    const topHeight = 93;
-    const cellWidthTop = 95.5 / topCols;
-
-    const spacingFactor = 0.835;
-    const topOffset = 2.2;
-    const leftOffset = 0.78;
-
+    // ----- TOP (6줄) -----
+    const topRows = 6;
+    const topHeight = 59;
+    const cellWidth = 96 / cols;               // 32
     const cellHeightTop = topHeight / topRows;
+    const topOffset = 0.62;
+    const leftOffset = 0.76;
 
-    for (let row = 0; row < topRows; row++) {
-      for (let col = 0; col < topCols; col++) {
-        const adjustedRow = row * spacingFactor;
+    for (let r = 0; r < topRows; r++) {
+      for (let c = 0; c < cols; c++) {
         overlays.push({
-          id: `medium-text${idCounter++}`,
-          top: `calc(${(adjustedRow + topOffset) * cellHeightTop}%)`,
-          left: `${(col + leftOffset) * cellWidthTop}%`,
+          id: `medium-text${id++}`,
+          top: `${(r + topOffset) * cellHeightTop}%`,
+          left: `${(c + leftOffset) * cellWidth}%`,
           width: "100px",
           textAlign: "left",
+          area: "top",
+        });
+      }
+    }
+
+    // ----- BOTTOM (4줄) -----
+    const bottomRows = 4;
+    const bottomHeight = 39;
+    const cellHeightBottom = bottomHeight / bottomRows;
+    const bottomOffset = 0.57;
+    const leftOffsetBottom = 0.76;
+
+    for (let r = 0; r < bottomRows; r++) {
+      for (let c = 0; c < cols; c++) {
+        overlays.push({
+          id: `medium-text${id++}`,
+          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
+          left: `${(c + leftOffsetBottom) * cellWidth}%`,
+          width: "105px",
+          textAlign: "left",
+          area: "bottom",
         });
       }
     }
@@ -153,57 +188,51 @@ function initCustomizer(root) {
 
   function generateLargeOverlays() {
     const overlays = [];
-    let idCounter = 1;
+    let id = 1;
 
-    const topRows = 3, topCols = 3;
-    const bottomRows = 2, bottomCols = 2;
-
-    const topHeight = 24.5;
-    const bottomHeight = 74;
-
-    const cellWidthTop = 96 / topCols;
-    const cellWidthBottom = 96 / bottomCols;
-
-    const spacingFactorTop = 2.37;
-    const spacingFactorBottom = 0.53;
-
-    const topOffsetTop = 2.0;
-    const topOffsetBottom = 1.2;
-
-    const leftOffsetTop = 0.56;
-    const leftOffsetBottom = 0.75;
-
-    const widthTop = "120px";
-    const widthBottom = "140px";
-
+    // ----- TOP (2줄 × 3칸) — 아이콘 아래 이름(가운데) -----
+    const topRows = 2, topCols = 3;
+    const topHeight = 39;
+    const cellWidthTop = 96 / topCols;         // 32
     const cellHeightTop = topHeight / topRows;
+    const spacingFactorTop = 1.0;
+    const topOffsetTop = 0.85;                  // ← 아이콘 바로 아래. 이 값으로 위아래 조정
+    const leftOffsetTop = 0.56;
+
     for (let row = 0; row < topRows; row++) {
       for (let col = 0; col < topCols; col++) {
         overlays.push({
-          id: `large-text${idCounter++}`,
+          id: `large-text${id++}`,
           top: `${(row * spacingFactorTop + topOffsetTop) * cellHeightTop}%`,
           left: `${(col + leftOffsetTop) * cellWidthTop}%`,
-          width: widthTop,
+          width: "120px",
           textAlign: "center",
           area: "top",
         });
       }
     }
 
+    // ----- BOTTOM (3줄 × 2칸) — 아이콘 오른쪽 이름 -----
+    const bottomRows = 3, bottomCols = 2;
+    const bottomHeight = 58;
+    const cellWidthBottom = 96 / bottomCols;   // 48
     const cellHeightBottom = bottomHeight / bottomRows;
+    const spacingFactorBottom = 1.0;
+    const topOffsetBottom = 0.55;
+    const leftOffsetBottom = 0.76;
+
     for (let row = 0; row < bottomRows; row++) {
       for (let col = 0; col < bottomCols; col++) {
         overlays.push({
-          id: `large-text${idCounter++}`,
+          id: `large-text${id++}`,
           top: `${topHeight + (row * spacingFactorBottom + topOffsetBottom) * cellHeightBottom}%`,
           left: `${(col + leftOffsetBottom) * cellWidthBottom}%`,
-          width: widthBottom,
+          width: "140px",
           textAlign: "left",
           area: "bottom",
         });
       }
     }
-
     return overlays;
   }
 
@@ -1198,21 +1227,25 @@ function initCustomizer(root) {
       // =========================
       // ✅ NORMAL
       // =========================
-      if (size === "small" && area === "top") {
-        return byFont({ 20: 22, 18: 20, 16: 18, 14: 16, 12: 14 });
+      // =========================
+      // ✅ NORMAL
+      // =========================
+      if (size === "small") {
+        return Math.max(10, Math.round(fs * 0.8)) + "px";
       }
 
-      if (size === "medium" && area === "top") {
-        return byFont({ 24: 23, 22: 21, 20: 19, 18: 17, 16: 15, 14: 13, 12: 11 });
+      if (size === "medium") {
+        return Math.max(10, Math.round(fs * 0.8)) + "px";
       }
+
 
       if (size === "large" && area === "top") {
-        return Math.max(10, fs - 0) + "px";
+        return byFont({ 24: 22, 22: 20, 20: 18, 18: 16 });
       }
 
       if (size === "large" && area === "bottom") {
         // ✅ 규칙: line-height = font-size - 2px
-        return Math.max(10, fs - 0) + "px";
+        return Math.max(10, fs - 2) + "px";
       }
 
       // =========================
@@ -1224,15 +1257,15 @@ function initCustomizer(root) {
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-bottom") {
         // ✅ 규칙: line-height = font-size
-        return Math.max(10, fs - 4) + "px";
+        return Math.max(10, fs - 0) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "medium") {
-        return Math.max(10, fs - 2) + "px";
+        return Math.max(10, fs - 0) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "small") {
-        return Math.max(10, fs - 2) + "px";
+        return Math.max(10, fs - 1) + "px";
       }
 
       // fallback
@@ -1288,11 +1321,13 @@ function initCustomizer(root) {
 
       // ✅ NORMAL
       if (size === "small") {
-        if (area === "bottom") return step(19, 18, 16, 16);
-        return step(16, 14, 13, 11.5); // top
+        const base = step(16, 14, 13, 11.5);
+        return area === "bottom" ? base * 0.95 : base;
       }
-
-      if (size === "medium") return step(22, 20, 18, 17);
+      if (size === "medium") {
+        const base = step(22, 20, 18, 17);
+        return area === "bottom" ? base * 0.95 : base;
+      }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(32, 26, 24, 20);
         if (area === "bottom") return twoLines ? step(38, 32, 28, 28) : step(40, 32, 28, 28);
