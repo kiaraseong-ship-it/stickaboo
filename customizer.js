@@ -1258,7 +1258,7 @@ function initCustomizer(root) {
       // ✅ MIX (SML 규칙처럼 "분리해서" 명시)
       // =========================
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-top") {
-        return byFont({ 24: 22, 22: 20, 20: 18, 18: 16 });
+        return Math.max(10, fs - 1) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-bottom") {
