@@ -1,6 +1,12 @@
 function initCustomizer(root) {
   if (!root) return;
 
+  // ✅ 한글 감지 헬퍼
+  function hasKorean(text) {
+    return /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(text || "");
+  }
+
+
   // ✅ Just Character면 텍스트 섹션 제거
   const isCharacter = root.dataset.isCharacter === "true";
   if (isCharacter) {
@@ -1231,7 +1237,7 @@ function initCustomizer(root) {
       // ✅ NORMAL
       // =========================
       if (size === "small") {
-        return Math.max(10, Math.round(fs * 0.8)) + "px";
+        return Math.max(10, Math.round(fs * 0.9)) + "px";
       }
 
       if (size === "medium") {
@@ -1906,26 +1912,29 @@ function initCustomizer(root) {
           }))
           : null;
 
+        const fw1special = hasKorean(d1) ? "400" : "900";
+        const fw2special = d2 ? (hasKorean(d2) ? "400" : "900") : null;
+
         if (special?.forceSingleLine) {
           el.innerHTML = `
-            <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
-              ${d1}${d2 ? " " + d2 : ""}
-            </div>
-          `;
+              <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"}; font-weight:${fw1special};">
+                ${d1}${d2 ? " " + d2 : ""}
+              </div>
+            `;
           return;
         }
 
         el.innerHTML = `
-          <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
-            ${d1}
-          </div>
-          ${d2
-            ? `<div style="font-size:${fs2}px; line-height:${lh2}; text-align:${config.textAlign || "left"};">
-                ${d2}
-              </div>`
+            <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"}; font-weight:${fw1special};">
+              ${d1}
+            </div>
+            ${d2
+            ? `<div style="font-size:${fs2}px; line-height:${lh2}; text-align:${config.textAlign || "left"}; font-weight:${fw2special};">
+                  ${d2}
+                </div>`
             : ""
           }
-        `;
+          `;
         return;
       }
 
@@ -1971,20 +1980,22 @@ function initCustomizer(root) {
         })
         : null;
 
+      const fw1 = hasKorean(d1) ? "400" : "900";
+      const fw2 = d2 ? (hasKorean(d2) ? "400" : "900") : null;
+
       el.innerHTML = `
-        <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"};">
-          ${d1}
-        </div>
-        ${d2
-          ? `<div style="font-size:${fs2}px; line-height:${lh2}; text-align:${config.textAlign || "left"};">
-              ${d2}
-            </div>`
+          <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"}; font-weight:${fw1};">
+            ${d1}
+          </div>
+          ${d2
+          ? `<div style="font-size:${fs2}px; line-height:${lh2}; text-align:${config.textAlign || "left"}; font-weight:${fw2};">
+                ${d2}
+              </div>`
           : ""
         }
-      `;
+        `;
     });
   }
-
   // =========================================================
   // ✅ Handlers
   // =========================================================

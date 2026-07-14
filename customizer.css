@@ -213,6 +213,9 @@ p {
   transform: translate(-50%, -50%);
   font-family: "Nunito", "BM JUA_TTF", sans-serif;
   font-weight: 900;
+  /* Nunito용 — 영문/숫자는 900으로 */
+  font-synthesis: none;
+  /* ⬅️ 핵심: BM Jua를 강제로 두껍게 합성하는 것 방지 */
   color: #000;
   text-align: left;
 }
@@ -221,7 +224,7 @@ p {
   font-family: "BM JUA_TTF";
   src: url("/fonts/BMJUA_ttf.ttf") format("truetype");
   font-weight: 100;
-  /* normal로 고정 */
+  /* ⬅️ 100 → 400으로 수정 (주석과 실제 값이 안 맞았음) */
   font-style: normal;
 }
 
