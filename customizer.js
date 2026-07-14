@@ -125,6 +125,7 @@ function initCustomizer(root) {
     // ----- BOTTOM (4줄) — 뱃지(배경) 있음 -----
     const bottomRows = 4;
     const bottomHeight = 32.5;
+    const cellWidthBottom = 96 / cols;   // ⬅️ 추가: bottom 전용 가로 폭 (top과 독립적으로 조절 가능)
     const cellHeightBottom = bottomHeight / bottomRows;
     const bottomOffset = 0.665;
     const leftOffsetBottom = 0.865;
@@ -134,7 +135,7 @@ function initCustomizer(root) {
         overlays.push({
           id: `small-text${id++}`,
           top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidth}%`,
+          left: `${(c + leftOffsetBottom) * cellWidthBottom}%`,   // ⬅️ cellWidth → cellWidthBottom
           width: "90px",
           textAlign: "left",
           area: "bottom",
@@ -1233,7 +1234,7 @@ function initCustomizer(root) {
       // ✅ NORMAL
       // =========================
       if (size === "small") {
-        return Math.max(10, Math.round(fs * 0.8)) + "px";
+        return Math.max(10, Math.round(fs * 0.95)) + "px";
       }
 
       if (size === "medium") {
@@ -1500,6 +1501,7 @@ function initCustomizer(root) {
         (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
         (
           (size === "large" && id === "large-text4") ||
+          (size === "sml-mix" && id === "smlmix-large-top4") ||
           (size === "ml-mix" && id === "mlmix-large-top4")
         )
       ) {
@@ -1512,7 +1514,7 @@ function initCustomizer(root) {
         } else {
           const fs = isMobile
             ? (len <= 5 ? 15 : len <= 7 ? 13 : len <= 9 ? 11 : 8)
-            : (len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 16 : 10);
+            : (len <= 5 ? 20 : len <= 7 ? 14 : len <= 9 ? 12 : 8);
           return { fs, lh1: clampPx(Math.max(6, fs - 2)) };
         }
       }
