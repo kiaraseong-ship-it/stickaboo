@@ -1421,7 +1421,7 @@ function initCustomizer(root) {
             const lh = len <= 9 ? 12 : 8;
             return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
-            const fs = len <= 5 ? 22 : len <= 9 ? 15 : len <= 12 ? 14 : 12;
+            const fs = len <= 5 ? 22 : len <= 9 ? 15 : len <= 12 ? 12 : 12;
             return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
           }
         }
