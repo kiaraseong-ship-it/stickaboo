@@ -1354,13 +1354,13 @@ function initCustomizer(root) {
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(32, 26, 24, 20);
-        if (area === "bottom") return twoLines ? step(38, 32, 28, 28) : step(40, 32, 26, 26);
+        if (area === "bottom") return twoLines ? step(38, 34, 28, 28) : step(40, 32, 26, 26);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(34, 26, 24, 22);
-        if (area === "large-bottom") return twoLines ? step(38, 30, 28, 26) : step(40, 32, 28, 26);
+        if (area === "large-bottom") return twoLines ? step(38, 34, 28, 28) : step(40, 32, 28, 26);
         if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(22, 20, 18, 18);
         if (area === "small") return step(16, 14, 13, 13);
       }
