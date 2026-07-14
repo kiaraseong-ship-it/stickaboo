@@ -173,9 +173,9 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4줄) -----
     const bottomRows = 4;
-    const bottomHeight = 39;
+    const bottomHeight = 38.8;
     const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.57;
+    const bottomOffset = 0.56;
     const leftOffsetBottom = 0.76;
 
     for (let r = 0; r < bottomRows; r++) {
@@ -1350,7 +1350,7 @@ function initCustomizer(root) {
       }
       if (size === "medium") {
         const base = step(22, 20, 18, 17);
-        return area === "bottom" ? base * 0.85 : base;
+        return area === "bottom" ? base * 0.8 : base;
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(32, 26, 24, 20);
