@@ -1233,7 +1233,7 @@ function initCustomizer(root) {
       // ✅ NORMAL
       // =========================
       if (size === "small") {
-        return Math.max(10, Math.round(fs * 0.85)) + "px";
+        return Math.max(10, Math.round(fs * 0.8)) + "px";
       }
 
       if (size === "medium") {
