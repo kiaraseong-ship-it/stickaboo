@@ -223,7 +223,7 @@ p {
 @font-face {
   font-family: "BM JUA_TTF";
   src: url("/fonts/BMJUA_ttf.ttf") format("truetype");
-  font-weight: 100;
+  font-weight: 800;
   /* ⬅️ 100 → 400으로 수정 (주석과 실제 값이 안 맞았음) */
   font-style: normal;
 }

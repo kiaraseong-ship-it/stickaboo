@@ -1929,8 +1929,8 @@ function initCustomizer(root) {
           }))
           : null;
 
-        const fw1special = hasKorean(d1) ? "800" : "900";
-        const fw2special = d2 ? (hasKorean(d2) ? "800" : "900") : null;
+        const fw1special = hasKorean(d1) ? "900" : "900";
+        const fw2special = d2 ? (hasKorean(d2) ? "900" : "900") : null;
 
         if (special?.forceSingleLine) {
           el.innerHTML = `
@@ -1997,8 +1997,8 @@ function initCustomizer(root) {
         })
         : null;
 
-      const fw1 = hasKorean(d1) ? "800" : "900";
-      const fw2 = d2 ? (hasKorean(d2) ? "800" : "900") : null;
+      const fw1 = hasKorean(d1) ? "900" : "900";
+      const fw2 = d2 ? (hasKorean(d2) ? "900" : "900") : null;
 
       el.innerHTML = `
           <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"}; font-weight:${fw1};">
