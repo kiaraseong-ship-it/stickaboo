@@ -1345,7 +1345,7 @@ function initCustomizer(root) {
 
       // ✅ NORMAL
       if (size === "small") {
-        const base = step(16, 15, 14, 12);
+        const base = step(16, 15, 12, 11.5);
         return area === "bottom" ? base * 0.85 : base;
       }
       if (size === "medium") {
