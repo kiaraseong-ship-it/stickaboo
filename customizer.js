@@ -1263,7 +1263,7 @@ function initCustomizer(root) {
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-bottom") {
         // ✅ 규칙: line-height = font-size
-        return Math.max(10, fs - 3) + "px";
+        return Math.max(10, fs - 4) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "medium") {
@@ -1372,7 +1372,7 @@ function initCustomizer(root) {
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(34, 26, 24, 22);
-        if (area === "large-bottom") return twoLines ? step(36, 30, 28, 26) : step(40, 34, 30, 28);
+        if (area === "large-bottom") return twoLines ? step(40, 30, 28, 26) : step(44, 38, 30, 28);
         if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(22, 20, 18, 18);
         if (area === "small") return step(16, 14, 13, 13);
       }
