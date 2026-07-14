@@ -1354,7 +1354,7 @@ function initCustomizer(root) {
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(32, 26, 24, 20);
-        if (area === "bottom") return twoLines ? step(38, 32, 28, 28) : step(40, 32, 28, 26);
+        if (area === "bottom") return twoLines ? step(38, 32, 28, 28) : step(40, 32, 26, 26);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
