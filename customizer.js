@@ -152,10 +152,10 @@ function initCustomizer(root) {
 
     // ----- TOP (6줄) -----
     const topRows = 6;
-    const topHeight = 59;
+    const topHeight = 58.5;
     const cellWidth = 96 / cols;               // 32
     const cellHeightTop = topHeight / topRows;
-    const topOffset = 0.62;
+    const topOffset = 0.65;
     const leftOffset = 0.76;
 
     for (let r = 0; r < topRows; r++) {
@@ -173,9 +173,9 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4줄) -----
     const bottomRows = 4;
-    const bottomHeight = 38.9;
+    const bottomHeight = 38.8;
     const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.58;
+    const bottomOffset = 0.63;
     const leftOffsetBottom = 0.76;
 
     for (let r = 0; r < bottomRows; r++) {
@@ -411,155 +411,6 @@ function initCustomizer(root) {
       }
     }
 
-    return overlays;
-  }
-
-  // =========================================================
-  // ✅ Sports Generators (top/bottom 분리, 상수 기반)
-  // =========================================================
-  function generateSmallSportsOverlays() {
-    const overlays = [];
-    let id = 1;
-    const cols = 4;
-
-    // ----- TOP (8줄) — 배경 없음 -----
-    const topRows = 8;
-    const topHeight = 64.6;
-    const cellWidth = 96.5 / cols;               // 24
-    const cellHeightTop = topHeight / topRows;
-    const topOffset = 0.69;
-    const leftOffset = 0.845;                   // ← 아이콘과 이름 간격(키우면 오른쪽으로)
-
-    for (let r = 0; r < topRows; r++) {
-      for (let c = 0; c < cols; c++) {
-        overlays.push({
-          id: `small-text${id++}`,
-          top: `${(r + topOffset) * cellHeightTop}%`,
-          left: `${(c + leftOffset) * cellWidth}%`,
-          width: "85px",
-          textAlign: "left",
-          area: "top",
-        });
-      }
-    }
-
-    // ----- BOTTOM (4줄) — 뱃지(배경) 있음 -----
-    const bottomRows = 4;
-    const bottomHeight = 32.5;
-    const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.665;
-    const leftOffsetBottom = 0.865;
-
-    for (let r = 0; r < bottomRows; r++) {
-      for (let c = 0; c < cols; c++) {
-        overlays.push({
-          id: `small-text${id++}`,
-          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidth}%`,
-          width: "90px",
-          textAlign: "left",
-          area: "bottom",
-        });
-      }
-    }
-    return overlays;
-  }
-
-  function generateMediumSportsOverlays() {
-    const overlays = [];
-    let id = 1;
-    const cols = 3;
-
-    // ----- TOP (6줄) -----
-    const topRows = 6;
-    const topHeight = 59;
-    const cellWidth = 96 / cols;               // 32
-    const cellHeightTop = topHeight / topRows;
-    const topOffset = 0.62;
-    const leftOffset = 0.76;
-
-    for (let r = 0; r < topRows; r++) {
-      for (let c = 0; c < cols; c++) {
-        overlays.push({
-          id: `medium-text${id++}`,
-          top: `${(r + topOffset) * cellHeightTop}%`,
-          left: `${(c + leftOffset) * cellWidth}%`,
-          width: "100px",
-          textAlign: "left",
-          area: "top",
-        });
-      }
-    }
-
-    // ----- BOTTOM (4줄) -----
-    const bottomRows = 4;
-    const bottomHeight = 39;
-    const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.57;
-    const leftOffsetBottom = 0.76;
-
-    for (let r = 0; r < bottomRows; r++) {
-      for (let c = 0; c < cols; c++) {
-        overlays.push({
-          id: `medium-text${id++}`,
-          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidth}%`,
-          width: "105px",
-          textAlign: "left",
-          area: "bottom",
-        });
-      }
-    }
-    return overlays;
-  }
-
-  function generateLargeSportsOverlays() {
-    const overlays = [];
-    let id = 1;
-
-    // ----- TOP (2줄 × 3칸) — 아이콘 아래 이름(가운데) -----
-    const topRows = 2, topCols = 3;
-    const topHeight = 39;
-    const cellWidthTop = 96 / topCols;         // 32
-    const cellHeightTop = topHeight / topRows;
-    const spacingFactorTop = 1.0;
-    const topOffsetTop = 0.85;                  // ← 아이콘 바로 아래. 이 값으로 위아래 조정
-    const leftOffsetTop = 0.56;
-
-    for (let row = 0; row < topRows; row++) {
-      for (let col = 0; col < topCols; col++) {
-        overlays.push({
-          id: `large-text${id++}`,
-          top: `${(row * spacingFactorTop + topOffsetTop) * cellHeightTop}%`,
-          left: `${(col + leftOffsetTop) * cellWidthTop}%`,
-          width: "120px",
-          textAlign: "center",
-          area: "top",
-        });
-      }
-    }
-
-    // ----- BOTTOM (3줄 × 2칸) — 아이콘 오른쪽 이름 -----
-    const bottomRows = 3, bottomCols = 2;
-    const bottomHeight = 58;
-    const cellWidthBottom = 96 / bottomCols;   // 48
-    const cellHeightBottom = bottomHeight / bottomRows;
-    const spacingFactorBottom = 1.0;
-    const topOffsetBottom = 0.55;
-    const leftOffsetBottom = 0.76;
-
-    for (let row = 0; row < bottomRows; row++) {
-      for (let col = 0; col < bottomCols; col++) {
-        overlays.push({
-          id: `large-text${id++}`,
-          top: `${topHeight + (row * spacingFactorBottom + topOffsetBottom) * cellHeightBottom}%`,
-          left: `${(col + leftOffsetBottom) * cellWidthBottom}%`,
-          width: "140px",
-          textAlign: "left",
-          area: "bottom",
-        });
-      }
-    }
     return overlays;
   }
 
@@ -1151,12 +1002,6 @@ function initCustomizer(root) {
       if (size === "ml-mix") return generateMlMixOverlays();
     }
 
-    // ✅ SPORTS (지금은 s/m/l만)
-    if (theme === "sports" || theme === "monster" || theme === "flower" || theme === "flower2" || theme === "princess") {
-      if (size === "small") return generateSmallSportsOverlays();
-      if (size === "medium") return generateMediumSportsOverlays();
-      if (size === "large") return generateLargeSportsOverlays();
-    }
 
     return overlayConfigsBySize[size];
   }
