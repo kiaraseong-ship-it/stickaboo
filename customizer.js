@@ -173,7 +173,7 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4줄) -----
     const bottomRows = 4;
-    const bottomHeight = 38.8;
+    const bottomHeight = 38.7;
     const cellHeightBottom = bottomHeight / bottomRows;
     const bottomOffset = 0.63;
     const leftOffsetBottom = 0.76;
