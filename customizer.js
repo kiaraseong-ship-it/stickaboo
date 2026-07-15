@@ -1260,11 +1260,11 @@ function initCustomizer(root) {
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-bottom") {
         // ✅ 규칙: line-height = font-size
-        return Math.max(10, fs - 0) + "px";
+        return Math.max(10, fs - 2) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "medium") {
-        return Math.max(10, fs - 0) + "px";
+        return Math.max(10, fs - 2) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "small") {
