@@ -1083,7 +1083,7 @@ function initCustomizer(root) {
       }
 
       if (size === "medium") {
-        return Math.max(10, Math.round(fs * 0.85)) + "px";
+        return Math.max(10, Math.round(fs * 0.95)) + "px";
       }
 
 
