@@ -127,7 +127,7 @@ function initCustomizer(root) {
     const bottomHeight = 32.5;
     const cellWidthBottom = 96 / cols;   // ⬅️ 추가: bottom 전용 가로 폭 (top과 독립적으로 조절 가능)
     const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.665;
+    const bottomOffset = 0.65;
     const leftOffsetBottom = 0.865;
 
     for (let r = 0; r < bottomRows; r++) {
