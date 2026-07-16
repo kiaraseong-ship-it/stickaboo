@@ -1079,7 +1079,7 @@ function initCustomizer(root) {
       // ✅ NORMAL
       // =========================
       if (size === "small") {
-        return Math.max(10, Math.round(fs * 0.9)) + "px";
+        return Math.max(10, Math.round(fs * 0.8)) + "px";
       }
 
       if (size === "medium") {
@@ -1191,7 +1191,7 @@ function initCustomizer(root) {
       // ✅ NORMAL
       if (size === "small") {
         const base = step(16, 15, 13, 12);
-        return area === "bottom" ? base * 0.9 : base;
+        return area === "bottom" ? base * 0.85 : base;
       }
       if (size === "medium") {
         const base = step(22, 20, 18, 17);
