@@ -826,12 +826,12 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4 rows) -----
     const bottomRows = 4;
-    const bottomHeight = isMobile ? 31 : 32;
+    ;
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
     const cellWidthBottom = (isMobile ? 95 : 96) / cols;
-    const bottomOffset = isMobile ? 0.7 : 0.7;
+    const bottomOffset = isMobile ? 0.7 : 0.69;
     const leftOffsetBottom = isMobile ? 0.98 : 0.94;
 
     for (let r = 0; r < bottomRows; r++) {
