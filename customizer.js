@@ -826,7 +826,7 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4 rows) -----
     const bottomRows = 4;
-    const bottomHeight = isMobile ? 31 : 32.2;
+    const bottomHeight = isMobile ? 31 : 32;
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
