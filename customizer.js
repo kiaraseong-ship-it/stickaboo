@@ -637,9 +637,9 @@ function initCustomizer(root) {
     themeOverrides = {
       dino: {
         large: {
-          "large-text7": { top: "50.3%", left: "16%", width: "120px", fontSize: "9px" },
-          "large-text8": { top: "52%", left: "51%", width: "120px", fontSize: "9px" },
-          "large-text9": { top: "52%", left: "80%", width: "120px", fontSize: "9px" },
+          "large-text7": { top: "50.3%", left: "21.5%", width: "120px", fontSize: "9px" },
+          "large-text8": { top: "52%", left: "55.5%", width: "120px", fontSize: "9px" },
+          "large-text9": { top: "52%", left: "87%", width: "120px", fontSize: "9px" },
         },
         "sml-mix": {
           "smlmix-large-top2": {
@@ -660,11 +660,7 @@ function initCustomizer(root) {
           },
         },
       },
-      unicorn: {
-        large: {
-          "large-text7": { top: "54%", left: "18%", width: "120px", fontSize: "20px" },
-        },
-      },
+
       "jesus loves": {
         large: {
           "large-text5": { top: "31%", left: "49.5%", width: "120px", fontSize: "9px" },
@@ -728,9 +724,9 @@ function initCustomizer(root) {
     themeOverrides = {
       dino: {
         large: {
-          "large-text7": { top: "52.8%", left: "15.5%", width: "140px", fontSize: "10px" },
-          "large-text8": { top: "54.5%", left: "51.5%", width: "140px", fontSize: "10px" },
-          "large-text9": { top: "54.5%", left: "81%", width: "140px", fontSize: "10px" },
+          "large-text7": { top: "52.8%", left: "25.5%", width: "140px", fontSize: "10px" },
+          "large-text8": { top: "54.5%", left: "58%", width: "140px", fontSize: "10px" },
+          "large-text9": { top: "54.5%", left: "88%", width: "140px", fontSize: "10px" },
         },
         "sml-mix": {
           "smlmix-large-top2": {
