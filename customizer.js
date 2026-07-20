@@ -1169,7 +1169,7 @@ function initCustomizer(root) {
       // ✅ NAMEONLY
       if (theme === "nameonly") {
         if (size === "small") return step(24, 22, 20, 16);
-        if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(32, 30, 26, 22);
+        if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(40, 30, 26, 22);
 
         if (size === "large") {
           if (area === "top") return twoLines ? step(36, 34, 28, 24) : step(48, 42, 40, 36);
@@ -1596,7 +1596,7 @@ function initCustomizer(root) {
         } else {
           const fs = isMobile
             ? (len <= 5 ? 16 : len <= 7 ? 13 : len <= 9 ? 11 : 12)
-            : (len <= 5 ? 26 : len <= 7 ? 18 : len <= 9 ? 20 : 13);
+            : (len <= 5 ? 26 : len <= 7 ? 20 : len <= 9 ? 18 : 13);
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
