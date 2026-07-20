@@ -777,7 +777,7 @@ function initCustomizer(root) {
       kitty: {
         "sml-mix": {
           "smlmix-large-bottom4": { fontSize: "10px", top: "27.8%", left: "36%", width: "130px", textAlign: "left" },
-          "smlmix-large-bottom5": { fontSize: "10px", top: "28%", left: "76%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "29%", left: "76%", width: "130px", textAlign: "center" },
         },
         "ml-mix": {
           "mlmix-large-top4": { top: "34%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
@@ -1596,7 +1596,7 @@ function initCustomizer(root) {
         } else {
           const fs = isMobile
             ? (len <= 5 ? 16 : len <= 7 ? 13 : len <= 9 ? 11 : 12)
-            : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 13);
+            : (len <= 5 ? 26 : len <= 7 ? 18 : len <= 9 ? 20 : 13);
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
