@@ -1075,11 +1075,11 @@ function initCustomizer(root) {
       // ✅ NORMAL
       // =========================
       if (size === "small") {
-        return Math.max(10, Math.round(fs * 0.8)) + "px";
+        return Math.max(10, Math.round(fs * 0.85)) + "px";
       }
 
       if (size === "medium") {
-        return Math.max(10, Math.round(fs * 0.95)) + "px";
+        return Math.max(10, Math.round(fs * 0.85)) + "px";
       }
 
 
@@ -1187,11 +1187,11 @@ function initCustomizer(root) {
       // ✅ NORMAL
       if (size === "small") {
         const base = step(18, 15, 13, 12);
-        return area === "bottom" ? base * 1 : base;
+        return area === "bottom" ? base * 0.85 : base;
       }
       if (size === "medium") {
         const base = step(22, 20, 18, 17);
-        return area === "bottom" ? base * 0.9 : base;
+        return area === "bottom" ? base * 0.85 : base;
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(32, 26, 24, 20);
