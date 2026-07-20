@@ -637,9 +637,9 @@ function initCustomizer(root) {
     themeOverrides = {
       dino: {
         large: {
-          "large-text7": { top: "50.3%", left: "21.5%", width: "120px", fontSize: "9px" },
-          "large-text8": { top: "52%", left: "55.5%", width: "120px", fontSize: "9px" },
-          "large-text9": { top: "52%", left: "87%", width: "120px", fontSize: "9px" },
+          "large-text7": { top: "50.3%", left: "21.5%", width: "120px", fontSize: "9px", textAlign: "center", },
+          "large-text8": { top: "52%", left: "55.5%", width: "120px", fontSize: "9px", textAlign: "center", },
+          "large-text9": { top: "52%", left: "87%", width: "120px", fontSize: "9px", textAlign: "center", },
         },
         "sml-mix": {
           "smlmix-large-top2": {
@@ -724,9 +724,9 @@ function initCustomizer(root) {
     themeOverrides = {
       dino: {
         large: {
-          "large-text7": { top: "52.8%", left: "25.5%", width: "140px", fontSize: "10px" },
-          "large-text8": { top: "54.5%", left: "58%", width: "140px", fontSize: "10px" },
-          "large-text9": { top: "54.5%", left: "88%", width: "140px", fontSize: "10px" },
+          "large-text7": { top: "52.8%", left: "15.5%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text8": { top: "54.5%", left: "51%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text9": { top: "54.5%", left: "81%", width: "140px", fontSize: "10px", textAlign: "center", },
         },
         "sml-mix": {
           "smlmix-large-top2": {
@@ -1201,7 +1201,7 @@ function initCustomizer(root) {
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(34, 26, 24, 22);
-        if (area === "large-bottom") return twoLines ? step(38, 34, 28, 28) : step(40, 32, 28, 26);
+        if (area === "large-bottom") return twoLines ? step(38, 34, 28, 28) : step(40, 30, 28, 26);
         if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(24, 20, 18, 18);
         if (area === "small") return step(20, 14, 13, 13);
       }
