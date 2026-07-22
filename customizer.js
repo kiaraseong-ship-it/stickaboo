@@ -700,9 +700,9 @@ function initCustomizer(root) {
         "ml-mix": {
           "mlmix-large-top4": { top: "32.5%", left: "19%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top5": { top: "33%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "25%", left: "82%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom7": { top: "52%", left: "26%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom8": { top: "50.5%", left: "74%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "25.5%", left: "82%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "50%", left: "26%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "49%", left: "74%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
       Kitty: {
