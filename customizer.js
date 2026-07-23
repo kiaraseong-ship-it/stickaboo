@@ -173,7 +173,8 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4줄) -----
     const bottomRows = 4;
-    const bottomHeight = 38.7;
+    const bottomHeight = 39;
+    const cellWidthBottom = 96 / cols;
     const cellHeightBottom = bottomHeight / bottomRows;
     const bottomOffset = 0.62;
     const leftOffsetBottom = 0.76;
@@ -183,7 +184,7 @@ function initCustomizer(root) {
         overlays.push({
           id: `medium-text${id++}`,
           top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidth}%`,
+          left: `${(c + leftOffsetBottom) * cellWidthBottom}%`,
           width: "105px",
           textAlign: "left",
           area: "bottom",
@@ -191,7 +192,7 @@ function initCustomizer(root) {
       }
     }
     return overlays;
-  }
+  } ㅍ
 
   function generateLargeOverlays() {
     const overlays = [];
@@ -1195,7 +1196,7 @@ function initCustomizer(root) {
       if (size === "medium") {
         const base = step(22, 20, 18, 17);
         if (area === "bottom") {
-          return twoLines ? base * 0.85 : base * 0.9;
+          return twoLines ? base * 0.85 : base * 0.95;
         }
         return base;
       }
