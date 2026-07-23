@@ -175,7 +175,7 @@ function initCustomizer(root) {
     const bottomRows = 4;
     const bottomHeight = 38.7;
     const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.62;
+    const bottomOffset = 0.61;
     const leftOffsetBottom = 0.76;
 
     for (let r = 0; r < bottomRows; r++) {
