@@ -769,9 +769,9 @@ function initCustomizer(root) {
         "ml-mix": {
           "mlmix-large-top4": { top: "34%", left: "18.5%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top5": { top: "34%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "25.5%", left: "83%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom7": { top: "53%", left: "27.5%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom8": { top: "53%", left: "72.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "26%", left: "83%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "52.5%", left: "27.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "52.5%", left: "72.5%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
       kitty: {
@@ -822,7 +822,7 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4 rows) -----
     const bottomRows = 4;
-    ;
+    const bottomHeight = isMobile ? 31 : 32.2;   // ⬅️ 원래 있어야 할 선언 복원
 
     const cellHeightBottom = bottomHeight / bottomRows;
 
