@@ -839,7 +839,7 @@ function initCustomizer(root) {
           width: isMobile ? "75px" : "90px",
           textAlign: "left",
           area: "bottom",
-          forceSingleLine: true
+          // forceSingleLine: true
         });
       }
     }
@@ -895,7 +895,7 @@ function initCustomizer(root) {
           width: isMobile ? "85px" : "105px",
           textAlign: "left",
           area: "bottom",
-          forceSingleLine: true  // ✅ 수정: medium pet bottom도 한 줄 고정
+          // forceSingleLine: true  // ✅ 수정: medium pet bottom도 한 줄 고정
         });
       }
     }
