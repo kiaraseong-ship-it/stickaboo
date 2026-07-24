@@ -106,7 +106,7 @@ function initCustomizer(root) {
     const topHeight = 64.6;
     const cellWidth = 96.5 / cols;               // 24
     const cellHeightTop = topHeight / topRows;
-    const topOffset = 0.69;
+    const topOffset = 0.68;
     const leftOffset = 0.845;                   // ← 아이콘과 이름 간격(키우면 오른쪽으로)
 
     for (let r = 0; r < topRows; r++) {
