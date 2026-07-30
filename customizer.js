@@ -1124,6 +1124,21 @@ function initCustomizer(root) {
   function shouldForceBlack(config) {
     return (
       (
+        selectedTheme?.toLowerCase() === "dino" &&
+        (
+          (selectedSize === "large" && (
+            config.id === "large-text7" ||
+            config.id === "large-text8" ||
+            config.id === "large-text9"
+          )) ||
+          ((selectedSize === "sml-mix" || selectedSize === "ml-mix") && (
+            config.id === "smlmix-large-top2" ||
+            config.id === "mlmix-large-top2"
+          ))
+        ) &&
+        selectedFontColor === "#FFFFFF"
+      ) ||
+      (
         (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
         (
           (selectedSize === "ml-mix" && (
@@ -1201,7 +1216,7 @@ function initCustomizer(root) {
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 26, 24, 22);
-        if (area === "large-bottom") return twoLines ? step(38, 32, 28, 28) : step(36, 32, 28, 26);
+        if (area === "large-bottom") return twoLines ? step(38, 32, 28, 28) : step(35, 32, 28, 26);
         if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(24, 20, 18, 18);
         if (area === "small") return step(18, 14, 13, 13);
       }
@@ -1680,6 +1695,21 @@ function initCustomizer(root) {
 
       function shouldForceBlack(config) {
         return (
+          (
+            selectedTheme?.toLowerCase() === "dino" &&
+            (
+              (selectedSize === "large" && (
+                config.id === "large-text7" ||
+                config.id === "large-text8" ||
+                config.id === "large-text9"
+              )) ||
+              ((selectedSize === "sml-mix" || selectedSize === "ml-mix") && (
+                config.id === "smlmix-large-top2" ||
+                config.id === "mlmix-large-top2"
+              ))
+            ) &&
+            selectedFontColor === "#FFFFFF"
+          ) ||
           (
             (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
             (
