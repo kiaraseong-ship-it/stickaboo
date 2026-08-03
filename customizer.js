@@ -1261,7 +1261,7 @@ function initCustomizer(root) {
       // ✅ NORMAL
       if (size === "small") {
         const base = step(16, 14, 13, 11.5);
-        return area === "bottom" ? Math.round(base * 0.85) : base;
+        return area === "bottom" ? Math.round(base * 0.95) : base;
       }
       if (size === "medium") {
         const base = step(22, 20, 18, 17);
