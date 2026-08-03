@@ -6,6 +6,48 @@ function initCustomizer(root) {
     return /[ㄱ-ㅎㅏ-ㅣ가-힣]/.test(text || "");
   }
 
+  // ✅ 텍스트 실제 렌더 폭 측정 (canvas)
+  function measureTextWidth(text, font) {
+    const ctx =
+      measureTextWidth._ctx ||
+      (measureTextWidth._ctx = document.createElement("canvas").getContext("2d"));
+    ctx.font = font;
+    return ctx.measureText(text || "").width;
+  }
+
+  // ✅ width 기준 폰트 축소 (XL 방식)
+  //    글자수 로직으로 정한 fs를 상한으로 두고, 실제 픽셀 폭이 박스보다 넓으면 정수 px로 줄임
+  function fitAllOverlaysToWidth() {
+    const SIDE_PAD = 0; // 좌우 여유 필요하면 2~4 주면 됨
+
+    currentOverlays.forEach(config => {
+      const el = root.querySelector(`#${config.id}`);
+      if (!el) return;
+
+      const maxW = (parseFloat(config.width) || 0) - SIDE_PAD;
+      if (maxW <= 0) return;
+
+      el.querySelectorAll("div").forEach(line => {
+        const text = (line.textContent || "").trim();
+        if (!text) return;
+
+        const fs = parseFloat(line.style.fontSize);
+        if (!fs) return;
+
+        const cs = getComputedStyle(line);
+        const family = cs.fontFamily || "sans-serif";
+        const weight = cs.fontWeight || "900";
+
+        const w = measureTextWidth(text, `${weight} ${fs}px ${family}`);
+        if (w > maxW) {
+          // 정수 px로만 축소 (소수점 → scale:4 저장 시 밀림 방지)
+          const scaled = Math.max(6, Math.floor((fs * maxW) / w));
+          line.style.fontSize = scaled + "px";
+        }
+      });
+    });
+  }
+
 
   // ✅ Just Character면 텍스트 섹션 제거
   const isCharacter = root.dataset.isCharacter === "true";
@@ -1878,18 +1920,8 @@ function initCustomizer(root) {
         return;
       }
 
-      const fs1 = Number(
-        getLineFontSize({
-          size: selectedSize,
-          area: config.area,
-          len: effectiveLen,
-          twoLines: effectiveTwoLines,
-          theme: selectedTheme,
-        }) * scale
-      );
-
-      const rawFs2 = d2
-        ? Number(
+      const fs1 = Math.round(
+        Number(
           getLineFontSize({
             size: selectedSize,
             area: config.area,
@@ -1897,6 +1929,20 @@ function initCustomizer(root) {
             twoLines: effectiveTwoLines,
             theme: selectedTheme,
           }) * scale
+        )
+      );
+
+      const rawFs2 = d2
+        ? Math.round(
+          Number(
+            getLineFontSize({
+              size: selectedSize,
+              area: config.area,
+              len: effectiveLen,
+              twoLines: effectiveTwoLines,
+              theme: selectedTheme,
+            }) * scale
+          )
         )
         : null;
 
@@ -1935,6 +1981,9 @@ function initCustomizer(root) {
         }
         `;
     });
+
+    // ✅ 렌더 끝난 뒤 width 기준으로 한 번 더 보정 (대문자 등 실제 폭 초과 시 축소)
+    fitAllOverlaysToWidth();
   }
   // =========================================================
   // ✅ Handlers
@@ -2079,6 +2128,9 @@ function initCustomizer(root) {
   updatePreview();
   renderOverlays(selectedSize);
   updateOverlayText();
+
+  // ✅ 웹폰트 로드 완료 후 폭 재측정 (fallback 폰트로 잰 값 보정)
+  if (document.fonts?.ready) document.fonts.ready.then(updateOverlayText);
 }
 
 // mount on normal page load
