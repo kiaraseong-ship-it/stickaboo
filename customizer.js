@@ -640,6 +640,7 @@ function initCustomizer(root) {
           "large-text7": { top: "50.3%", left: "21.5%", width: "120px", fontSize: "9px", textAlign: "center", },
           "large-text8": { top: "52%", left: "55.5%", width: "120px", fontSize: "9px", textAlign: "center", },
           "large-text9": { top: "52%", left: "87%", width: "120px", fontSize: "9px", textAlign: "center", },
+          "large-text10": { top: "XX%", left: "XX%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
         "sml-mix": {
           "smlmix-large-top2": {
@@ -727,6 +728,10 @@ function initCustomizer(root) {
           "large-text7": { top: "52.8%", left: "15.5%", width: "140px", fontSize: "10px", textAlign: "center", },
           "large-text8": { top: "54.5%", left: "51%", width: "140px", fontSize: "10px", textAlign: "center", },
           "large-text9": { top: "54.5%", left: "81%", width: "140px", fontSize: "10px", textAlign: "center", },
+          // "large-text10": { top: "68.5%", left: "36.5%", width: "140px", fontSize: "10px", textAlign: "left" },
+          // "large-text11": { top: "68.5%", left: "84.5%", width: "140px", fontSize: "10px", textAlign: "left" },
+          // "large-text12": { top: "88.5%", left: "36.5%", width: "140px", fontSize: "10px", textAlign: "left" },
+          // "large-text13": { top: "88.5%", left: "84.5%", width: "140px", fontSize: "10px", textAlign: "left" },
         },
         "sml-mix": {
           "smlmix-large-top2": {
@@ -973,6 +978,54 @@ function initCustomizer(root) {
     return overlays;
   }
 
+  function generateLargeDinoOverlays() {
+    const overlays = [];
+    let id = 1;
+
+    // ----- TOP (3×3 = 9개) -----
+    const topRows = 3, topCols = 3;
+    const topHeight = 58;
+    const cellWidthTop = 97 / topCols;
+    const cellHeightTop = topHeight / topRows;
+    const topOffsetTop = 0.85;
+    const leftOffsetTop = 0.52;
+
+    for (let row = 0; row < topRows; row++) {
+      for (let col = 0; col < topCols; col++) {
+        overlays.push({
+          id: `large-text${id++}`,
+          top: `${(row + topOffsetTop) * cellHeightTop}%`,
+          left: `${(col + leftOffsetTop) * cellWidthTop}%`,
+          width: "120px",
+          textAlign: "center",
+          area: "top",
+        });
+      }
+    }
+
+    // ----- BOTTOM (2×2 = 4개) -----
+    const bottomRows = 2, bottomCols = 2;
+    const bottomHeight = 40;
+    const cellWidthBottom = 96 / bottomCols;
+    const cellHeightBottom = bottomHeight / bottomRows;
+    const bottomOffset = 0.55;
+    const leftOffsetBottom = 0.76;
+
+    for (let row = 0; row < bottomRows; row++) {
+      for (let col = 0; col < bottomCols; col++) {
+        overlays.push({
+          id: `large-text${id++}`,   // text10~13
+          top: `${topHeight + (row + bottomOffset) * cellHeightBottom}%`,
+          left: `${(col + leftOffsetBottom) * cellWidthBottom}%`,
+          width: "140px",
+          textAlign: "left",
+          area: "bottom",
+        });
+      }
+    }
+    return overlays;
+  }
+
   // base configs
   const overlayConfigsBySize = {
     small: generateSmallOverlays(),
@@ -997,6 +1050,12 @@ function initCustomizer(root) {
       if (size === "sml-mix") return generateSmlMixOverlays();
       if (size === "ml-mix") return generateMlMixOverlays();
     }
+
+    // ✅ dino large만 예외
+    if (themeKey === "dino" && size === "large") {
+      return generateLargeDinoOverlays();
+    }
+
 
 
     return overlayConfigsBySize[size];
