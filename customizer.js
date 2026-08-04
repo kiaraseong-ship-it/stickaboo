@@ -1318,8 +1318,8 @@ function initCustomizer(root) {
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 26, 24, 22);
         if (area === "large-bottom") return twoLines ? step(38, 32, 28, 28) : step(42, 32, 28, 26);
-        if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(24, 20, 18, 18);
-        if (area === "small") return step(18, 14, 13, 13);
+        if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(24, 20, 18, 17);
+        if (area === "small") return step(18, 14, 13, 12);
       }
 
       return 22;
