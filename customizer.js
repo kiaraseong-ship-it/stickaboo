@@ -1260,6 +1260,12 @@ function initCustomizer(root) {
         selectedFontColor === "#F5A3B7"
       ) ||
       (
+        selectedTheme?.toLowerCase() === "puppy" &&
+        selectedSize === "sml-mix" &&
+        (config.id === "smlmix-large-bottom4" || config.id === "smlmix-large-bottom5") &&
+        selectedFontColor === "#F5A3B7"
+      ) ||
+      (
         (selectedSize === "small" || selectedSize === "medium") &&
         config.area === "bottom" &&
         selectedFontColor === "#FFFFFF"
@@ -1829,6 +1835,12 @@ function initCustomizer(root) {
             selectedTheme?.toLowerCase() === "kitty" &&
             selectedSize === "sml-mix" &&
             config.id === "smlmix-large-bottom5" &&
+            selectedFontColor === "#F5A3B7"
+          ) ||
+          (
+            selectedTheme?.toLowerCase() === "puppy" &&
+            selectedSize === "sml-mix" &&
+            (config.id === "smlmix-large-bottom4" || config.id === "smlmix-large-bottom5") &&
             selectedFontColor === "#F5A3B7"
           ) ||
           (
