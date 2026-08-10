@@ -1311,11 +1311,15 @@ function initCustomizer(root) {
         const base = twoLines
           ? step(16, 13, 12, 10)
           : step(16, 14, 13, 11);
-        return area === "bottom" ? Math.round(base * 1) : base;
+        const bottomScale = twoLines ? 0.9 : 1;
+        return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "medium") {
-        const base = step(22, 20, 18, 17);
-        return area === "bottom" ? Math.round(base * 0.9) : base;
+        const base = twoLines
+          ? step(22, 20, 18, 17)
+          : step(22, 20, 18, 17);
+        const bottomScale = twoLines ? 0.85 : 0.9;
+        return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(34, 28, 24, 20);
