@@ -1308,7 +1308,9 @@ function initCustomizer(root) {
 
       // ✅ NORMAL
       if (size === "small") {
-        const base = step(16, 14, 13, 11.5);
+        const base = twoLines
+          ? step(16, 13, 12, 10)
+          : step(16, 14, 13, 11);
         return area === "bottom" ? Math.round(base * 0.9) : base;
       }
       if (size === "medium") {
