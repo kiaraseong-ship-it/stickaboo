@@ -1311,7 +1311,7 @@ function initCustomizer(root) {
         const base = twoLines
           ? step(16, 13, 12, 10)
           : step(16, 14, 13, 11);
-        return area === "bottom" ? Math.round(base * 0.9) : base;
+        return area === "bottom" ? Math.round(base * 1) : base;
       }
       if (size === "medium") {
         const base = step(22, 20, 18, 17);
@@ -1325,7 +1325,7 @@ function initCustomizer(root) {
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 26, 24, 22);
-        if (area === "large-bottom") return twoLines ? step(38, 32, 28, 28) : step(40, 32, 28, 26);
+        if (area === "large-bottom") return twoLines ? step(38, 32, 28, 28) : step(42, 32, 28, 26);
         if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(24, 20, 18, 17);
         if (area === "small") return step(18, 14, 13, 12);
       }
