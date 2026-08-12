@@ -1169,9 +1169,7 @@ function initCustomizer(root) {
         return Math.max(10, fs - 2) + "px";
       }
 
-      // =========================
-      // ✅ NORMAL
-      // =========================
+
       // =========================
       // ✅ NORMAL
       // =========================
@@ -1180,7 +1178,7 @@ function initCustomizer(root) {
       }
 
       if (size === "medium") {
-        return Math.max(10, Math.round(fs * 0.85)) + "px";
+        return Math.max(10, Math.round(fs * 0.9)) + "px";
       }
 
 
