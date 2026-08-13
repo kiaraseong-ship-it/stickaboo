@@ -1384,8 +1384,8 @@ function initCustomizer(root) {
       if (theme === "dino" && (size === "sml-mix" || size === "ml-mix")) {
         if (id === "smlmix-large-top2" || id === "mlmix-large-top2") {
           if (twoLines) {
-            const fs = len <= 9 ? 14 : 10;
-            const lh = len <= 9 ? 12 : 8;
+            const fs = len <= 9 ? 14 : 11;
+            const lh = len <= 9 ? 12 : 11;
             return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
             const fs = len <= 5 ? 22 : len <= 9 ? 15 : len <= 12 ? 12 : 12;
