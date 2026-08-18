@@ -1296,7 +1296,7 @@ function initCustomizer(root) {
 
         if (size === "sml-mix" || size === "ml-mix") {
           if (area === "large-top") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 42, 36);
-          if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
+          if (area === "medium") return twoLines ? step(22, 22, 20, 16) : step(24, 22, 20, 18);
           if (area === "small") return twoLines ? step(18, 16, 14, 12) : step(20, 18, 16, 14);
         }
       }
