@@ -1200,7 +1200,7 @@ function initCustomizer(root) {
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-bottom") {
         // ✅ 규칙: line-height = font-size
-        return Math.max(10, fs - 2) + "px";
+        return Math.max(10, fs - 6) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "medium") {
@@ -1321,7 +1321,7 @@ function initCustomizer(root) {
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(34, 28, 24, 20);
-        if (area === "bottom") return twoLines ? step(34, 32, 28, 28) : step(42, 34, 26, 26);
+        if (area === "bottom") return twoLines ? step(30, 30, 28, 28) : step(42, 34, 26, 26);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
