@@ -1,4 +1,5 @@
 function initCustomizer(root) {
+
   if (!root) return;
 
   // ✅ 한글 감지 헬퍼
@@ -13,6 +14,29 @@ function initCustomizer(root) {
       (measureTextWidth._ctx = document.createElement("canvas").getContext("2d"));
     ctx.font = font;
     return ctx.measureText(text || "").width;
+  }
+
+  // ✅ [FIX] 짝수 정수 px 헬퍼
+  //    small/medium bottom의 line-height를 짝수 px로 강제 → 요소 높이가 짝수 정수
+  //    → translateY(-50%)가 항상 정수 px로 계산되어 html2canvas(scale:4) 저장 시 밀림 방지
+  //    ⚠️ wrapper의 top/left/transform은 절대 건드리지 않음 (위치 그대로)
+  function evenPx(n) {
+    let v = Math.max(6, Math.round(Number(n) || 0));
+    if (v % 2 !== 0) v += 1;
+    return v + "px";
+  }
+
+  function isSmallMediumBottom(size, area) {
+    return (size === "small" || size === "medium") && area === "bottom";
+  }
+
+  // 이미 계산된 line-height 값(px 문자열 또는 배수)을 짝수 px로 변환
+  function toEvenLineHeight(lhValue, fontSizePx) {
+    const s = String(lhValue);
+    const num = parseFloat(s);
+    if (!num) return lhValue;
+    const px = s.includes("px") ? num : num * Number(fontSizePx);
+    return evenPx(px);
   }
 
   // ✅ width 기준 폰트 축소 (XL 방식)
@@ -45,33 +69,6 @@ function initCustomizer(root) {
           line.style.fontSize = scaled + "px";
         }
       });
-    });
-  }
-
-  // ✅ small/medium bottom: html2canvas 저장 시 아래로 밀리는 것 방지
-  //    wrapper 높이를 짝수 정수(px)로 고정 → translateY(-50%)가 항상 정수 px로 계산됨
-  function lockBottomOverlayHeights() {
-    if (selectedSize !== "small" && selectedSize !== "medium") return;
-
-    currentOverlays.forEach(config => {
-      if (config.area !== "bottom") return;
-
-      const el = root.querySelector(`#${config.id}`);
-      if (!el) return;
-
-      const wrapper = el.closest(".overlay-item");
-      if (!wrapper) return;
-
-      // 세로 중앙정렬을 flex로 (중심은 그대로 top 위치에 유지됨)
-      wrapper.style.display = "flex";
-      wrapper.style.flexDirection = "column";
-      wrapper.style.justifyContent = "center";
-
-      // 자연 높이 측정 → 짝수 px로 고정
-      wrapper.style.height = "auto";
-      let h = el.offsetHeight;      // 정수 layout px (상위 transform/scale 영향 없음)
-      if (h % 2 !== 0) h += 1;      // 짝수여야 -50%가 정수 px
-      wrapper.style.height = h + "px";
     });
   }
 
@@ -159,6 +156,7 @@ function initCustomizer(root) {
 
     return `${safeFirst}${safeLast ? "-" + safeLast : ""}-${size}-${theme}.png`;
   }
+
 
   // =========================================================
   // ✅ Overlay Generators (DESKTOP ONLY: 모바일 로직 제거)
@@ -1176,7 +1174,8 @@ function initCustomizer(root) {
   // =========================================================
   // ✅ Line-height logic
   // =========================================================
-  function getLineHeightPx({ theme, size, area, twoLines, fontSizePx }) {
+  // 원본 로직 (이름만 Raw로 변경, 내용 동일)
+  function getLineHeightPxRaw({ theme, size, area, twoLines, fontSizePx }) {
     const fs = Math.round(Number(fontSizePx));
 
     const byFont = (map, fallback = null) => {
@@ -1239,6 +1238,14 @@ function initCustomizer(root) {
     // ✅ 1줄 (기존 비율 유지)
     if (area === "large-bottom") return "1.05";
     return "1.1";
+  }
+
+  // ✅ [FIX] small/medium bottom만 line-height를 짝수 px로 정규화
+  //    (나머지 size/area는 원본 값 그대로 반환 → 기존 레이아웃 100% 유지)
+  function getLineHeightPx(args) {
+    const raw = getLineHeightPxRaw(args);
+    if (!isSmallMediumBottom(args.size, args.area)) return raw;
+    return toEvenLineHeight(raw, args.fontSizePx);
   }
 
   function shouldForceBlack(config) {
@@ -1908,7 +1915,7 @@ function initCustomizer(root) {
         const fs1 = special.fs;
         const fs2 = d2 ? (special.fs2 ?? special.fs) : null;
 
-        const lh1 = special.lh1 ?? getLineHeightPx({
+        let lh1 = special.lh1 ?? getLineHeightPx({
           theme: selectedTheme,
           twoLines: effectiveTwoLines,
           size: selectedSize,
@@ -1916,7 +1923,7 @@ function initCustomizer(root) {
           fontSizePx: fs1,
         });
 
-        const lh2 = fs2 != null
+        let lh2 = fs2 != null
           ? (special.lh2 ?? getLineHeightPx({
             theme: selectedTheme,
             twoLines: effectiveTwoLines,
@@ -1925,6 +1932,12 @@ function initCustomizer(root) {
             fontSizePx: fs2,
           }))
           : null;
+
+        // ✅ [FIX] special 경로에서도 small/medium bottom은 짝수 px로 정규화
+        if (isSmallMediumBottom(selectedSize, config.area)) {
+          lh1 = toEvenLineHeight(lh1, fs1);
+          if (lh2 != null) lh2 = toEvenLineHeight(lh2, fs2);
+        }
 
         const fw1special = hasKorean(d1) ? "900" : "900";
         const fw2special = d2 ? (hasKorean(d2) ? "900" : "900") : null;
@@ -2016,9 +2029,6 @@ function initCustomizer(root) {
 
     // ✅ 렌더 끝난 뒤 width 기준으로 한 번 더 보정 (대문자 등 실제 폭 초과 시 축소)
     fitAllOverlaysToWidth();
-
-    // ✅ bottom 높이 고정 (저장 시 아래로 밀림 방지)
-    lockBottomOverlayHeights();
   }
 
   // =========================================================
