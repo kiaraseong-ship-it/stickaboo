@@ -48,6 +48,32 @@ function initCustomizer(root) {
     });
   }
 
+  // ✅ small/medium bottom: html2canvas 저장 시 아래로 밀리는 것 방지
+  //    wrapper 높이를 짝수 정수(px)로 고정 → translateY(-50%)가 항상 정수 px로 계산됨
+  function lockBottomOverlayHeights() {
+    if (selectedSize !== "small" && selectedSize !== "medium") return;
+
+    currentOverlays.forEach(config => {
+      if (config.area !== "bottom") return;
+
+      const el = root.querySelector(`#${config.id}`);
+      if (!el) return;
+
+      const wrapper = el.closest(".overlay-item");
+      if (!wrapper) return;
+
+      // 세로 중앙정렬을 flex로 (중심은 그대로 top 위치에 유지됨)
+      wrapper.style.display = "flex";
+      wrapper.style.flexDirection = "column";
+      wrapper.style.justifyContent = "center";
+
+      // 자연 높이 측정 → 짝수 px로 고정
+      wrapper.style.height = "auto";
+      let h = el.offsetHeight;      // 정수 layout px (상위 transform/scale 영향 없음)
+      if (h % 2 !== 0) h += 1;      // 짝수여야 -50%가 정수 px
+      wrapper.style.height = h + "px";
+    });
+  }
 
   // ✅ Just Character면 텍스트 섹션 제거
   const isCharacter = root.dataset.isCharacter === "true";
@@ -133,7 +159,6 @@ function initCustomizer(root) {
 
     return `${safeFirst}${safeLast ? "-" + safeLast : ""}-${size}-${theme}.png`;
   }
-
 
   // =========================================================
   // ✅ Overlay Generators (DESKTOP ONLY: 모바일 로직 제거)
@@ -1098,8 +1123,6 @@ function initCustomizer(root) {
       return generateLargeDinoOverlays();
     }
 
-
-
     return overlayConfigsBySize[size];
   }
 
@@ -1169,7 +1192,6 @@ function initCustomizer(root) {
         return Math.max(10, fs - 2) + "px";
       }
 
-
       // =========================
       // ✅ NORMAL
       // =========================
@@ -1180,7 +1202,6 @@ function initCustomizer(root) {
       if (size === "medium") {
         return Math.max(10, Math.round(fs * 0.9)) + "px";
       }
-
 
       if (size === "large" && area === "top") {
         return byFont({ 24: 22, 22: 20, 20: 18, 18: 16 });
@@ -1301,8 +1322,6 @@ function initCustomizer(root) {
         }
       }
 
-
-
       // ✅ NORMAL
       if (size === "small") {
         const base = twoLines
@@ -1326,7 +1345,7 @@ function initCustomizer(root) {
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 26, 24, 22);
-        if (area === "large-bottom") return twoLines ? step(36, 32, 28, 26) : step(40, 32, 29, 26);
+        if (area === "large-bottom") return twoLines ? step(36, 32, 28, 26) : step(42, 32, 29, 26);
         if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(24, 20, 18, 17);
         if (area === "small") return step(18, 14, 13, 12);
       }
@@ -1392,8 +1411,6 @@ function initCustomizer(root) {
           }
         }
       }
-
-
 
       // ------------------------
       // jesus loves - LARGE
@@ -1999,7 +2016,11 @@ function initCustomizer(root) {
 
     // ✅ 렌더 끝난 뒤 width 기준으로 한 번 더 보정 (대문자 등 실제 폭 초과 시 축소)
     fitAllOverlaysToWidth();
+
+    // ✅ bottom 높이 고정 (저장 시 아래로 밀림 방지)
+    lockBottomOverlayHeights();
   }
+
   // =========================================================
   // ✅ Handlers
   // =========================================================
