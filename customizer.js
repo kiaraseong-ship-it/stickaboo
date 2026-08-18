@@ -1288,9 +1288,8 @@ function initCustomizer(root) {
 
       // ✅ NAMEONLY
       if (theme === "nameonly") {
-        if (size === "small") return step(20, 18, 16, 14);
-        if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(40, 30, 26, 22);
-
+        if (size === "small") return twoLines ? step(20, 18, 16, 14) : step(20, 18, 16, 14);
+        if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
         if (size === "large") {
           if (area === "top") return twoLines ? step(36, 34, 28, 24) : step(48, 42, 40, 36);
         }
