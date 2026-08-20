@@ -22,8 +22,8 @@ function initCustomizer(root) {
   //    ⚠️ wrapper의 top/left/transform은 절대 건드리지 않음 (위치 그대로)
   function evenPx(n) {
     let v = Math.max(6, Math.round(Number(n) || 0));
-    if (v % 2 !== 0) v += 1;
-    return v + "px";
+    if (v % 2 !== 0) v -= 1;   // ⬅️ 홀수는 내림 (기존: v += 1 → 간격 벌어짐)
+    return Math.max(6, v) + "px";
   }
 
   function isSmallMediumBottom(size, area) {
@@ -1341,7 +1341,7 @@ function initCustomizer(root) {
         const base = twoLines
           ? step(22, 20, 18, 17)
           : step(22, 20, 18, 17);
-        const bottomScale = twoLines ? 0.85 : 0.9;
+        const bottomScale = twoLines ? 0.8 : 0.9;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
