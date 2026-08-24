@@ -16,40 +16,30 @@ document.addEventListener("DOMContentLoaded", () => {
   saveBtn.textContent = "Save PNG (4x size)"; // 버튼 텍스트도 오해 없게
 
   saveBtn.addEventListener("click", async () => {
-    const canvas = await html2canvas(capture, {
-      backgroundColor: null,
-      scale: CAPTURE_SCALE,
-      useCORS: true,
+    const capture = document.querySelector(".print-capture");
+    if (!capture) return;
 
-      // ✅ 화면 크기 고정 (캡처 시 재배치 방지)
-      width: capture.offsetWidth,
-      height: capture.offsetHeight,
-      windowWidth: document.documentElement.offsetWidth,
-      windowHeight: document.documentElement.offsetHeight,
-      scrollX: 0,
-      scrollY: 0,
+    const first = document.querySelector("#user-text")?.value || "firstname";
+    const last = document.querySelector("#user-text-last-name")?.value || "";
+    const size =
+      document.querySelector(".size-btn.active")?.dataset.size || "size";
+    const theme =
+      document.querySelector(".theme-btn.active")?.dataset.theme || "theme";
 
-      // ✅ 복제본에만 적용 (화면에는 영향 없음)
-      onclone: (doc) => {
-        const liveLines = capture.querySelectorAll(".text-overlay div");
-        const cloneLines = doc.querySelectorAll(".text-overlay div");
+    const baseName =
+      `${slug(first)}${last ? "-" + slug(last) : ""}-${slug(size)}-${slug(theme)}`;
 
-        cloneLines.forEach((cl, i) => {
-          const live = liveLines[i];
-          if (!live) return;
+    for (let i = 1; i <= DOWNLOAD_COUNT; i++) {
+      const canvas = await html2canvas(capture, {
+        backgroundColor: null,
+        scale: CAPTURE_SCALE,
+        useCORS: true,
+      });
 
-          // 브라우저가 실제로 쓴 값을 정수 px로 고정해서 복제본에 심음
-          const cs = getComputedStyle(live);
-          cl.style.fontSize = Math.round(parseFloat(cs.fontSize)) + "px";
-          cl.style.lineHeight = Math.round(parseFloat(cs.lineHeight)) + "px";
-        });
-
-        // ✅ 밀림 미세보정 (px). 아래로 밀리면 음수, 위로 밀리면 양수
-        const OFFSET_Y = 0;
-        if (OFFSET_Y !== 0) {
-          doc.querySelectorAll(".text-overlay").forEach(el => {
-            el.style.marginTop = OFFSET_Y + "px";
-          });
-        }
-      },
-    });
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = `${baseName}.png`;
+      link.click();
+    }
+  });
+});
