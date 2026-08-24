@@ -192,7 +192,7 @@ function initCustomizer(root) {
     const bottomHeight = 32.5;
     const cellWidthBottom = 96 / cols;   // ⬅️ 추가: bottom 전용 가로 폭 (top과 독립적으로 조절 가능)
     const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.64;
+    const bottomOffset = 0.65;
     const leftOffsetBottom = 0.865;
 
     for (let r = 0; r < bottomRows; r++) {
@@ -1324,7 +1324,8 @@ function initCustomizer(root) {
 
         if (size === "sml-mix" || size === "ml-mix") {
           if (area === "large-top") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 42, 36);
-          if (area === "medium") return twoLines ? step(22, 22, 20, 16) : step(24, 22, 20, 18);
+          // 변경 후
+          if (area === "medium") return step(22, 20, 18, 17);
           if (area === "small") return twoLines ? step(18, 16, 14, 12) : step(20, 18, 16, 14);
         }
       }
