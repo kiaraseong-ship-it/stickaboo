@@ -860,118 +860,7 @@ function initCustomizer(root) {
     };
   }
 
-  function generateSmallPetOverlays() {
-    const overlays = [];
-    let id = 1;
-    const isMobile = window.innerWidth <= 600;
 
-    const cols = 4;
-
-    // ----- TOP (8 rows) -----
-    const topRows = 8;
-    const topHeight = isMobile ? 64 : 64.5;
-
-    const cellWidth = (isMobile ? 94 : 96) / cols;
-    const cellHeightTop = topHeight / topRows;
-
-    const topOffset = isMobile ? 0.7 : 0.68;
-    const leftOffset = isMobile ? 0.9 : 0.89;
-
-    for (let r = 0; r < topRows; r++) {
-      for (let c = 0; c < cols; c++) {
-        overlays.push({
-          id: `small-text${id++}`,
-          top: `${(r + topOffset) * cellHeightTop}%`,
-          left: `${(c + leftOffset) * cellWidth}%`,
-          width: isMobile ? "70px" : "85px",
-          textAlign: "left",
-          area: "top"
-        });
-      }
-    }
-
-    // ----- BOTTOM (4 rows) -----
-    const bottomRows = 4;
-    const bottomHeight = isMobile ? 31 : 32.2;   // ⬅️ 원래 있어야 할 선언 복원
-
-    const cellHeightBottom = bottomHeight / bottomRows;
-
-    const cellWidthBottom = (isMobile ? 95 : 96) / cols;
-    const bottomOffset = isMobile ? 0.7 : 0.69;
-    const leftOffsetBottom = isMobile ? 0.98 : 0.94;
-
-    for (let r = 0; r < bottomRows; r++) {
-      for (let c = 0; c < cols; c++) {
-        overlays.push({
-          id: `small-text${id++}`,
-          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidthBottom}%`,
-          width: isMobile ? "75px" : "90px",
-          textAlign: "left",
-          area: "bottom",
-          // forceSingleLine: true
-        });
-      }
-    }
-
-    return overlays;
-  }
-
-  function generateMediumPetOverlays() {
-    const overlays = [];
-    let id = 1;
-    const isMobile = window.innerWidth <= 600;
-
-    const cols = 3;
-
-    // ----- TOP (6 rows) -----
-    const topRows = 6;
-    const topHeight = isMobile ? 55.5 : 58;
-
-    const cellWidth = (isMobile ? 95 : 95) / cols;
-    const cellHeightTop = topHeight / topRows;
-
-    const topOffset = isMobile ? 0.65 : 0.66;
-    const leftOffset = isMobile ? 0.77 : 0.77;
-
-    for (let r = 0; r < topRows; r++) {
-      for (let c = 0; c < cols; c++) {
-        overlays.push({
-          id: `medium-text${id++}`,
-          top: `${(r + topOffset) * cellHeightTop}%`,
-          left: `${(c + leftOffset) * cellWidth}%`,
-          width: isMobile ? "80px" : "100px",
-          textAlign: "left",
-          area: "top"
-        });
-      }
-    }
-
-    // ----- BOTTOM (4 rows) -----
-    const bottomRows = 4;
-    const bottomHeight = isMobile ? 37.2 : 39;
-
-    const cellHeightBottom = bottomHeight / bottomRows;
-
-    const bottomOffset = isMobile ? 0.66 : 0.69;
-    const leftOffsetBottom = isMobile ? 0.88 : 0.88;
-
-    for (let r = 0; r < bottomRows; r++) {
-      for (let c = 0; c < cols; c++) {
-        overlays.push({
-          id: `medium-text${id++}`,
-          top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidth}%`,
-          width: isMobile ? "85px" : "105px",
-          textAlign: "left",
-          area: "bottom",
-          // forceSingleLine: true  // ✅ 수정: medium pet bottom도 한 줄 고정
-        });
-      }
-    }
-
-    return overlays;
-  }
 
   function generateLargePetOverlays(theme) {
     const overlays = [];
@@ -1109,8 +998,6 @@ function initCustomizer(root) {
     const themeKey = theme?.toLowerCase();
 
     if (themeKey === "puppy" || themeKey === "kitty") {
-      if (size === "small") return generateSmallPetOverlays();
-      if (size === "medium") return generateMediumPetOverlays();
       if (size === "large") return generateLargePetOverlays(theme);
       if (size === "sml-mix") return generateSmlMixOverlays();
       if (size === "ml-mix") return generateMlMixOverlays();
