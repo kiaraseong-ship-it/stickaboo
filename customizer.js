@@ -1222,21 +1222,21 @@ function initCustomizer(root) {
       // ✅ NORMAL
       if (size === "small") {
         const base = twoLines
-          ? step(16, 13, 12, 10)
+          ? step(16, 12, 12, 10)
           : step(16, 14, 13, 11);
         const bottomScale = twoLines ? 0.9 : 1;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "medium") {
         const base = twoLines
-          ? step(22, 20, 18, 17)
+          ? step(22, 18, 18, 17)
           : step(22, 20, 18, 17);
         const bottomScale = twoLines ? 0.8 : 0.9;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(34, 28, 24, 20);
-        if (area === "bottom") return twoLines ? step(36, 30, 26, 24) : step(42, 34, 28, 24);
+        if (area === "bottom") return twoLines ? step(36, 24, 26, 24) : step(42, 34, 28, 24);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
