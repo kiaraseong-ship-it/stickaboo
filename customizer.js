@@ -1241,10 +1241,10 @@ function initCustomizer(root) {
 
       // ✅ MIX (너가 준 sml 규칙)
       if (size === "sml-mix" || size === "ml-mix") {
-        if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(30, 26, 24, 22);
-        if (area === "large-bottom") return twoLines ? step(36, 32, 28, 26) : step(32, 28, 29, 26);
-        if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(22, 20, 18, 17);
-        if (area === "small") return step(16, 14, 13, 12);
+        if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 26, 24, 22);
+        if (area === "large-bottom") return twoLines ? step(36, 32, 28, 26) : step(42, 28, 29, 26);
+        if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(24, 20, 18, 17);
+        if (area === "small") return step(18, 14, 13, 12);
       }
 
       return 22;
