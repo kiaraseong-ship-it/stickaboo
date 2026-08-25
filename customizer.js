@@ -1131,7 +1131,9 @@ function initCustomizer(root) {
   //    (나머지 size/area는 원본 값 그대로 반환 → 기존 레이아웃 100% 유지)
   function getLineHeightPx(args) {
     const raw = getLineHeightPxRaw(args);
-    if (!isSmallMediumBottom(args.size, args.area)) return raw;
+    const smallMedium = args.size === "small" || args.size === "medium";
+    if (!smallMedium) return raw;
+    if (args.area !== "bottom" && args.twoLines) return raw;   // 두 줄은 높이가 2×lh라 이미 짝수
     return toEvenLineHeight(raw, args.fontSizePx);
   }
 
