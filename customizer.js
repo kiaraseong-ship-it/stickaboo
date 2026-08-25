@@ -16,28 +16,7 @@ function initCustomizer(root) {
     return ctx.measureText(text || "").width;
   }
 
-  // ✅ [FIX] 짝수 정수 px 헬퍼
-  //    small/medium bottom의 line-height를 짝수 px로 강제 → 요소 높이가 짝수 정수
-  //    → translateY(-50%)가 항상 정수 px로 계산되어 html2canvas(scale:4) 저장 시 밀림 방지
-  //    ⚠️ wrapper의 top/left/transform은 절대 건드리지 않음 (위치 그대로)
-  function evenPx(n) {
-    let v = Math.max(6, Math.round(Number(n) || 0));
-    if (v % 2 !== 0) v -= 1;   // ⬅️ 홀수는 내림 (기존: v += 1 → 간격 벌어짐)
-    return Math.max(6, v) + "px";
-  }
 
-  function isSmallMediumBottom(size, area) {
-    return (size === "small" || size === "medium") && area === "bottom";
-  }
-
-  // 이미 계산된 line-height 값(px 문자열 또는 배수)을 짝수 px로 변환
-  function toEvenLineHeight(lhValue, fontSizePx) {
-    const s = String(lhValue);
-    const num = parseFloat(s);
-    if (!num) return lhValue;
-    const px = s.includes("px") ? num : num * Number(fontSizePx);
-    return evenPx(px);
-  }
 
   // ✅ width 기준 폰트 축소 (XL 방식)
   //    글자수 로직으로 정한 fs를 상한으로 두고, 실제 픽셀 폭이 박스보다 넓으면 정수 px로 줄임
@@ -1126,15 +1105,8 @@ function initCustomizer(root) {
     if (area === "large-bottom") return "1.05";
     return "1.1";
   }
-
-  // ✅ [FIX] small/medium bottom만 line-height를 짝수 px로 정규화
-  //    (나머지 size/area는 원본 값 그대로 반환 → 기존 레이아웃 100% 유지)
   function getLineHeightPx(args) {
-    const raw = getLineHeightPxRaw(args);
-    const smallMedium = args.size === "small" || args.size === "medium";
-    if (!smallMedium) return raw;
-    if (args.area !== "bottom" && args.twoLines) return raw;   // 두 줄은 높이가 2×lh라 이미 짝수
-    return toEvenLineHeight(raw, args.fontSizePx);
+    return getLineHeightPxRaw(args);
   }
 
   function shouldForceBlack(config) {
@@ -1755,11 +1727,7 @@ function initCustomizer(root) {
           }))
           : null;
 
-        // ✅ [FIX] special 경로에서도 small/medium bottom은 짝수 px로 정규화
-        if (isSmallMediumBottom(selectedSize, config.area)) {
-          lh1 = toEvenLineHeight(lh1, fs1);
-          if (lh2 != null) lh2 = toEvenLineHeight(lh2, fs2);
-        }
+
 
         const fw1special = hasKorean(d1) ? "900" : "900";
         const fw2special = d2 ? (hasKorean(d2) ? "900" : "900") : null;
