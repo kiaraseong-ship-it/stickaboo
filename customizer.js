@@ -16,13 +16,21 @@ function initCustomizer(root) {
     return ctx.measureText(text || "").width;
   }
 
-  // ✅ 짝수 정수 px 헬퍼 (small/medium: 요소 높이를 짝수로 → translateY(-50%)가 정수 px)
+  // ✅ [FIX] 짝수 정수 px 헬퍼
+  //    small/medium bottom의 line-height를 짝수 px로 강제 → 요소 높이가 짝수 정수
+  //    → translateY(-50%)가 항상 정수 px로 계산되어 html2canvas(scale:4) 저장 시 밀림 방지
+  //    ⚠️ wrapper의 top/left/transform은 절대 건드리지 않음 (위치 그대로)
   function evenPx(n) {
     let v = Math.max(6, Math.round(Number(n) || 0));
-    if (v % 2 !== 0) v -= 1;
+    if (v % 2 !== 0) v -= 1;   // ⬅️ 홀수는 내림 (기존: v += 1 → 간격 벌어짐)
     return Math.max(6, v) + "px";
   }
 
+  function isSmallMediumBottom(size, area) {
+    return (size === "small" || size === "medium") && area === "bottom";
+  }
+
+  // 이미 계산된 line-height 값(px 문자열 또는 배수)을 짝수 px로 변환
   function toEvenLineHeight(lhValue, fontSizePx) {
     const s = String(lhValue);
     const num = parseFloat(s);
@@ -31,163 +39,37 @@ function initCustomizer(root) {
     return evenPx(px);
   }
 
-  // =========================================================
-  // ✅ WIDTH-BASED SIZING
-  //   글자수 대신 실제 렌더 폭으로 폰트 결정.
-  //   max 폰트로 재서 박스 폭(config.width)을 넘치면 비례 축소 (정수 px).
-  //   두 줄이면 넓은 줄 기준 → 둘 다 같은 fs.
-  //
-  //   ⬇️ 튜닝은 아래 표만: one = 한 줄일 때 max px, two = 두 줄일 때 max px
-  //      (값 = 기존 코드에서 5글자 이하 이름에 쓰이던 값 → 짧은 이름은 그대로)
-  // =========================================================
-  const MIN_FS = 8;     // 아무리 길어도 이 밑으론 안 줄임
-  const SIDE_PAD = 0;   // 박스 좌우 여유 필요하면 2~4
+  // ✅ width 기준 폰트 축소 (XL 방식)
+  //    글자수 로직으로 정한 fs를 상한으로 두고, 실제 픽셀 폭이 박스보다 넓으면 정수 px로 줄임
+  function fitAllOverlaysToWidth() {
+    const SIDE_PAD = 0; // 좌우 여유 필요하면 2~4 주면 됨
 
-  // 일반 테마: size → area → { one, two }
-  const WIDTH_SIZING = {
-    small: {
-      top: { one: 16, two: 16 },
-      bottom: { one: 16, two: 14 },
-    },
-    medium: {
-      top: { one: 22, two: 22 },
-      bottom: { one: 20, two: 18 },
-    },
-    large: {
-      top: { one: 34, two: 20 },
-      bottom: { one: 42, two: 36 },
-      "large-pet": { one: 22, two: 22 },   // puppy/kitty large에서 special 규칙 없는 칸
-    },
-    "sml-mix": {
-      "large-top": { one: 30, two: 20 },
-      "large-bottom": { one: 32, two: 36 },
-      medium: { one: 22, two: 22 },
-      small: { one: 16, two: 16 },
-    },
-    "ml-mix": {
-      "large-top": { one: 30, two: 20 },
-      "large-bottom": { one: 32, two: 36 },
-      medium: { one: 22, two: 22 },
-      small: { one: 16, two: 16 },
-    },
-  };
+    currentOverlays.forEach(config => {
+      const el = root.querySelector(`#${config.id}`);
+      if (!el) return;
 
-  // Name Only 테마: size → area(없으면 default) → { one, two }
-  const NAMEONLY_SIZING = {
-    small: { default: { one: 20, two: 20 } },
-    medium: { default: { one: 22, two: 22 } },
-    large: { top: { one: 48, two: 36 } },
-    "sml-mix": {
-      "large-top": { one: 48, two: 40 },
-      medium: { one: 22, two: 22 },
-      small: { one: 20, two: 18 },
-    },
-    "ml-mix": {
-      "large-top": { one: 48, two: 40 },
-      medium: { one: 22, two: 22 },
-      small: { one: 20, two: 18 },
-    },
-  };
+      const maxW = (parseFloat(config.width) || 0) - SIDE_PAD;
+      if (maxW <= 0) return;
 
-  // 특정 칸 전용 규칙 (dino / jesus loves / puppy / kitty)
-  //   max: [desktop, mobile]  lh: fs → line-height px  min: 최소 폰트
-  //   forceSingleLine: 성 있어도 한 줄로 합침
-  const lhSame = fs => fs;
-  const lhMinus1 = fs => fs - 1;
-  const lhMinus2 = fs => Math.max(6, fs - 2);
-  const lhMinus3 = fs => Math.max(6, fs - 3);
+      el.querySelectorAll("div").forEach(line => {
+        const text = (line.textContent || "").trim();
+        if (!text) return;
 
-  const SPECIAL_SIZING = {
-    dino: {
-      large: {
-        "large-text7": { one: { max: [16, 16], lh: lhSame }, two: { max: [10, 10], lh: lhSame }, min: 6 },
-        "large-text8": { one: { max: [22, 22], lh: lhMinus2 }, two: { max: [14, 14], lh: lhMinus2 } },
-        "large-text9": { one: { max: [22, 22], lh: lhMinus2 }, two: { max: [14, 14], lh: lhMinus2 } },
-      },
-      "sml-mix": {
-        "smlmix-large-top2": { one: { max: [22, 22], lh: lhMinus2 }, two: { max: [14, 14], lh: lhMinus2 } },
-      },
-      "ml-mix": {
-        "mlmix-large-top2": { one: { max: [22, 22], lh: lhMinus2 }, two: { max: [14, 14], lh: lhMinus2 } },
-      },
-    },
+        const fs = parseFloat(line.style.fontSize);
+        if (!fs) return;
 
-    "jesus loves": {
-      large: {
-        "large-text5": { one: { max: [20, 20], lh: lhSame }, two: { max: [10, 10], lh: lhSame }, min: 6 },
-        "large-text6": { one: { max: [20, 20], lh: lhSame }, two: { max: [10, 10], lh: lhSame }, min: 6 },
-      },
-      "sml-mix": {
-        "smlmix-large-top2": { one: { max: [20, 20], lh: lhSame }, two: { max: [14, 14], lh: lhMinus2 } },
-      },
-      "ml-mix": {
-        "mlmix-large-top5": { one: { max: [20, 20], lh: lhSame }, two: { max: [10, 10], lh: lhSame }, min: 6 },
-        "mlmix-large-top6": { one: { max: [20, 20], lh: lhSame }, two: { max: [10, 10], lh: lhSame }, min: 6 },
-      },
-    },
+        const cs = getComputedStyle(line);
+        const family = cs.fontFamily || "sans-serif";
+        const weight = cs.fontWeight || "900";
 
-    puppy: {
-      large: {
-        "large-text1": { one: { max: [32, 24], lh: lhMinus2 }, two: { max: [20, 20], lh: lhMinus2 } },
-        "large-text2": { one: { max: [32, 24], lh: lhMinus2 }, two: { max: [20, 20], lh: lhMinus2 } },
-        "large-text3": { one: { max: [32, 24], lh: lhMinus2 }, two: { max: [20, 20], lh: lhMinus2 } },
-        "large-text4": { one: { max: [20, 15], lh: lhMinus2 }, two: { max: [14, 10], lh: lhSame }, min: 6 },
-        "large-text5": { one: { max: [32, 24], lh: lhMinus2 }, two: { max: [20, 20], lh: lhMinus2 } },
-        "large-text6": { one: { max: [26, 20], lh: lhMinus2 }, two: { max: [18, 13], lh: lhSame } },
-        "large-text7": { one: { max: [38, 28], lh: lhMinus2 }, two: { max: [32, 24], lh: lhSame } },   // 두 줄 lh는 아래에서 모바일 보정
-        "large-text8": { one: { max: [26, 20], lh: lhMinus2 }, forceSingleLine: true },
-        "large-text9": { one: { max: [20, 18], lh: lhMinus2 }, two: { max: [16, 12], lh: lhSame } },
-        "large-text10": { one: { max: [22, 17], lh: lhMinus2 }, two: { max: [16, 12], lh: lhMinus2 } },
-        "large-text11": { one: { max: [24, 18], lh: lhMinus2 }, two: { max: [16, 12], lh: lhSame } },
-        "large-text12": { one: { max: [38, 28], lh: lhMinus2 }, two: { max: [32, 18], lh: lhMinus3 } },
-      },
-      "sml-mix": {
-        "smlmix-large-top4": { one: { max: [20, 15], lh: lhMinus2 }, two: { max: [14, 10], lh: lhSame }, min: 6 },
-        "smlmix-large-bottom4": { one: { max: [26, 20], lh: lhMinus2 }, forceSingleLine: true },
-        "smlmix-large-bottom5": { one: { max: [22, 17], lh: lhMinus2 }, two: { max: [16, 12], lh: lhMinus2 } },
-      },
-      "ml-mix": {
-        "mlmix-large-top4": { one: { max: [20, 15], lh: lhMinus2 }, two: { max: [14, 10], lh: lhSame }, min: 6 },
-        "mlmix-large-top6": { one: { max: [26, 20], lh: lhMinus2 }, two: { max: [18, 13], lh: lhSame } },
-        "mlmix-large-bottom7": { one: { max: [20, 18], lh: lhMinus2 }, two: { max: [16, 12], lh: lhSame } },
-        "mlmix-large-bottom8": { one: { max: [22, 17], lh: lhMinus2 }, two: { max: [16, 12], lh: lhMinus2 } },
-      },
-    },
-
-    kitty: {
-      large: {
-        "large-text4": { one: { max: [20, 15], lh: lhMinus2 }, two: { max: [14, 10], lh: lhSame }, min: 6 },
-        "large-text6": { one: { max: [24, 20], lh: lhMinus2 }, two: { max: [18, 13], lh: lhSame } },
-        "large-text7": { one: { max: [38, 28], lh: lhMinus2 }, two: { max: [32, 24], lh: lhSame } },
-        "large-text9": { one: { max: [20, 18], lh: lhMinus2 }, two: { max: [16, 12], lh: lhSame } },
-      },
-      "sml-mix": {
-        "smlmix-large-top4": { one: { max: [20, 15], lh: lhMinus2 }, two: { max: [14, 10], lh: lhSame }, min: 6 },
-        "smlmix-large-bottom5": { one: { max: [26, 16], lh: lhMinus2 }, two: { max: [16, 12], lh: lhMinus1 } },
-      },
-      "ml-mix": {
-        "mlmix-large-top1": { one: { max: [32, 24], lh: lhMinus2 }, two: { max: [20, 20], lh: lhMinus2 } },
-        "mlmix-large-top2": { one: { max: [32, 24], lh: lhMinus2 }, two: { max: [20, 20], lh: lhMinus2 } },
-        "mlmix-large-top3": { one: { max: [32, 24], lh: lhMinus2 }, two: { max: [20, 20], lh: lhMinus2 } },
-        "mlmix-large-top4": { one: { max: [20, 15], lh: lhMinus2 }, two: { max: [14, 10], lh: lhSame }, min: 6 },
-        "mlmix-large-top5": { one: { max: [32, 24], lh: lhMinus2 }, two: { max: [20, 20], lh: lhMinus2 } },
-        "mlmix-large-top6": { one: { max: [24, 20], lh: lhMinus2 }, two: { max: [18, 13], lh: lhSame } },
-        "mlmix-large-bottom7": { one: { max: [20, 18], lh: lhMinus2 }, two: { max: [16, 12], lh: lhSame } },
-        "mlmix-large-bottom8": { one: { max: [26, 16], lh: lhMinus2 }, two: { max: [16, 12], lh: lhMinus1 } },
-      },
-    },
-  };
-  // puppy large-text7 두 줄 lh: 데스크탑 fs, 모바일 fs-2 (기존 규칙)
-  SPECIAL_SIZING.puppy.large["large-text7"].two.lh = fs => (isMobile ? fs - 2 : fs);
-
-  // max 폰트 기준으로 폭 재서 넘치면 비례 축소
-  function fitFontSize({ text1, text2, maxFs, minFs, maxW, family }) {
-    const font = `900 ${maxFs}px ${family}`;
-    const w1 = measureTextWidth(text1, font);
-    const w2 = text2 ? measureTextWidth(text2, font) : 0;
-    const widest = Math.max(w1, w2);
-    if (maxW <= 0 || widest <= maxW) return maxFs;
-    return Math.max(minFs, Math.floor((maxFs * maxW) / widest));
+        const w = measureTextWidth(text, `${weight} ${fs}px ${family}`);
+        if (w > maxW) {
+          // 정수 px로만 축소 (소수점 → scale:4 저장 시 밀림 방지)
+          const scaled = Math.max(6, Math.floor((fs * maxW) / w));
+          line.style.fontSize = scaled + "px";
+        }
+      });
+    });
   }
 
   // ✅ Just Character면 텍스트 섹션 제거
@@ -308,7 +190,7 @@ function initCustomizer(root) {
     // ----- BOTTOM (4줄) — 뱃지(배경) 있음 -----
     const bottomRows = 4;
     const bottomHeight = 32.5;
-    const cellWidthBottom = 96 / cols;   // ⬅️ bottom 전용 가로 폭 (top과 독립적으로 조절 가능)
+    const cellWidthBottom = 96 / cols;   // ⬅️ 추가: bottom 전용 가로 폭 (top과 독립적으로 조절 가능)
     const cellHeightBottom = bottomHeight / bottomRows;
     const bottomOffset = 0.65;
     const leftOffsetBottom = 0.865;
@@ -318,7 +200,7 @@ function initCustomizer(root) {
         overlays.push({
           id: `small-text${id++}`,
           top: `${topHeight + (r + bottomOffset) * cellHeightBottom}%`,
-          left: `${(c + leftOffsetBottom) * cellWidthBottom}%`,
+          left: `${(c + leftOffsetBottom) * cellWidthBottom}%`,   // ⬅️ cellWidth → cellWidthBottom
           width: "90px",
           textAlign: "left",
           area: "bottom",
@@ -1177,8 +1059,9 @@ function initCustomizer(root) {
   }
 
   // =========================================================
-  // ✅ Line-height logic (폰트 크기 기준 — 그대로)
+  // ✅ Line-height logic
   // =========================================================
+  // 원본 로직 (이름만 Raw로 변경, 내용 동일)
   function getLineHeightPxRaw({ theme, size, area, twoLines, fontSizePx }) {
     const fs = Math.round(Number(fontSizePx));
 
@@ -1190,10 +1073,14 @@ function initCustomizer(root) {
 
     // ✅ 2줄
     if (twoLines) {
+      // NAMEONLY: 비율(너가 요청한 방식)
       if (theme === "nameonly") {
         return Math.max(10, fs - 2) + "px";
       }
 
+      // =========================
+      // ✅ NORMAL
+      // =========================
       if (size === "small") {
         return Math.max(10, Math.round(fs * 0.9)) + "px";
       }
@@ -1207,14 +1094,19 @@ function initCustomizer(root) {
       }
 
       if (size === "large" && area === "bottom") {
+        // ✅ 규칙: line-height = font-size - 2px
         return Math.max(10, fs - 2) + "px";
       }
 
+      // =========================
+      // ✅ MIX (SML 규칙처럼 "분리해서" 명시)
+      // =========================
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-top") {
         return Math.max(10, fs - 1) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-bottom") {
+        // ✅ 규칙: line-height = font-size
         return Math.max(10, fs - 2) + "px";
       }
 
@@ -1226,20 +1118,22 @@ function initCustomizer(root) {
         return Math.max(10, fs - 2) + "px";
       }
 
+      // fallback
       return Math.max(10, fs - 2) + "px";
     }
 
-    // ✅ 1줄
+    // ✅ 1줄 (기존 비율 유지)
     if (area === "large-bottom") return "1.05";
     return "1.1";
   }
 
-  // ✅ small/medium은 line-height를 짝수 px로 정규화 (두 줄 top은 높이가 2×lh라 제외)
+  // ✅ [FIX] small/medium bottom만 line-height를 짝수 px로 정규화
+  //    (나머지 size/area는 원본 값 그대로 반환 → 기존 레이아웃 100% 유지)
   function getLineHeightPx(args) {
     const raw = getLineHeightPxRaw(args);
     const smallMedium = args.size === "small" || args.size === "medium";
     if (!smallMedium) return raw;
-    if (args.area !== "bottom" && args.twoLines) return raw;
+    if (args.area !== "bottom" && args.twoLines) return raw;   // 두 줄은 높이가 2×lh라 이미 짝수
     return toEvenLineHeight(raw, args.fontSizePx);
   }
 
@@ -1295,7 +1189,7 @@ function initCustomizer(root) {
   }
 
   // =========================================================
-  // ✅ Text update — 폰트는 전부 width 기준
+  // ✅ Text update (두 줄이면 둘 다 같이 작아지게 적용)
   // =========================================================
   function updateOverlayText() {
     if (isCharacter) return;
@@ -1304,40 +1198,512 @@ function initCustomizer(root) {
     const last = (lastNameInput?.value || "").trim();
     const name1 = first || "Your name";
     const name2 = last || "";
-    const themeKey = selectedTheme?.toLowerCase();
+    const isTwoLines = !!name2;
 
-    // 이 칸에 적용할 규칙 찾기
-    function getSizingRule(config, twoLines) {
-      // 1) 특정 칸 전용 규칙
-      const special = SPECIAL_SIZING[themeKey]?.[selectedSize]?.[config.id];
-      if (special) {
-        const rule = (twoLines && special.two) ? special.two : special.one;
+    function getLineFontSize({ size, area, len, twoLines, theme }) {
+      const step = (a, b, c, d) => (len <= 5 ? a : len <= 7 ? b : len <= 9 ? c : d);
+
+      // ✅ NAMEONLY
+      if (theme === "nameonly") {
+        if (size === "small") return twoLines ? step(20, 18, 16, 14) : step(20, 18, 16, 14);
+        if (area === "medium") return twoLines ? step(20, 18, 16, 14) : step(24, 22, 20, 18);
+        if (size === "large") {
+          if (area === "top") return twoLines ? step(36, 34, 28, 24) : step(48, 42, 40, 36);
+        }
+
+        if (size === "sml-mix" || size === "ml-mix") {
+          if (area === "large-top") return twoLines ? step(40, 34, 28, 24) : step(48, 44, 42, 36);
+          // 변경 후
+          if (area === "medium") return step(22, 20, 18, 17);
+          if (area === "small") return twoLines ? step(18, 16, 14, 12) : step(20, 18, 16, 14);
+        }
+      }
+
+      // ✅ NORMAL
+      if (size === "small") {
+        const base = twoLines
+          ? step(16, 12, 12, 10)
+          : step(16, 14, 13, 11);
+        const bottomScale = twoLines ? 0.9 : 1;
+        return area === "bottom" ? Math.round(base * bottomScale) : base;
+      }
+      if (size === "medium") {
+        const base = twoLines
+          ? step(22, 18, 18, 17)
+          : step(22, 20, 18, 17);
+        const bottomScale = twoLines ? 0.8 : 0.9;
+        return area === "bottom" ? Math.round(base * bottomScale) : base;
+      }
+      if (size === "large") {
+        if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(34, 28, 24, 20);
+        if (area === "bottom") return twoLines ? step(36, 24, 26, 24) : step(42, 34, 28, 24);
+      }
+
+      // ✅ MIX (너가 준 sml 규칙)
+      if (size === "sml-mix" || size === "ml-mix") {
+        if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 26, 24, 22);
+        if (area === "large-bottom") return twoLines ? step(36, 32, 28, 26) : step(42, 28, 29, 26);
+        if (area === "medium") return twoLines ? step(22, 20, 18, 18) : step(24, 20, 18, 17);
+        if (area === "small") return step(18, 14, 13, 12);
+      }
+
+      return 22;
+    }
+
+    // 글로벌 스케일(기존 유지)
+    function getGlobalScale(len) {
+      if (len <= 6) return 1;
+      if (len === 7) return 0.95;
+      if (len === 8) return 0.9;
+      if (len === 9) return 0.86;
+      return 0.82;
+    }
+
+    // ✅ Special font/line-height rules for specific overlays
+    function getSpecialTypography({ theme, size, id, len, twoLines }) {
+      // helpers
+      const clampPx = (n) => `${Math.max(1, Math.round(n))}px`;
+
+      // ------------------------
+      // DINO - LARGE
+      // ------------------------
+      if (theme === "dino" && size === "large") {
+        // large-text7
+        if (id === "large-text7") {
+          if (twoLines) {
+            const fs = len <= 9 ? 10 : 6;
+            const lh = len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 10 : 8;
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+
+        // large-text8 / large-text9
+        if (id === "large-text8" || id === "large-text9") {
+          if (twoLines) {
+            const fs = len <= 9 ? 14 : 10;
+            const lh = len <= 9 ? 12 : 8;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 22 : len <= 9 ? 16 : len <= 12 ? 14 : 12;
+            return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+          }
+        }
+      }
+
+      // ------------------------
+      // DINO - SML/ML MIX large-top2
+      // ------------------------
+      if (theme === "dino" && (size === "sml-mix" || size === "ml-mix")) {
+        if (id === "smlmix-large-top2" || id === "mlmix-large-top2") {
+          if (twoLines) {
+            const fs = len <= 9 ? 14 : 11;
+            const lh = len <= 9 ? 12 : 11;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 22 : len <= 9 ? 15 : len <= 12 ? 12 : 12;
+            return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+          }
+        }
+      }
+
+      // ------------------------
+      // jesus loves - LARGE
+      // ------------------------
+      if (theme === "jesus loves" && size === "large") {
+        if (id === "large-text5") {
+          if (twoLines) {
+            const fs = len <= 9 ? 10 : 6;
+            const lh = len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 16 : len <= 9 ? 14 : 10;
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+
+        if (id === "large-text6") {
+          if (twoLines) {
+            const fs = len <= 9 ? 10 : 6;
+            const lh = len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 16 : len <= 9 ? 14 : 10;
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+      }
+
+      // ------------------------
+      // jesus loves - SML MIX
+      // ------------------------
+      if (theme === "jesus loves" && (size === "sml-mix")) {
+        if (id === "smlmix-large-top2") {
+          if (twoLines) {
+            const fs = len <= 5 ? 13 : len <= 7 ? 14 : len <= 9 ? 10 : 8;
+            const lh = len <= 5 ? 11 : len <= 7 ? 12 : len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 16 : len <= 9 ? 14 : 10;
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+      }
+
+      if (theme === "jesus loves" && (size === "ml-mix")) {
+        if (id === "mlmix-large-top5" || id === "mlmix-large-top6") {
+          if (twoLines) {
+            const fs = len <= 9 ? 10 : 6;
+            const lh = len <= 9 ? 10 : 6;
+            return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+          } else {
+            const fs = len <= 5 ? 20 : len <= 7 ? 16 : len <= 9 ? 14 : 10;
+            return { fs, lh1: clampPx(Math.max(6, fs)) };
+          }
+        }
+      }
+
+      // ------------------------
+      // PUPPY + KITTY - LARGE large-text4 / mlmix-large-top4
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (
+          (size === "large" && id === "large-text4") ||
+          (size === "sml-mix" && id === "smlmix-large-top4") ||
+          (size === "ml-mix" && id === "mlmix-large-top4")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 10 : len <= 7 ? 9 : len <= 9 ? 8 : 7)
+            : (len <= 5 ? 14 : len <= 7 ? 12 : len <= 9 ? 10 : 8);
+          const lh = fs;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 15 : len <= 7 ? 13 : len <= 9 ? 11 : 8)
+            : (len <= 5 ? 20 : len <= 7 ? 14 : len <= 9 ? 12 : 8);
+          return { fs, lh1: clampPx(Math.max(6, fs - 2)) };
+        }
+      }
+
+      // ------------------------
+      // PUPPY - large-text6 / mlmix-large-top6
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy") &&
+        (
+          (size === "large" && id === "large-text6") ||
+          (size === "ml-mix" && id === "mlmix-large-top6")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 13 : len <= 7 ? 12 : len <= 9 ? 10 : 9)
+            : (len <= 5 ? 18 : len <= 7 ? 16 : len <= 9 ? 14 : 12);
+          const lh = fs;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 11)
+            : (len <= 5 ? 26 : len <= 7 ? 22 : len <= 9 ? 20 : 14);
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+      // ------------------------
+      // KITTY - large-text6 / mlmix-large-top6
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "kitty") &&
+        (
+          (size === "large" && id === "large-text6") ||
+          (size === "ml-mix" && id === "mlmix-large-top6")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 13 : len <= 7 ? 12 : len <= 9 ? 10 : 9)
+            : (len <= 5 ? 18 : len <= 7 ? 16 : len <= 9 ? 14 : 12);
+          const lh = fs;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 11)
+            : (len <= 5 ? 24 : len <= 7 ? 22 : len <= 9 ? 20 : 14);
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+      // ------------------------
+      // PUPPY + KITTY - large-text7
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (size === "large" && id === "large-text7")
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 24 : len <= 7 ? 20 : len <= 9 ? 18 : 16)
+            : (len <= 5 ? 32 : len <= 7 ? 26 : len <= 9 ? 22 : 20);
+          const lh = isMobile ? fs - 2 : fs;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 28 : len <= 7 ? 24 : len <= 9 ? 20 : 18)
+            : (len <= 5 ? 38 : len <= 7 ? 34 : len <= 9 ? 28 : 23);
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+      // ------------------------
+      // PUPPY - large-text8 + smlmix-large-bottom4
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "puppy" &&
+        (
+          (size === "large" && id === "large-text8") ||
+          (size === "sml-mix" && id === "smlmix-large-bottom4")
+        )
+      ) {
+        const fullLen = isTwoLines ? (name1 + " " + name2).length : len;
+
+        const fs = isMobile
+          ? (fullLen <= 5 ? 20 : fullLen <= 7 ? 17 : fullLen <= 9 ? 15 : fullLen <= 12 ? 12 : 10)
+          : (fullLen <= 5 ? 26 : fullLen <= 7 ? 20 : fullLen <= 9 ? 18 : fullLen <= 12 ? 14 : 12);
+
         return {
-          maxFs: rule.max[isMobile ? 1 : 0],
-          minFs: special.min ?? 6,
-          lh: rule.lh,
-          forceSingleLine: !!special.forceSingleLine,
+          fs,
+          lh1: clampPx(Math.max(8, fs - 2)),
+          forceSingleLine: true
         };
       }
 
-      // 2) 일반 / nameonly 표
-      const table = selectedTheme === "nameonly" ? NAMEONLY_SIZING : WIDTH_SIZING;
-      const bySize = table[selectedSize] || {};
-      const entry = bySize[config.area] || bySize.default;
-      if (!entry) return { maxFs: 22, minFs: MIN_FS };
-      return { maxFs: twoLines ? entry.two : entry.one, minFs: MIN_FS };
+      // ------------------------
+      // PUPPY + KITTY - large-text9 / mlmix-large-bottom7
+      // ------------------------
+      if (
+        (theme?.toLowerCase() === "puppy" || theme?.toLowerCase() === "kitty") &&
+        (
+          (size === "large" && id === "large-text9") ||
+          (size === "ml-mix" && id === "mlmix-large-bottom7")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
+            : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
+          const lh = fs;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 13 : 11)
+            : (len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 17 : 15);
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+      // ------------------------
+      // PUPPY - large-text10 + smlmix-large-bottom5 + mlmix-large-bottom8
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "puppy" &&
+        (
+          (size === "large" && id === "large-text10") ||
+          (size === "sml-mix" && id === "smlmix-large-bottom5") ||
+          (size === "ml-mix" && id === "mlmix-large-bottom8")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 7 : 7)
+            : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
+          const lh = fs - 2;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 17 : len <= 7 ? 13 : len <= 9 ? 12 : 10)
+            : (len <= 5 ? 22 : len <= 7 ? 16 : len <= 9 ? 12 : 12);
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+      // ------------------------
+      // PUPPY - large-text11
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "puppy" &&
+        size === "large" &&
+        id === "large-text11"
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
+            : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
+          const lh = fs;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 13 : 11)
+            : (len <= 5 ? 24 : len <= 7 ? 18 : len <= 9 ? 17 : 15);
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+      // ------------------------
+      // PUPPY - large-text12
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "puppy" &&
+        size === "large" &&
+        id === "large-text12"
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 18 : len <= 7 ? 14 : len <= 9 ? 12 : 10)
+            : (len <= 5 ? 32 : len <= 7 ? 24 : len <= 9 ? 22 : 20);
+          const lh = isMobile ? fs - 3 : fs - 3;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 28 : len <= 7 ? 24 : len <= 9 ? 20 : 18)
+            : (len <= 5 ? 38 : len <= 7 ? 34 : len <= 9 ? 28 : 23);
+          const lh = fs - 2;
+          return { fs, lh1: clampPx(Math.max(8, lh)) };
+        }
+      }
+
+      // ------------------------
+      // KITTY (ml-mix) + PUPPY (large) top 1,2,3,5
+      // ------------------------
+      if (
+        (
+          theme?.toLowerCase() === "kitty" &&
+          size === "ml-mix" &&
+          (
+            id === "mlmix-large-top1" ||
+            id === "mlmix-large-top2" ||
+            id === "mlmix-large-top3" ||
+            id === "mlmix-large-top5"
+          )
+        )
+        ||
+        (
+          theme?.toLowerCase() === "puppy" &&
+          size === "large" &&
+          (
+            id === "large-text1" ||
+            id === "large-text2" ||
+            id === "large-text3" ||
+            id === "large-text5"
+          )
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 20 : len <= 7 ? 18 : len <= 9 ? 16 : 13)
+            : (len <= 5 ? 20 : len <= 7 ? 20 : len <= 9 ? 20 : 18);
+          const lh = fs - 2;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 24 : len <= 7 ? 21 : len <= 9 ? 18 : 15)
+            : (len <= 5 ? 32 : len <= 7 ? 28 : len <= 9 ? 24 : 20);
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+      // ------------------------
+      // KITTY - smlmix-large-bottom5 / mlmix-large-bottom8
+      // ------------------------
+      if (
+        theme?.toLowerCase() === "kitty" &&
+        (
+          (size === "sml-mix" && id === "smlmix-large-bottom5") ||
+          (size === "ml-mix" && id === "mlmix-large-bottom8")
+        )
+      ) {
+        if (twoLines) {
+          const fs = isMobile
+            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
+            : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
+          const lh = fs - 1;
+          return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
+        } else {
+          const fs = isMobile
+            ? (len <= 5 ? 16 : len <= 7 ? 13 : len <= 9 ? 11 : 12)
+            : (len <= 5 ? 26 : len <= 7 ? 20 : len <= 9 ? 18 : 13);
+          return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
+        }
+      }
+
+
+
+      return null;
     }
 
     currentOverlays.forEach(config => {
       const el = root.querySelector(`#${config.id}`);
       if (!el) return;
 
+      function shouldForceBlack(config) {
+        return (
+          (
+            selectedTheme?.toLowerCase() === "dino" &&
+            (
+              (selectedSize === "large" && (
+                config.id === "large-text7" ||
+                config.id === "large-text8" ||
+                config.id === "large-text9"
+              )) ||
+              ((selectedSize === "sml-mix" || selectedSize === "ml-mix") && (
+                config.id === "smlmix-large-top2" ||
+                config.id === "mlmix-large-top2"
+              ))
+            ) &&
+            selectedFontColor === "#FFFFFF"
+          ) ||
+          (
+            (selectedTheme?.toLowerCase() === "puppy" || selectedTheme?.toLowerCase() === "kitty") &&
+            (
+              (selectedSize === "ml-mix" && (
+                config.id === "mlmix-large-top4" ||
+                config.id === "mlmix-large-top6"
+              )) ||
+              (selectedSize === "large" && (
+                config.id === "large-text4" ||
+                config.id === "large-text6"
+              ))
+            ) &&
+            selectedFontColor === "#FFFFFF"
+          ) ||
+          (
+            selectedTheme?.toLowerCase() === "kitty" &&
+            selectedSize === "sml-mix" &&
+            config.id === "smlmix-large-bottom5" &&
+            selectedFontColor === "#F5A3B7"
+          ) ||
+          (
+            selectedTheme?.toLowerCase() === "puppy" &&
+            selectedSize === "sml-mix" &&
+            (config.id === "smlmix-large-bottom4" || config.id === "smlmix-large-bottom5") &&
+            selectedFontColor === "#F5A3B7"
+          ) ||
+          (
+            (selectedSize === "small" || selectedSize === "medium") &&
+            config.area === "bottom" &&
+            selectedFontColor === "#FFFFFF"
+          )
+        );
+      }
+
       let d1 = name1;
       let d2 = name2;
 
-      // 성 있어도 한 줄로 합치는 칸
-      const preRule = getSizingRule(config, !!d2);
-      if ((config.forceSingleLine || preRule.forceSingleLine) && d2) {
+      if (config.forceSingleLine && d2) {
         d1 = `${d1} ${d2}`;
         d2 = "";
       }
@@ -1352,47 +1718,139 @@ function initCustomizer(root) {
         if (d2.length > 10) d2 = d2.slice(0, 14);
       }
 
-      const twoLines = !!d2;
-      const rule = getSizingRule(config, twoLines);
+      // ✅ 두 줄이면 긴 줄 기준으로 둘 다 같이 작아지게
+      const dominantLen = Math.max(d1.length, d2.length || 0);
+      const scale = dominantLen >= 7 ? getGlobalScale(dominantLen) : 1;
+      const effectiveTwoLines = !!d2;
+      const effectiveLen = effectiveTwoLines ? dominantLen : d1.length;
 
-      // ✅ width 기준 폰트 결정 (두 줄이면 넓은 줄 기준, 둘 다 같은 fs)
-      const maxW = (parseFloat(config.width) || 0) - SIDE_PAD;
-      const family = getComputedStyle(el).fontFamily || "sans-serif";
-      const fs = fitFontSize({
-        text1: d1,
-        text2: d2,
-        maxFs: rule.maxFs,
-        minFs: rule.minFs,
-        maxW,
-        family,
+      // ✅ Special override typography
+      const special = getSpecialTypography({
+        theme: selectedTheme,
+        size: selectedSize,
+        id: config.id,
+        len: effectiveLen,
+        twoLines: effectiveTwoLines,
       });
 
-      // line-height: 특정 칸 규칙 있으면 그걸로, 없으면 기존 로직
-      let lh = rule.lh
-        ? `${Math.max(1, Math.round(rule.lh(fs)))}px`
-        : getLineHeightPx({
+      if (special) {
+        const fs1 = special.fs;
+        const fs2 = d2 ? (special.fs2 ?? special.fs) : null;
+
+        let lh1 = special.lh1 ?? getLineHeightPx({
           theme: selectedTheme,
-          twoLines,
+          twoLines: effectiveTwoLines,
           size: selectedSize,
           area: config.area,
-          fontSizePx: fs,
+          fontSizePx: fs1,
         });
 
-      const fw = hasKorean(d1) || hasKorean(d2) ? "900" : "900";
-      const align = config.textAlign || "left";
+        let lh2 = fs2 != null
+          ? (special.lh2 ?? getLineHeightPx({
+            theme: selectedTheme,
+            twoLines: effectiveTwoLines,
+            size: selectedSize,
+            area: config.area,
+            fontSizePx: fs2,
+          }))
+          : null;
+
+        // ✅ [FIX] special 경로에서도 small/medium bottom은 짝수 px로 정규화
+        if (isSmallMediumBottom(selectedSize, config.area)) {
+          lh1 = toEvenLineHeight(lh1, fs1);
+          if (lh2 != null) lh2 = toEvenLineHeight(lh2, fs2);
+        }
+
+        const fw1special = hasKorean(d1) ? "900" : "900";
+        const fw2special = d2 ? (hasKorean(d2) ? "900" : "900") : null;
+
+        if (special?.forceSingleLine) {
+          el.innerHTML = `
+              <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"}; font-weight:${fw1special};">
+                ${d1}${d2 ? " " + d2 : ""}
+              </div>
+            `;
+          return;
+        }
+
+        el.innerHTML = `
+            <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"}; font-weight:${fw1special};">
+              ${d1}
+            </div>
+            ${d2
+            ? `<div style="font-size:${fs2}px; line-height:${lh2}; text-align:${config.textAlign || "left"}; font-weight:${fw2special};">
+                  ${d2}
+                </div>`
+            : ""
+          }
+          `;
+        return;
+      }
+
+      const fs1 = Math.round(
+        Number(
+          getLineFontSize({
+            size: selectedSize,
+            area: config.area,
+            len: effectiveLen,
+            twoLines: effectiveTwoLines,
+            theme: selectedTheme,
+          }) * scale
+        )
+      );
+
+      const rawFs2 = d2
+        ? Math.round(
+          Number(
+            getLineFontSize({
+              size: selectedSize,
+              area: config.area,
+              len: effectiveLen,
+              twoLines: effectiveTwoLines,
+              theme: selectedTheme,
+            }) * scale
+          )
+        )
+        : null;
+
+      const fs2 = rawFs2 != null ? Math.min(rawFs2, fs1) : null;
+
+      const lh1 = getLineHeightPx({
+        theme: selectedTheme,
+        twoLines: effectiveTwoLines,
+        size: selectedSize,
+        area: config.area,
+        fontSizePx: fs1,
+      });
+
+      const lh2 = fs2 != null
+        ? getLineHeightPx({
+          theme: selectedTheme,
+          twoLines: effectiveTwoLines,
+          size: selectedSize,
+          area: config.area,
+          fontSizePx: fs2,
+        })
+        : null;
+
+      const fw1 = hasKorean(d1) ? "900" : "900";
+      const fw2 = d2 ? (hasKorean(d2) ? "900" : "900") : null;
 
       el.innerHTML = `
-          <div style="font-size:${fs}px; line-height:${lh}; text-align:${align}; font-weight:${fw};">
+          <div style="font-size:${fs1}px; line-height:${lh1}; text-align:${config.textAlign || "left"}; font-weight:${fw1};">
             ${d1}
           </div>
           ${d2
-          ? `<div style="font-size:${fs}px; line-height:${lh}; text-align:${align}; font-weight:${fw};">
+          ? `<div style="font-size:${fs2}px; line-height:${lh2}; text-align:${config.textAlign || "left"}; font-weight:${fw2};">
                 ${d2}
               </div>`
           : ""
         }
         `;
     });
+
+    // ✅ 렌더 끝난 뒤 width 기준으로 한 번 더 보정 (대문자 등 실제 폭 초과 시 축소)
+    fitAllOverlaysToWidth();
   }
 
   // =========================================================
