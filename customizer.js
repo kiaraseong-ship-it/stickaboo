@@ -1203,7 +1203,7 @@ function initCustomizer(root) {
         const base = twoLines
           ? step(22, 18, 18, 18)
           : step(22, 20, 18, 17);
-        const bottomScale = twoLines ? 1 : 0.9;
+        const bottomScale = twoLines ? 0.8 : 0.9;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
@@ -1399,7 +1399,7 @@ function initCustomizer(root) {
         if (twoLines) {
           const fs = isMobile
             ? (len <= 5 ? 13 : len <= 7 ? 12 : len <= 9 ? 10 : 9)
-            : (len <= 5 ? 18 : len <= 7 ? 16 : len <= 9 ? 14 : 12);
+            : (len <= 5 ? 18 : len <= 7 ? 12 : len <= 9 ? 14 : 12);
           const lh = fs;
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
