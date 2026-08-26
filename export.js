@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ html2canvas 텍스트 baseline 보정
   // PNG에서 글자가 아래로 밀리는 만큼 위로 올림
-  const TEXT_Y_FIX = -1.5; // px
+  const TEXT_Y_FIX = -1.2; // px
 
   const slug = (txt) =>
     txt
