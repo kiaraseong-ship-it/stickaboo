@@ -248,7 +248,7 @@ function initCustomizer(root) {
     const cellHeightTop = topHeight / topRows;
     const spacingFactorTop = 1.0;
     const topOffsetTop = 0.85;                  // ← 아이콘 바로 아래. 이 값으로 위아래 조정
-    const leftOffsetTop = 0.56;
+    const leftOffsetTop = 0.54;
 
     for (let row = 0; row < topRows; row++) {
       for (let col = 0; col < topCols; col++) {
@@ -389,10 +389,10 @@ function initCustomizer(root) {
     // Large Top (2×3)
     const largeTopRows = 2, largeTopCols = 3;
     const largeTopHeight = 21.8;
-    const cellWidthLargeTop = 96.5 / largeTopCols;
+    const cellWidthLargeTop = 97 / largeTopCols;
     const spacingFactorTop = 1.75;
     const topOffsetTop = 1.55;
-    const leftOffsetTop = 0.58;
+    const leftOffsetTop = 0.52;
     const widthLargeTop = "120px";
 
     const cellHeightLargeTop = largeTopHeight / largeTopRows;
