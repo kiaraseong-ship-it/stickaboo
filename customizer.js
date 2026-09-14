@@ -1065,7 +1065,7 @@ function initCustomizer(root) {
       }
 
       if (size === "medium") {
-        return Math.max(10, Math.round(fs * 0.9)) + "px";
+        return Math.max(10, Math.round(fs * 0.8)) + "px";
       }
 
       if (size === "large" && area === "top") {
@@ -1203,7 +1203,7 @@ function initCustomizer(root) {
         const base = twoLines
           ? step(22, 18, 18, 18)
           : step(22, 20, 18, 17);
-        const bottomScale = twoLines ? 0.9 : 1;
+        const bottomScale = twoLines ? 0.9 : 0.9;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
