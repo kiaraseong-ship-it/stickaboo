@@ -1196,7 +1196,7 @@ function initCustomizer(root) {
         const base = twoLines
           ? step(16, 14, 14, 14)
           : step(18, 16, 13, 11);
-        const bottomScale = twoLines ? 0.85 : 1;
+        const bottomScale = twoLines ? 0.85 : 0.9;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "medium") {
@@ -1207,8 +1207,8 @@ function initCustomizer(root) {
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
-        if (area === "top") return twoLines ? step(20, 20, 20, 20) : step(34, 28, 24, 20);
-        if (area === "bottom") return twoLines ? step(36, 28, 28, 30) : step(40, 32, 28, 24);
+        if (area === "top") return twoLines ? step(18, 20, 20, 20) : step(32, 28, 24, 20);
+        if (area === "bottom") return twoLines ? step(34, 28, 28, 30) : step(36, 32, 28, 24);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
