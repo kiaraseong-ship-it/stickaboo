@@ -1196,14 +1196,14 @@ function initCustomizer(root) {
         const base = twoLines
           ? step(16, 14, 14, 14)
           : step(18, 16, 13, 11);
-        const bottomScale = twoLines ? 0.9 : 1;
+        const bottomScale = twoLines ? 0.95 : 1;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "medium") {
         const base = twoLines
           ? step(22, 18, 18, 18)
           : step(22, 20, 18, 17);
-        const bottomScale = twoLines ? 0.9 : 0.95;
+        const bottomScale = twoLines ? 0.95 : 0.95;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
