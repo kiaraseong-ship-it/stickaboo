@@ -1195,7 +1195,7 @@ function initCustomizer(root) {
       if (size === "small") {
         const base = twoLines
           ? step(16, 14, 14, 14)
-          : step(18, 16, 13, 11);
+          : step(18, 17, 13, 11);
         const bottomScale = twoLines ? 0.9 : 1;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
