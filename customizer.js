@@ -1195,20 +1195,20 @@ function initCustomizer(root) {
       if (size === "small") {
         const base = twoLines
           ? step(16, 14, 14, 14)
-          : step(18, 17, 13, 11);
-        const bottomScale = twoLines ? 0.9 : 1;
+          : step(18, 15, 13, 11);
+        const bottomScale = twoLines ? 0.9 : 0.9;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "medium") {
         const base = twoLines
           ? step(22, 18, 18, 18)
-          : step(22, 22, 18, 17);
-        const bottomScale = twoLines ? 0.95 : 1;
+          : step(22, 20, 18, 17);
+        const bottomScale = twoLines ? 0.95 : 0.9;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(18, 20, 20, 20) : step(32, 28, 24, 20);
-        if (area === "bottom") return twoLines ? step(34, 28, 28, 30) : step(36, 32, 28, 24);
+        if (area === "bottom") return twoLines ? step(34, 28, 28, 30) : step(36, 30, 28, 24);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
