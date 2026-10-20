@@ -147,11 +147,11 @@ function initCustomizer(root) {
 
     // ----- TOP (8줄) — 배경 없음 -----
     const topRows = 8;
-    const topHeight = 64.6;
-    const cellWidth = 96.5 / cols;               // 24
+    const topHeight = 62;
+    const cellWidth = 91.8 / cols;               // 24
     const cellHeightTop = topHeight / topRows;
-    const topOffset = 0.68;
-    const leftOffset = 0.845;                   // ← 아이콘과 이름 간격(키우면 오른쪽으로)
+    const topOffset = 1.3;
+    const leftOffset = 1;                   // ← 아이콘과 이름 간격(키우면 오른쪽으로)
 
     for (let r = 0; r < topRows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -168,11 +168,11 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4줄) — 뱃지(배경) 있음 -----
     const bottomRows = 4;
-    const bottomHeight = 32.5;
-    const cellWidthBottom = 96 / cols;   // ⬅️ 추가: bottom 전용 가로 폭 (top과 독립적으로 조절 가능)
+    const bottomHeight = 31.4;
+    const cellWidthBottom = 91.5 / cols;   // ⬅️ 추가: bottom 전용 가로 폭 (top과 독립적으로 조절 가능)
     const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.65;
-    const leftOffsetBottom = 0.865;
+    const bottomOffset = 1.24;
+    const leftOffsetBottom = 1;
 
     for (let r = 0; r < bottomRows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -196,11 +196,11 @@ function initCustomizer(root) {
 
     // ----- TOP (6줄) -----
     const topRows = 6;
-    const topHeight = 58.5;
-    const cellWidth = 96 / cols;               // 32
+    const topHeight = 55.8;
+    const cellWidth = 93 / cols;               // 32
     const cellHeightTop = topHeight / topRows;
-    const topOffset = 0.65;
-    const leftOffset = 0.76;
+    const topOffset = 1.15;
+    const leftOffset = 0.8;
 
     for (let r = 0; r < topRows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -217,10 +217,10 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (4줄) -----
     const bottomRows = 4;
-    const bottomHeight = 38.7;
+    const bottomHeight = 37;
     const cellHeightBottom = bottomHeight / bottomRows;
-    const bottomOffset = 0.62;
-    const leftOffsetBottom = 0.76;
+    const bottomOffset = 1.16;
+    const leftOffsetBottom = 0.82;
 
     for (let r = 0; r < bottomRows; r++) {
       for (let c = 0; c < cols; c++) {
@@ -1203,7 +1203,7 @@ function initCustomizer(root) {
         const base = twoLines
           ? step(22, 18, 18, 18)
           : step(22, 22, 18, 17);
-        const bottomScale = twoLines ? 0.8 : 0.85;
+        const bottomScale = twoLines ? 0.8 : 1;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
