@@ -243,11 +243,11 @@ function initCustomizer(root) {
 
     // ----- TOP (2줄 × 3칸) — 아이콘 아래 이름(가운데) -----
     const topRows = 2, topCols = 3;
-    const topHeight = 39;
+    const topHeight = 38;
     const cellWidthTop = 96 / topCols;         // 32
     const cellHeightTop = topHeight / topRows;
     const spacingFactorTop = 1.0;
-    const topOffsetTop = 0.85;                  // ← 아이콘 바로 아래. 이 값으로 위아래 조정
+    const topOffsetTop = 1.12;                  // ← 아이콘 바로 아래. 이 값으로 위아래 조정
     const leftOffsetTop = 0.54;
 
     for (let row = 0; row < topRows; row++) {
@@ -269,7 +269,7 @@ function initCustomizer(root) {
     const cellWidthBottom = 96 / bottomCols;   // 48
     const cellHeightBottom = bottomHeight / bottomRows;
     const spacingFactorBottom = 1.0;
-    const topOffsetBottom = 0.8;
+    const topOffsetBottom = 0.85;
     const leftOffsetBottom = 0.76;
 
     for (let row = 0; row < bottomRows; row++) {
