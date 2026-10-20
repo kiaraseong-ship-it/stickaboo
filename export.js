@@ -4,8 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const CAPTURE_SCALE = 4;
 
-  // 일단 보정 끄고 테스트
-  const TEXT_Y_FIX = 0;
+  // ✅ html2canvas 텍스트 baseline 보정
+  // PNG에서 글자가 아래로 밀리는 만큼 위로 올림
+  const TEXT_Y_FIX = -1; // px
 
   const slug = (txt) =>
     txt
@@ -51,36 +52,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const baseName =
       `${slug(first)}${last ? "-" + slug(last) : ""}-${slug(size)}-${slug(theme)}`;
 
+    // ✅ 폰트 완전히 로드
     if (document.fonts?.ready) {
       await document.fonts.ready;
     }
 
+    // ✅ 이미지 완전히 로드
     await waitForImages(capture);
 
+    // ✅ 렌더링 반영 완료
     await new Promise((resolve) =>
       requestAnimationFrame(() =>
         requestAnimationFrame(resolve)
       )
     );
 
-    const rect = capture.getBoundingClientRect();
-
     const canvas = await html2canvas(capture, {
       backgroundColor: null,
       scale: CAPTURE_SCALE,
       useCORS: true,
 
-      width: Math.round(rect.width),
-      height: Math.round(rect.height),
-      windowWidth: Math.round(rect.width),
-      windowHeight: Math.round(rect.height),
-
+      // ✅ 실제 페이지는 안 건드리고
+      // html2canvas가 캡처하는 복제본에서만 글자 위로 보정
       onclone: (clonedDoc) => {
-        const clonedCapture = clonedDoc.querySelector(".print-capture");
-        if (!clonedCapture) return;
+        const clonedCapture =
+          clonedDoc.querySelector(".print-capture");
 
-        clonedCapture.style.transform = "none";
-        clonedCapture.style.zoom = "1";
+        if (!clonedCapture) return;
 
         clonedCapture
           .querySelectorAll(".text-overlay > div")
