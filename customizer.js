@@ -148,7 +148,7 @@ function initCustomizer(root) {
     // ----- TOP (8줄) — 배경 없음 -----
     const topRows = 8;
     const topHeight = 62;
-    const cellWidth = 91.8 / cols;               // 24
+    const cellWidth = 91.5 / cols;               // 24
     const cellHeightTop = topHeight / topRows;
     const topOffset = 1.3;
     const leftOffset = 1;                   // ← 아이콘과 이름 간격(키우면 오른쪽으로)
@@ -196,7 +196,7 @@ function initCustomizer(root) {
 
     // ----- TOP (6줄) -----
     const topRows = 6;
-    const topHeight = 55.8;
+    const topHeight = 56.1;
     const cellWidth = 93 / cols;               // 32
     const cellHeightTop = topHeight / topRows;
     const topOffset = 1.15;
@@ -1818,7 +1818,7 @@ function initCustomizer(root) {
     });
 
     // ✅ 렌더 끝난 뒤 width 기준으로 한 번 더 보정 (대문자 등 실제 폭 초과 시 축소)
-    // fitAllOverlaysToWidth();
+    fitAllOverlaysToWidth();
   }
 
   // =========================================================
