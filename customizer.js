@@ -1818,7 +1818,7 @@ function initCustomizer(root) {
     });
 
     // ✅ 렌더 끝난 뒤 width 기준으로 한 번 더 보정 (대문자 등 실제 폭 초과 시 축소)
-    fitAllOverlaysToWidth();
+    // fitAllOverlaysToWidth();
   }
 
   // =========================================================
