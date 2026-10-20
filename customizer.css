@@ -18,20 +18,28 @@
 
 .preview-wrapper {
   position: relative;
-  height: 640px;
-  aspect-ratio: 1680 / 2480;
+  display: inline-block;
+  width: 580px;
+  flex-shrink: 0;
 }
 
 .preview-image {
+  width: 90%;
+  /* 👈 keep this, your overlay math depends on it */
+  height: auto;
+  object-fit: contain;
   display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: fill;
+  margin: 0;
+  /* from custom liquid */
 }
 
-#overlay-container {
-  position: absolute;
-  inset: 0;
+.customizer-container {
+  flex: 1;
+  min-width: 320px;
+  background: #e9f6ff;
+  border-radius: 10px;
+  padding: 30px;
+  box-sizing: border-box;
 }
 
 .flex-box {
