@@ -265,11 +265,11 @@ function initCustomizer(root) {
 
     // ----- BOTTOM (3줄 × 2칸) — 아이콘 오른쪽 이름 -----
     const bottomRows = 3, bottomCols = 2;
-    const bottomHeight = 58;
+    const bottomHeight = 55;
     const cellWidthBottom = 96 / bottomCols;   // 48
     const cellHeightBottom = bottomHeight / bottomRows;
     const spacingFactorBottom = 1.0;
-    const topOffsetBottom = 0.55;
+    const topOffsetBottom = 0.8;
     const leftOffsetBottom = 0.76;
 
     for (let row = 0; row < bottomRows; row++) {
