@@ -780,8 +780,8 @@ function initCustomizer(root) {
         "sml-mix": {
           "smlmix-large-top2": {
             fontSize: "10px",
-            top: "15.5%",
-            left: "51%",
+            top: "19.5%",
+            left: "50.5%",
             width: "130px",
             textAlign: "center",
           },
@@ -789,7 +789,7 @@ function initCustomizer(root) {
         "ml-mix": {
           "mlmix-large-top2": {
             fontSize: "10px",
-            top: "15.5%",
+            top: "20%",
             left: "51%",
             width: "130px",
             textAlign: "center",
