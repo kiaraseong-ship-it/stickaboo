@@ -297,7 +297,7 @@ function initCustomizer(root) {
     const cellWidthLargeTop = 96 / largeTopCols;
     const leftOffsetLargeTop = 0.56;
     const widthLargeTop = "120px";
-    const topOffsetLargeTop = 1.0;
+    const topOffsetLargeTop = 1.3;
 
     for (let row = 0; row < largeTopRows; row++) {
       for (let col = 0; col < largeTopCols; col++) {
@@ -315,10 +315,10 @@ function initCustomizer(root) {
     // Large Bottom (1×2)
     const largeBottomRows = 1, largeBottomCols = 2;
     const largeBottomHeight = 27.5;
-    const cellWidthLargeBottom = 96 / largeBottomCols;
-    const leftOffsetLargeBottom = 0.75;
+    const cellWidthLargeBottom = 92 / largeBottomCols;
+    const leftOffsetLargeBottom = 0.8;
     const widthLargeBottom = "140px";
-    const topOffsetLargeBottom = 1.0;
+    const topOffsetLargeBottom = 1.15;
 
     for (let row = 0; row < largeBottomRows; row++) {
       for (let col = 0; col < largeBottomCols; col++) {
@@ -335,11 +335,11 @@ function initCustomizer(root) {
 
     // Medium (3×3)
     const mediumRows = 3, mediumCols = 3;
-    const mediumHeight = 41;
-    const cellWidthMedium = 96 / mediumCols;
-    const spacingFactorMedium = 0.71;
-    const topOffsetMedium = 1.5;
-    const leftOffsetMedium = 0.76;
+    const mediumHeight = 42;
+    const cellWidthMedium = 92 / mediumCols;
+    const spacingFactorMedium = 0.68;
+    const topOffsetMedium = 1.7;
+    const leftOffsetMedium = 0.84;
     const widthMedium = "100px";
 
     const cellHeightMedium = mediumHeight / mediumRows;
@@ -358,11 +358,11 @@ function initCustomizer(root) {
 
     // Small (4×4)
     const smallRows = 4, smallCols = 4;
-    const smallHeight = 54.7;
-    const cellWidthSmall = 95.5 / smallCols;
-    const spacingFactorSmall = 0.585;
+    const smallHeight = 56.6;
+    const cellWidthSmall = 92 / smallCols;
+    const spacingFactorSmall = 0.54;
     const topOffsetSmall = 5.0;
-    const leftOffsetSmall = 0.86;
+    const leftOffsetSmall = 0.94;
     const widthSmall = "80px";
 
     const cellHeightSmall = smallHeight / smallRows;
@@ -388,11 +388,11 @@ function initCustomizer(root) {
 
     // Large Top (2×3)
     const largeTopRows = 2, largeTopCols = 3;
-    const largeTopHeight = 21.8;
-    const cellWidthLargeTop = 97 / largeTopCols;
-    const spacingFactorTop = 1.75;
-    const topOffsetTop = 1.5;
-    const leftOffsetTop = 0.52;
+    const largeTopHeight = 28.5;
+    const cellWidthLargeTop = 96 / largeTopCols;
+    const spacingFactorTop = 1.3;
+    const topOffsetTop = 1.52;
+    const leftOffsetTop = 0.54;
     const widthLargeTop = "120px";
 
     const cellHeightLargeTop = largeTopHeight / largeTopRows;
@@ -411,11 +411,11 @@ function initCustomizer(root) {
 
     // Large Bottom (1×2)
     const largeBottomRows = 1, largeBottomCols = 2;
-    const largeBottomHeight = 22.5;
-    const cellWidthLargeBottom = 96 / largeBottomCols;
+    const largeBottomHeight = 20;
+    const cellWidthLargeBottom = 94 / largeBottomCols;
     const spacingFactorBottom = 0.53;
     const topOffsetBottom = 1.25;
-    const leftOffsetBottom = 0.76;
+    const leftOffsetBottom = 0.785;
     const widthLargeBottom = "140px";
 
     const cellHeightLargeBottom = largeBottomHeight / largeBottomRows;
@@ -434,11 +434,11 @@ function initCustomizer(root) {
 
     // Medium (4×3)
     const mediumRows = 4, mediumCols = 3;
-    const mediumHeight = 59.5;
-    const cellWidthMedium = 96 / mediumCols;
-    const spacingFactorMedium = 0.65;
+    const mediumHeight = 63.5;
+    const cellWidthMedium = 92 / mediumCols;
+    const spacingFactorMedium = 0.58;
     const topOffsetMedium = 3.0;
-    const leftOffsetMedium = 0.75;
+    const leftOffsetMedium = 0.84;
     const widthMedium = "100px";
 
     const cellHeightMedium = mediumHeight / mediumRows;
