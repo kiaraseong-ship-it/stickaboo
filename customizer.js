@@ -812,15 +812,15 @@ function initCustomizer(root) {
       },
       puppy: {
         "sml-mix": {
-          "smlmix-large-bottom4": { fontSize: "10px", top: "29%", left: "29%", width: "130px", textAlign: "center" },
-          "smlmix-large-bottom5": { fontSize: "10px", top: "30.5%", left: "73%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom4": { fontSize: "10px", top: "33%", left: "30%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "34.5%", left: "72%", width: "130px", textAlign: "center" },
         },
         "ml-mix": {
-          "mlmix-large-top4": { top: "34%", left: "18.5%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top5": { top: "34%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "26%", left: "83%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom7": { top: "52.5%", left: "27.5%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom8": { top: "52.5%", left: "72.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top4": { top: "38%", left: "19.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top5": { top: "39%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "30%", left: "83%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "56.5%", left: "28.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "56.5%", left: "72%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
       kitty: {
