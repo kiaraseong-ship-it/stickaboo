@@ -391,7 +391,7 @@ function initCustomizer(root) {
     const largeTopHeight = 26;
     const cellWidthLargeTop = 96 / largeTopCols;
     const spacingFactorTop = 1.44;
-    const topOffsetTop = 1.6;
+    const topOffsetTop = 1.62;
     const leftOffsetTop = 0.54;
     const widthLargeTop = "120px";
 
@@ -414,7 +414,7 @@ function initCustomizer(root) {
     const largeBottomHeight = 20;
     const cellWidthLargeBottom = 94 / largeBottomCols;
     const spacingFactorBottom = 0.53;
-    const topOffsetBottom = 1.25;
+    const topOffsetBottom = 1.36;
     const leftOffsetBottom = 0.785;
     const widthLargeBottom = "140px";
 
