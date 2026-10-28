@@ -388,10 +388,10 @@ function initCustomizer(root) {
 
     // Large Top (2×3)
     const largeTopRows = 2, largeTopCols = 3;
-    const largeTopHeight = 28.5;
+    const largeTopHeight = 26;
     const cellWidthLargeTop = 96 / largeTopCols;
-    const spacingFactorTop = 1.3;
-    const topOffsetTop = 1.52;
+    const spacingFactorTop = 1.44;
+    const topOffsetTop = 1.6;
     const leftOffsetTop = 0.54;
     const widthLargeTop = "120px";
 
