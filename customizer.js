@@ -293,7 +293,7 @@ function initCustomizer(root) {
 
     // Large Top (1×3)
     const largeTopRows = 1, largeTopCols = 3;
-    const largeTopHeight = 16.5;
+    const largeTopHeight = 16.2;
     const cellWidthLargeTop = 96 / largeTopCols;
     const leftOffsetLargeTop = 0.56;
     const widthLargeTop = "120px";
@@ -825,8 +825,8 @@ function initCustomizer(root) {
       },
       kitty: {
         "sml-mix": {
-          "smlmix-large-bottom4": { fontSize: "10px", top: "27.8%", left: "36%", width: "130px", textAlign: "left" },
-          "smlmix-large-bottom5": { fontSize: "10px", top: "29%", left: "76%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom4": { fontSize: "10px", top: "31.5%", left: "37%", width: "130px", textAlign: "left" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "32.5%", left: "74.5%", width: "130px", textAlign: "center" },
         },
         "ml-mix": {
           "mlmix-large-top4": { top: "34%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
