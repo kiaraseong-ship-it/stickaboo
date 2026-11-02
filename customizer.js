@@ -1387,7 +1387,7 @@ function initCustomizer(root) {
         } else {
           const fs = isMobile
             ? (len <= 5 ? 20 : len <= 7 ? 17 : len <= 9 ? 15 : 11)
-            : (len <= 5 ? 26 : len <= 7 ? 18 : len <= 9 ? 18 : 14);
+            : (len <= 5 ? 26 : len <= 7 ? 18 : len <= 9 ? 16 : 14);
           return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
         }
       }
