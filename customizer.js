@@ -769,13 +769,19 @@ function initCustomizer(root) {
     themeOverrides = {
       dino: {
         large: {
-          "large-text7": { top: "52.8%", left: "15.5%", width: "140px", fontSize: "10px", textAlign: "center", },
-          "large-text8": { top: "54.5%", left: "51%", width: "140px", fontSize: "10px", textAlign: "center", },
-          "large-text9": { top: "54.5%", left: "81%", width: "140px", fontSize: "10px", textAlign: "center", },
-          // "large-text10": { top: "68.5%", left: "36.5%", width: "140px", fontSize: "10px", textAlign: "left" },
-          // "large-text11": { top: "68.5%", left: "84.5%", width: "140px", fontSize: "10px", textAlign: "left" },
-          // "large-text12": { top: "88.5%", left: "36.5%", width: "140px", fontSize: "10px", textAlign: "left" },
-          // "large-text13": { top: "88.5%", left: "84.5%", width: "140px", fontSize: "10px", textAlign: "left" },
+          "large-text1": { top: "21.5%", left: "17.2%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text2": { top: "21.5%", left: "48%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text3": { top: "21.5%", left: "79.2%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text4": { top: "40%", left: "17.2%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text5": { top: "40%", left: "48%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text6": { top: "40%", left: "79.2%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text7": { top: "56.2%", left: "15.5%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text8": { top: "58%", left: "49.8%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text9": { top: "58%", left: "78.2%", width: "140px", fontSize: "10px", textAlign: "center", },
+          "large-text10": { top: "72%", left: "36.5%", width: "140px", fontSize: "10px", textAlign: "left" },
+          "large-text11": { top: "72%", left: "84.2%", width: "140px", fontSize: "10px", textAlign: "left" },
+          "large-text12": { top: "90%", left: "36.5%", width: "140px", fontSize: "10px", textAlign: "left" },
+          "large-text13": { top: "90%", left: "84.5%", width: "140px", fontSize: "10px", textAlign: "left" },
         },
         "sml-mix": {
           "smlmix-large-top2": {
