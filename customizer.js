@@ -1214,7 +1214,7 @@ function initCustomizer(root) {
       }
       if (size === "large") {
         if (area === "top") return twoLines ? step(18, 20, 20, 20) : step(32, 26, 24, 20);
-        if (area === "bottom") return twoLines ? step(34, 28, 28, 30) : step(36, 30, 28, 24);
+        if (area === "bottom") return twoLines ? step(34, 28, 28, 30) : step(36, 30, 24, 24);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
@@ -1265,7 +1265,7 @@ function initCustomizer(root) {
             const lh = len <= 9 ? 12 : 8;
             return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
           } else {
-            const fs = len <= 5 ? 22 : len <= 9 ? 16 : len <= 12 ? 14 : 12;
+            const fs = len <= 5 ? 22 : len <= 9 ? 14 : len <= 12 ? 14 : 12;
             return { fs, lh1: clampPx(Math.max(8, fs - 2)) };
           }
         }
