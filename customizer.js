@@ -819,7 +819,7 @@ function initCustomizer(root) {
       puppy: {
         "sml-mix": {
           "smlmix-large-bottom4": { fontSize: "10px", top: "33%", left: "30%", width: "130px", textAlign: "center" },
-          "smlmix-large-bottom5": { fontSize: "10px", top: "34.5%", left: "72%", width: "130px", textAlign: "center" },
+          "smlmix-large-bottom5": { fontSize: "10px", top: "34.3%", left: "72%", width: "130px", textAlign: "center" },
         },
         "ml-mix": {
           "mlmix-large-top4": { top: "38%", left: "19.5%", width: "140px", fontSize: "10px", textAlign: "center" },
@@ -1451,7 +1451,7 @@ function initCustomizer(root) {
 
         const fs = isMobile
           ? (fullLen <= 5 ? 20 : fullLen <= 7 ? 17 : fullLen <= 9 ? 15 : fullLen <= 12 ? 12 : 10)
-          : (fullLen <= 5 ? 26 : fullLen <= 7 ? 20 : fullLen <= 9 ? 18 : fullLen <= 12 ? 14 : 12);
+          : (fullLen <= 5 ? 26 : fullLen <= 7 ? 20 : fullLen <= 9 ? 16 : fullLen <= 12 ? 14 : 12);
 
         return {
           fs,
@@ -1497,7 +1497,7 @@ function initCustomizer(root) {
       ) {
         if (twoLines) {
           const fs = isMobile
-            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 7 : 7)
+            ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 6 : 7)
             : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
           const lh = fs - 2;
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
