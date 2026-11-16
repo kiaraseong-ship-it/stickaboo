@@ -247,7 +247,7 @@ function initCustomizer(root) {
     const cellWidthTop = 96 / topCols;         // 32
     const cellHeightTop = topHeight / topRows;
     const spacingFactorTop = 1.0;
-    const topOffsetTop = 1.12;                  // ← 아이콘 바로 아래. 이 값으로 위아래 조정
+    const topOffsetTop = 1.16;                  // ← 아이콘 바로 아래. 이 값으로 위아래 조정
     const leftOffsetTop = 0.54;
 
     for (let row = 0; row < topRows; row++) {
@@ -1200,21 +1200,21 @@ function initCustomizer(root) {
       // ✅ NORMAL
       if (size === "small") {
         const base = twoLines
-          ? step(16, 14, 12, 10)
+          ? step(15, 14, 12, 10)
           : step(18, 15, 13, 10);
-        const bottomScale = twoLines ? 0.9 : 0.95;
+        const bottomScale = twoLines ? 0.8 : 0.95;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "medium") {
         const base = twoLines
-          ? step(22, 18, 18, 18)
+          ? step(20, 18, 18, 18)
           : step(22, 22, 18, 17);
-        const bottomScale = twoLines ? 0.9 : 0.9;
+        const bottomScale = twoLines ? 0.8 : 0.9;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
-        if (area === "top") return twoLines ? step(18, 20, 20, 20) : step(32, 26, 24, 20);
-        if (area === "bottom") return twoLines ? step(34, 28, 28, 30) : step(36, 32, 30, 24);
+        if (area === "top") return twoLines ? step(22, 20, 20, 20) : step(32, 26, 24, 20);
+        if (area === "bottom") return twoLines ? step(32, 28, 28, 30) : step(36, 32, 30, 24);
       }
 
       // ✅ MIX (너가 준 sml 규칙)
