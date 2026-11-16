@@ -1200,9 +1200,9 @@ function initCustomizer(root) {
       // ✅ NORMAL
       if (size === "small") {
         const base = twoLines
-          ? step(15, 15, 12, 10)
+          ? step(15, 12, 12, 10)
           : step(18, 15, 13, 10);
-        const bottomScale = twoLines ? 0.85 : 0.95;
+        const bottomScale = twoLines ? 0.9 : 0.95;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "medium") {
