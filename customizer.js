@@ -1209,7 +1209,7 @@ function initCustomizer(root) {
         const base = twoLines
           ? step(20, 19, 18, 18)
           : step(22, 22, 18, 17);
-        const bottomScale = twoLines ? 0.85 : 0.9;
+        const bottomScale = twoLines ? 0.85 : 1;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "large") {
