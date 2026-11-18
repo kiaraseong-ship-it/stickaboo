@@ -824,8 +824,8 @@ function initCustomizer(root) {
         "ml-mix": {
           "mlmix-large-top4": { top: "38%", left: "19.5%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-top5": { top: "39%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "30%", left: "81.5%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom7": { top: "56.5%", left: "28.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "30.5%", left: "81.5%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "56%", left: "28.5%", width: "140px", fontSize: "10px", textAlign: "center" },
           "mlmix-large-bottom8": { top: "56.5%", left: "72%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
@@ -835,11 +835,11 @@ function initCustomizer(root) {
           "smlmix-large-bottom5": { fontSize: "10px", top: "32.5%", left: "74.5%", width: "130px", textAlign: "center" },
         },
         "ml-mix": {
-          "mlmix-large-top4": { top: "34%", left: "18%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top5": { top: "36.5%", left: "51%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-top6": { top: "25%", left: "83%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom7": { top: "52%", left: "28.5%", width: "140px", fontSize: "10px", textAlign: "center" },
-          "mlmix-large-bottom8": { top: "50%", left: "76%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top4": { top: "39%", left: "19%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top5": { top: "41%", left: "50%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-top6": { top: "30%", left: "82%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom7": { top: "56%", left: "29%", width: "140px", fontSize: "10px", textAlign: "center" },
+          "mlmix-large-bottom8": { top: "54%", left: "75%", width: "140px", fontSize: "10px", textAlign: "center" },
         },
       },
     };
@@ -1221,7 +1221,7 @@ function initCustomizer(root) {
       if (size === "sml-mix" || size === "ml-mix") {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 24, 24, 24);
         if (area === "large-bottom") return twoLines ? step(34, 30, 30, 24) : step(34, 28, 27, 28);
-        if (area === "medium") return twoLines ? step(22, 20, 20, 18) : step(24, 19, 18, 18);
+        if (area === "medium") return twoLines ? step(20, 20, 20, 18) : step(24, 19, 18, 18);
         if (area === "small") return step(16, 14, 14, 12);
       }
 
@@ -1405,7 +1405,7 @@ function initCustomizer(root) {
         if (twoLines) {
           const fs = isMobile
             ? (len <= 5 ? 13 : len <= 7 ? 12 : len <= 9 ? 10 : 9)
-            : (len <= 5 ? 18 : len <= 7 ? 12 : len <= 9 ? 14 : 12);
+            : (len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 14 : 12);
           const lh = fs;
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
@@ -1426,7 +1426,7 @@ function initCustomizer(root) {
         if (twoLines) {
           const fs = isMobile
             ? (len <= 5 ? 24 : len <= 7 ? 20 : len <= 9 ? 18 : 16)
-            : (len <= 5 ? 32 : len <= 7 ? 26 : len <= 9 ? 22 : 20);
+            : (len <= 5 ? 30 : len <= 7 ? 26 : len <= 9 ? 22 : 20);
           const lh = isMobile ? fs - 2 : fs;
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
@@ -1473,7 +1473,7 @@ function initCustomizer(root) {
         if (twoLines) {
           const fs = isMobile
             ? (len <= 5 ? 12 : len <= 7 ? 10 : len <= 9 ? 9 : 8)
-            : (len <= 5 ? 16 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
+            : (len <= 5 ? 14 : len <= 7 ? 14 : len <= 9 ? 12 : 10);
           const lh = fs;
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
