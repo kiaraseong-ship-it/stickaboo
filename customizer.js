@@ -1405,7 +1405,7 @@ function initCustomizer(root) {
         if (twoLines) {
           const fs = isMobile
             ? (len <= 5 ? 13 : len <= 7 ? 12 : len <= 9 ? 10 : 9)
-            : (len <= 5 ? 16 : len <= 7 ? 12 : len <= 9 ? 14 : 12);
+            : (len <= 5 ? 14 : len <= 7 ? 12 : len <= 9 ? 14 : 12);
           const lh = fs;
           return { fs, lh1: clampPx(lh), fs2: fs, lh2: clampPx(lh) };
         } else {
