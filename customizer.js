@@ -1222,7 +1222,7 @@ function initCustomizer(root) {
         if (area === "large-top") return twoLines ? step(20, 20, 20, 18) : step(32, 24, 24, 24);
         if (area === "large-bottom") return twoLines ? step(30, 26, 24, 24) : step(34, 28, 27, 28);
         if (area === "medium") return twoLines ? step(20, 18, 17, 18) : step(24, 19, 18, 18);
-        if (area === "small") return step(16, 14, 11, 12);
+        if (area === "small") return step(16, 14, 12, 12);
       }
 
       return 22;
