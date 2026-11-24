@@ -465,11 +465,11 @@ function initCustomizer(root) {
     const overlays = [];
 
     const rows = 12, cols = 4;
-    const rowGap = 8.05;
+    const rowGap = 7.8;
     const colGap = 23.8;
     const widthSmall = "100px";
     const fontSizeSmall = "28px";
-    const topOffset = 5.4;
+    const topOffset = 10;
     const leftOffset = 14.2;
 
     let id = 1;
