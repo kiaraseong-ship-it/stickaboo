@@ -1067,7 +1067,7 @@ function initCustomizer(root) {
       // ✅ NORMAL
       // =========================
       if (size === "small") {
-        return Math.max(10, Math.round(fs * 0.9)) + "px";
+        return Math.max(10, Math.round(fs * 0.8)) + "px";
       }
 
       if (size === "medium") {
@@ -1201,14 +1201,14 @@ function initCustomizer(root) {
       if (size === "small") {
         const base = twoLines
           ? step(15, 14, 12, 10)
-          : step(17, 15, 13, 10);
-        const bottomScale = twoLines ? 0.9 : 0.9;
+          : step(18, 15, 13, 10);
+        const bottomScale = twoLines ? 0.9 : 1;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
       if (size === "medium") {
         const base = twoLines
-          ? step(20, 19, 18, 18)
-          : step(22, 22, 18, 17);
+          ? step(20, 18, 18, 18)
+          : step(22, 22, 16, 17);
         const bottomScale = twoLines ? 0.85 : 0.9;
         return area === "bottom" ? Math.round(base * bottomScale) : base;
       }
