@@ -391,7 +391,7 @@ function initCustomizer(root) {
     const largeTopHeight = 26;
     const cellWidthLargeTop = 96 / largeTopCols;
     const spacingFactorTop = 1.44;
-    const topOffsetTop = 1.58;
+    const topOffsetTop = 1.62;
     const leftOffsetTop = 0.54;
     const widthLargeTop = "120px";
 
@@ -1092,11 +1092,11 @@ function initCustomizer(root) {
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "large-bottom") {
         // ✅ 규칙: line-height = font-size
-        return Math.max(10, fs - 2) + "px";
+        return Math.max(10, fs - 1) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "medium") {
-        return Math.max(10, fs - 2) + "px";
+        return Math.max(10, fs - 1) + "px";
       }
 
       if ((size === "sml-mix" || size === "ml-mix") && area === "small") {
